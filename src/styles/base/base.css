@@ -1,0 +1,13 @@
+@layer base {
+  html {
+    @apply scroll-pt-28 scroll-smooth;
+  }
+
+  body {
+    @apply overflow-x-hidden bg-body font-sans font-normal leading-[1.8] text-muted transition-[background-color] duration-150;
+  }
+
+  ::selection {
+    @apply bg-primary/80 text-white;
+  }
+}
