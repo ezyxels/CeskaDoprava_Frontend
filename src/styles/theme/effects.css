@@ -1,0 +1,15 @@
+:root {
+  /* Effects */
+  --radius: 0.2rem;
+  --duration: 280ms;
+
+  /* Transitions */
+  --transition-color: color var(--duration) ease 0ms;
+  --transition-background: background-color var(--duration) ease 0ms;
+  --transition-transform: transform var(--duration) ease 0ms;
+  --transition-opacity: opacity var(--duration) ease 0ms;
+  --transition-border: border-color var(--duration) ease 0ms;
+  --transition-outline: outline var(--duration) ease 0ms;
+  --transition-shadow: box-shadow var(--duration) ease 0ms;
+  --transition-fill: fill var(--duration) ease 0ms;
+}

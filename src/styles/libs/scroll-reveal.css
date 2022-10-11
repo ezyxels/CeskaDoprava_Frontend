@@ -1,0 +1,307 @@
+@layer components {
+  .lib-sra {
+    --sra-duration: 900ms;
+    --sra-easing: ease;
+    --sra-offset: 4rem;
+    --sra-delay: 0ms;
+
+    transform-origin: 50% 50%;
+    transition: opacity var(--sra-duration) var(--sra-easing) var(--sra-delay),
+      transform var(--sra-duration) var(--sra-easing) var(--sra-delay);
+  }
+
+  .lib-sra-children > * {
+    --sra-duration: 900ms;
+    --sra-easing: ease;
+    --sra-offset: 4rem;
+    --sra-delay: 0ms;
+    --sra-delay-increment: 1;
+
+    transform-origin: 50% 50%;
+    transition: opacity var(--sra-duration) var(--sra-easing)
+        calc(var(--sra-delay) * var(--sra-delay-increment)),
+      transform var(--sra-duration) var(--sra-easing)
+        calc(var(--sra-delay) * var(--sra-delay-increment));
+  }
+
+  .lib-sra-children > *:nth-child(2) {
+    --sra-delay: 100ms;
+  }
+  .lib-sra-children > *:nth-child(3) {
+    --sra-delay: 200ms;
+  }
+  .lib-sra-children > *:nth-child(4) {
+    --sra-delay: 300ms;
+  }
+  .lib-sra-children > *:nth-child(5) {
+    --sra-delay: 400ms;
+  }
+  .lib-sra-children > *:nth-child(6) {
+    --sra-delay: 500ms;
+  }
+  .lib-sra-children > *:nth-child(7) {
+    --sra-delay: 600ms;
+  }
+  .lib-sra-children > *:nth-child(8) {
+    --sra-delay: 700ms;
+  }
+  .lib-sra-children > *:nth-child(9) {
+    --sra-delay: 800ms;
+  }
+  .lib-sra-children > *:nth-child(10) {
+    --sra-delay: 900ms;
+  }
+  .lib-sra-children > *:nth-child(11) {
+    --sra-delay: 1000ms;
+  }
+  .lib-sra-children > *:nth-child(12) {
+    --sra-delay: 1100ms;
+  }
+
+  @media (prefers-reduced-motion) {
+    .lib-sra,
+    .lib-sra-children > * {
+      transition: none;
+    }
+  }
+}
+
+/**** Animations ****/
+/* Fade */
+.sra-fade-hidden,
+.lib-sra-children.sra-fade-hidden > * {
+  opacity: 0;
+}
+.sra-fade-visible,
+.lib-sra-children.sra-fade-visible > * {
+  opacity: 1;
+}
+
+/* Slide Up */
+.sra-slide-up-hidden,
+.lib-sra-children.sra-slide-up-hidden > * {
+  opacity: 0;
+  transform: translate3d(0, var(--sra-offset), 0);
+}
+.sra-slide-up-visible,
+.lib-sra-children.sra-slide-up-visible > * {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Slide Down */
+.sra-slide-down-hidden,
+.lib-sra-children.sra-slide-down-hidden > * {
+  opacity: 0;
+  transform: translate3d(0, calc(var(--sra-offset) * -1), 0);
+}
+.sra-slide-down-visible,
+.lib-sra-children.sra-slide-down-visible > * {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Slide Left */
+.sra-slide-left-hidden,
+.lib-sra-children.sra-slide-left-hidden > * {
+  opacity: 0;
+  transform: translate3d(var(--sra-offset), 0, 0);
+}
+.sra-slide-left-visible,
+.lib-sra-children.sra-slide-left-visible > * {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Slide Right */
+.sra-slide-right-hidden,
+.lib-sra-children.sra-slide-right-hidden > * {
+  opacity: 0;
+  transform: translate3d(calc(var(--sra-offset) * -1), 0, 0);
+}
+.sra-slide-right-visible,
+.lib-sra-children.sra-slide-right-visible > * {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Zoom in */
+.sra-zoom-in-hidden,
+.lib-sra-children.sra-zoom-in-hidden > * {
+  opacity: 0;
+  transform: scale(0.5);
+}
+.sra-zoom-in-visible,
+.lib-sra-children.sra-zoom-in-visible > * {
+  opacity: 1;
+  transform: none;
+}
+
+/* Zoom out */
+.sra-zoom-out-hidden,
+.lib-sra-children.sra-zoom-out-hidden > * {
+  opacity: 0;
+  transform: scale(1.5);
+}
+.sra-zoom-out-visible,
+.lib-sra-children.sra-zoom-out-visible > * {
+  opacity: 1;
+  transform: none;
+}
+
+/* Flip */
+.sra-flip-hidden,
+.lib-sra-children.sra-flip-hidden > * {
+  opacity: 0;
+  transform: rotateY(90deg);
+}
+.sra-flip-visible,
+.lib-sra-children.sra-flip-visible > * {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion) {
+  .sra-fade-in-hidden,
+  .sra-slide-up-hidden,
+  .sra-slide-down-hidden,
+  .sra-slide-left-hidden,
+  .sra-slide-right-hidden,
+  .sra-zoom-in-hidden,
+  .sra-zoom-out-hidden,
+  .sra-flip-hidden {
+    opacity: 1;
+    transition: none;
+  }
+}
+
+@layer utilities {
+  /* Delay */
+  .sra-delay-0 {
+    --sra-delay: 0ms;
+  }
+  .sra-delay-100 {
+    --sra-delay: 100ms;
+  }
+  .sra-delay-200 {
+    --sra-delay: 200ms;
+  }
+  .sra-delay-300 {
+    --sra-delay: 300ms;
+  }
+  .sra-delay-400 {
+    --sra-delay: 400ms;
+  }
+  .sra-delay-500 {
+    --sra-delay: 500ms;
+  }
+  .sra-delay-600 {
+    --sra-delay: 600ms;
+  }
+  .sra-delay-700 {
+    --sra-delay: 700ms;
+  }
+  .sra-delay-800 {
+    --sra-delay: 800ms;
+  }
+  .sra-delay-900 {
+    --sra-delay: 900ms;
+  }
+  .sra-delay-1000 {
+    --sra-delay: 1000ms;
+  }
+  .sra-delay-1100 {
+    --sra-delay: 1100ms;
+  }
+  .sra-delay-1200 {
+    --sra-delay: 1200ms;
+  }
+  .sra-delay-1300 {
+    --sra-delay: 1300ms;
+  }
+  .sra-delay-1400 {
+    --sra-delay: 1400ms;
+  }
+  .sra-delay-1500 {
+    --sra-delay: 1500ms;
+  }
+  .sra-delay-1600 {
+    --sra-delay: 1600ms;
+  }
+
+  /* Duration */
+  .sra-duration-100 {
+    --sra-duration: 100ms;
+  }
+  .sra-duration-200 {
+    --sra-duration: 200ms;
+  }
+  .sra-duration-300 {
+    --sra-duration: 300ms;
+  }
+  .sra-duration-400 {
+    --sra-duration: 400ms;
+  }
+  .sra-duration-500 {
+    --sra-duration: 500ms;
+  }
+  .sra-duration-600 {
+    --sra-duration: 600ms;
+  }
+  .sra-duration-700 {
+    --sra-duration: 700ms;
+  }
+  .sra-duration-800 {
+    --sra-duration: 800ms;
+  }
+  .sra-duration-900 {
+    --sra-duration: 900ms;
+  }
+  .sra-duration-1000 {
+    --sra-duration: 1000ms;
+  }
+  .sra-duration-1100 {
+    --sra-duration: 1100ms;
+  }
+  .sra-duration-1200 {
+    --sra-duration: 1200ms;
+  }
+  .sra-duration-1300 {
+    --sra-duration: 1300ms;
+  }
+  .sra-duration-1400 {
+    --sra-duration: 1400ms;
+  }
+  .sra-duration-1500 {
+    --sra-duration: 1500ms;
+  }
+  .sra-duration-1600 {
+    --sra-duration: 1600ms;
+  }
+  .sra-duration-2000 {
+    --sra-duration: 2000ms;
+  }
+  .sra-duration-2500 {
+    --sra-duration: 2500ms;
+  }
+  .sra-duration-3000 {
+    --sra-duration: 3000ms;
+  }
+
+  /* Stagger children increments */
+  .lib-sra-children.sra-increment-100 > * {
+    --sra-delay-increment: 1;
+  }
+  .lib-sra-children.sra-increment-200 > * {
+    --sra-delay-increment: 2;
+  }
+  .lib-sra-children.sra-increment-300 > * {
+    --sra-delay-increment: 3;
+  }
+  .lib-sra-children.sra-increment-400 > * {
+    --sra-delay-increment: 4;
+  }
+  .lib-sra-children.sra-increment-500 > * {
+    --sra-delay-increment: 5;
+  }
+}

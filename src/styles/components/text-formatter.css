@@ -1,0 +1,130 @@
+.text-formatter {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.8;
+
+  & a {
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 200ms ease;
+
+    &:not([class*="text-"]) {
+      color: hsl(var(--color-primary));
+    }
+
+    &[href]:hover {
+      opacity: 0.7;
+    }
+  }
+
+  & b,
+  & strong {
+    display: inline;
+    font-weight: 600;
+  }
+
+  & p,
+  & ul,
+  & ol {
+    margin-bottom: 1.5rem;
+  }
+
+  & ul,
+  & ol {
+    list-style-position: inside;
+    margin-left: 1.25rem;
+  }
+
+  & ul > li,
+  & ol > li {
+    margin-left: 1em;
+    text-indent: -1em;
+
+    &::marker {
+      color: currentColor;
+      font-size: 1.1em;
+    }
+  }
+
+  & ul {
+    list-style-type: disc;
+  }
+
+  & ol {
+    list-style-type: decimal;
+  }
+
+  & :is(h1, h2, h3, h4, h5, h6) {
+    display: block;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 3em 0 0.75em 0;
+
+    &:not([class*="text-"]) {
+      color: hsl(var(--color-rich));
+    }
+  }
+
+  & h1 {
+    font-size: 2.25rem;
+
+    @media screen(md) {
+      font-size: 3rem;
+    }
+  }
+
+  & h2 {
+    font-size: 1.875rem;
+
+    @media screen(md) {
+      font-size: 2.25rem;
+    }
+  }
+
+  & h3 {
+    font-size: 1.5rem;
+  }
+
+  & h4,
+  & h5 {
+    font-size: 1.125rem;
+  }
+
+  & h6 {
+    font-size: 1rem;
+  }
+
+  & img {
+    display: block;
+    max-width: 100%;
+    height: auto !important;
+    float: none !important;
+    margin: 2rem 0 2rem 0;
+  }
+
+  & iframe {
+    display: block;
+    max-width: 100%;
+  }
+
+  & figure {
+    display: block;
+    width: 100%;
+    margin: 1rem 0;
+
+    @media screen(md) {
+      margin: 2rem 0;
+    }
+
+    & figcaption {
+      font-size: 0.9125rem;
+      font-weight: 600;
+      margin-top: 0.75em;
+    }
+  }
+
+  & hr {
+    margin: 1.125rem 0;
+  }
+}

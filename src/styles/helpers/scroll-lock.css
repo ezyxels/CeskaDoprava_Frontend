@@ -1,0 +1,8 @@
+/* Řeší problém ignorování `overflow: hidden` u iOS zařízení 
+ * Aplikuje se všude kde se otevírá full screen menu */
+.helper-scroll-lock {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  touch-action: none;
+}

@@ -1,0 +1,16 @@
+/* Accessibility (A11y) */
+@layer base {
+  a[href]:focus-visible,
+  area[href]:focus-visible,
+  input:not([disabled]):focus-visible,
+  select:not([disabled]):focus-visible,
+  textarea:not([disabled]):focus-visible,
+  button:not([disabled]):focus-visible,
+  iframe:focus-visible,
+  [tabindex]:focus-visible {
+    @apply outline-none ring-4 ring-primary/70;
+  }
+}
+
+/* Nastavení výchozího focus stavu pro všechny prvky, 
+ * které by z hlediska přístupnosti měli mít viditelný outline při procházení webu pouze pomocí klávesnice. */
