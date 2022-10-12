@@ -1,7 +1,6 @@
-import { ipToFetch } from "@configs/globalConfig";
 import Image from "next/image";
 import Link from "next/link";
-import  { useState,useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type Props = {
   tripId: number;
@@ -25,7 +24,7 @@ export default function NearestDeparturesCard({
   name,
   dateAndPrice,
   className = "",
-}: Props) {  
+}: Props) {
   const [dateFrom, setDateFrom] = useState<string>("2023-12-31")
   const [dateTo, setDateTo] = useState<string>("2023-12-31")
   var tempDateFrom = dateFrom;
@@ -39,7 +38,7 @@ export default function NearestDeparturesCard({
     })
   })
 
-  
+
   function changeDateType(date: string) {
     var newDate = date.split("-")[2] + "." + date.split("-")[1] + "."
     return newDate;
@@ -52,7 +51,7 @@ export default function NearestDeparturesCard({
       >
         <div className="relative aspect-square w-full overflow-hidden rounded-lg">
           <Image
-            src={ipToFetch + imageSrc}
+            src={imageSrc}
             alt={imageAlt}
             layout="fill"
             objectFit="cover"
