@@ -1,4 +1,3 @@
-import { ipToFetch } from "@configs/globalConfig";
 import Image from "next/image";
 
 type Props = {
@@ -14,7 +13,7 @@ export default function ReviewCard({ name, destination, text, imageSrc }: Props)
       <div className="flex flex-row w-full pb-5">
         <div className="w-16 h-16 relative rounded-full overflow-hidden">
           <Image
-            src={ipToFetch + imageSrc}
+            src={imageSrc}
             alt="Ikona"
             layout="fill"
             objectFit="cover"
