@@ -14,55 +14,54 @@ type Props = {
 }
 
 export default function Information({
-  text, 
-  information, 
-  housing, 
-  catering, 
+  text,
+  information,
+  housing,
+  catering,
   transport,
   programme,
   events,
   tips,
   comment
-}: Props){
-  
-  return(
+}: Props) {
+  return (
     <Wrapper
       size="sm"
       id="informace"
     >
-      <div className={`block mb-32 ${text === undefined ? "hidden" : "block"}`}>
-      <Heading level={2} size={"lg"}>Popis</Heading>
+      <div className={`mb-32 ${text === null ? "hidden" : "block"}`}>
+        <Heading level={2} size={"lg"}>Popis</Heading>
         <p className="text-sm my-10">{text}</p>
       </div>
-      <div className={`block mb-32 ${information === undefined ? "hidden" : "block"}`}>
-      <Heading level={2} size={"lg"}>Důležité informace</Heading>
+      <div className={`mb-32 ${information === null ? "hidden" : "block"}`}>
+        <Heading level={2} size={"lg"}>Důležité informace</Heading>
         <p className="text-sm my-10">{information}</p>
       </div>
-      <div className={`block mb-32 ${housing === undefined ? "hidden" : "block"}`}>
-      <Heading level={2} size={"lg"}>Ubytování</Heading>
+      <div className={`mb-32 ${housing === null ? "hidden" : "block"}`}>
+        <Heading level={2} size={"lg"}>Ubytování</Heading>
         <p className="text-sm my-10">{housing}</p>
       </div>
-      <div className={`block mb-32 ${catering === undefined ? "hidden" : "block"}`}>
-      <Heading level={2} size={"lg"}>Stravování</Heading>
+      <div className={`mb-32 ${catering === null ? "hidden" : "block"}`}>
+        <Heading level={2} size={"lg"}>Stravování</Heading>
         <p className="text-sm my-10">{catering}</p>
       </div>
-      <div className={`block mb-32 ${transport === undefined ? "hidden" : "block"}`}>
-      <Heading level={2} size={"lg"}>Doprava</Heading>
+      <div className={`mb-32 ${transport === null ? "hidden" : "block"}`}>
+        <Heading level={2} size={"lg"}>Doprava</Heading>
         <p className="text-sm my-10">{transport}</p>
       </div>
-      <div className={`block mb-32 ${programme === undefined ? "hidden" : "block"}`}>
-      <Heading level={2} size={"lg"}>Program</Heading>
+      <div className={`mb-32 ${programme === null ? "hidden" : "block"}`}>
+        <Heading level={2} size={"lg"}>Program</Heading>
         <p className="text-sm my-10">{programme}</p>
       </div>
-      <div className={`block mb-32 ${events === undefined ? "hidden" : "block"}`}>
-      <Heading level={2} size={"lg"}>Zábava</Heading>
+      <div className={`mb-32 ${events === null ? "hidden" : "block"}`}>
+        <Heading level={2} size={"lg"}>Zábava</Heading>
         <p className="text-sm my-10">{events}</p>
       </div>
-      <div className={`block mb-32 ${tips === undefined ? "hidden" : "block"}`}>
-      <Heading level={2} size={"lg"}>Tipy</Heading>
+      <div className={`mb-32 ${tips === null ? "hidden" : "block"}`}>
+        <Heading level={2} size={"lg"}>Tipy</Heading>
         <p className="text-sm my-10">{tips}</p>
       </div>
-      <div className={`block mb-32 ${comment === undefined ? "hidden" : "block"}`}>
+      <div className={`mb-32 ${comment === null ? "hidden" : "block"}`}>
         <Heading level={2} size={"lg"}>Poznámka k zájezdu</Heading>
         <p className="text-sm my-10">{comment}</p>
       </div>
