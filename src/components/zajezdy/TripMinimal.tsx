@@ -1,4 +1,3 @@
-import { ipToFetch } from "@configs/globalConfig";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -48,7 +47,7 @@ export default function TripMinimal({ id, name, imageSrc, dateAndPrice, categori
     var newDate = date.split("-")[2] + "." + date.split("-")[1] + "."
     return newDate;
   }
-  
+
   return (
     <Link
       href={`/zajezd/${id}`}
@@ -60,7 +59,7 @@ export default function TripMinimal({ id, name, imageSrc, dateAndPrice, categori
           className="relative w-full h-[250px] rounded-md overflow-hidden"
         >
           <Image
-            src={ipToFetch + imageSrc}
+            src={imageSrc}
             alt='#'
             layout='fill'
             objectFit='cover'

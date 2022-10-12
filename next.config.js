@@ -7,7 +7,7 @@ const nextConfig = {
   },
   images: {
     //loader: "custom",
-    domains: ['localhost', '192.168.10.5'],
+    domains: ['localhost', '192.168.10.5', 'res.cloudinary.com'],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 512, 1024, 2048],
     deviceSizes: [352, 640, 768, 992, 1280, 1600, 1920, 2048, 3840],
   },
