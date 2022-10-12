@@ -25,7 +25,7 @@ export default function ContentFilter({content, setContent} : Props){
         <Button 
           color = {content === "galerie" ? "primary" : "gray"}
           shape= "square"
-          className= "border-t border-gray-100"
+          className= "border-t border-gray-100 md:border-t-0"
           onClick={() => setContent("galerie")}
         >
           Galerie
@@ -33,7 +33,7 @@ export default function ContentFilter({content, setContent} : Props){
         <Button 
           color = {content === "objednavka" ? "primary" : "gray"}
           shape= "square"
-          className= "border-t border-gray-100"
+          className= "border-t border-gray-100 md:border-t-0"
           onClick={() => setContent("objednavka")}
         >
           Objednávka
