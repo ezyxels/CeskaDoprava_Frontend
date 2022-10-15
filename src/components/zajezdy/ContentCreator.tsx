@@ -1,9 +1,9 @@
 import Button from "@components/bricks/Button";
 import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
+import { ipToFetch } from "@configs/globalConfig";
 import { useEffect, useState } from 'react';
 import TripMinimal from "./TripMinimal";
-import {ipToFetch} from "@configs/globalConfig"
 
 type Props = {
   category: string;
@@ -43,54 +43,54 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
 
   useEffect(() => {
     getData(0, itemsAtStart, true)
-    setNoTrips(false)   
+    setNoTrips(false)
   }, [category, dateFrom, dateTo])
 
   async function getData(currentAmount: number, addXItems: number, filterChanged: boolean) {
     var paginationQuery = "&pagination[start]=" + currentAmount + "&pagination[limit]=" + addXItems;
-    await fetch(ipToFetch + "/api/zajezds" 
-      + populateQuery 
-      + categoryQuery 
-      + dateQuery 
+    await fetch(ipToFetch + "/api/zajezds"
+      + populateQuery
+      + categoryQuery
+      + dateQuery
       + paginationQuery
       + fieldsQuery
     )
-    .then(response => response.json())
-    .then((all) => {
-      if(all.data !== undefined && all.data !== null){
-        if(data === undefined || filterChanged){
-          setData((all.data))
-          if (all.data.length < currentAmount + addXItems) {
-            setHasItemsLeft(false);
-          } 
-        }
-        else{
-          var tempDataArray = data;
-          tempDataArray.push(...all.data)
-          setData(tempDataArray)
-          
-          if (all.data.length < currentAmount + addXItems) {
-            setHasItemsLeft(false);
+      .then(response => response.json())
+      .then((all) => {
+        if (all.data !== undefined && all.data !== null) {
+          if (data === undefined || filterChanged) {
+            if (all.data.length === 0) {
+              setNoTrips(true)
+            }
+            else {
+              setData((all.data))
+              if (all.data.length < currentAmount + addXItems) {
+                setHasItemsLeft(false);
+              }
+            }
+          }
+          else {
+            var tempDataArray = data;
+            tempDataArray.push(...all.data)
+            setData(tempDataArray)
+
+            if (all.data.length < currentAmount + addXItems) {
+              setHasItemsLeft(false);
+            }
           }
         }
-      }
-      else{
-        setNoTrips(true);
-      }
-    })
+        else {
+          setNoTrips(true);
+        }
+      })
   }
 
   if (data === undefined || data === null || noTrips) {
-    if(noTrips){
-      return (
-        <Wrapper paddedContent="lg">
-          <Heading level={3} size={"base"}>Bohužel, ve vyžadovaných parametrech není žádný zájezd</Heading>
-        </Wrapper>
-      )
-    }
-    else{
-      return null;
-    }
+    return (
+      <Wrapper paddedContent="lg">
+        <Heading level={3} size={"base"}>Bohužel, ve vyžadovaných parametrech není žádný zájezd</Heading>
+      </Wrapper>
+    )
   }
   else {
     return (
