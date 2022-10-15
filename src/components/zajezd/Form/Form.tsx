@@ -1,5 +1,3 @@
-import { jsPDF } from "jspdf";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import Customer from "./Customer";
@@ -64,43 +62,43 @@ function FormStater({ code, dateAndPrice, departurePoints, allDataObject, requir
   const [price, setPrice] = useState<number>(0);
 
   useEffect(() => {
-    if(price === undefined){
+    if (price === undefined) {
       let tempPrice = 0;
       let tempDateFrom = "2025-12-12"
       dateAndPrice.map(entry => {
-        if(new Date(entry.datumOd).getTime() > new Date().getTime() && new Date(entry.datumOd).getTime() < new Date(tempDateFrom).getTime()){
+        if (new Date(entry.datumOd).getTime() > new Date().getTime() && new Date(entry.datumOd).getTime() < new Date(tempDateFrom).getTime()) {
           tempPrice = entry.cena;
         }
       })
       setPrice(tempPrice)
     }
 
-    if(formState === "refused"){
+    if (formState === "refused") {
       window.alert("Zapoměl jsi vyplnit některé z povinných polí")
     }
-    else if(formState === "accepted"){
+    else if (formState === "accepted") {
       window.alert("Vše úspěsně vyplněno")
       CreatePdf();
     }
   }, [formState])
 
-  function verifying(){
+  function verifying() {
     setFormState("verifying")
     setTimeout(
       () => {
         let tempState = "verifying"
         Object.entries(requiredArray).map((e) => {
-          if(typeof e[1] === "string"){
-            if((e[1] in allDataObject) && allDataObject[e[1]] === ""){
+          if (typeof e[1] === "string") {
+            if ((e[1] in allDataObject) && allDataObject[e[1]] === "") {
               tempState = "refused"
               setFormState("refused")
             }
           }
-          else if(typeof e[1] === "object" && e[1] !== null){
-            if(Object.keys(e[1]).length !== 0) {
-              if(e[0] in allDataObject){
-                Object.entries(allDataObject[e[0]]).map((elem:any) => {
-                  if(elem[1] === ""){
+          else if (typeof e[1] === "object" && e[1] !== null) {
+            if (Object.keys(e[1]).length !== 0) {
+              if (e[0] in allDataObject) {
+                Object.entries(allDataObject[e[0]]).map((elem: any) => {
+                  if (elem[1] === "") {
                     tempState = "refused"
                     setFormState("refused")
                   }
@@ -109,16 +107,16 @@ function FormStater({ code, dateAndPrice, departurePoints, allDataObject, requir
             }
           }
         })
-        if(tempState === "refused"){
+        if (tempState === "refused") {
           setFormState("refused")
         }
-        else{
+        else {
           setFormState("accepted")
         }
       }, 150
     )
   }
-  
+
   function CreatePdf() {
     console.log(allDataObject)
     /*  
@@ -278,7 +276,7 @@ function FormStater({ code, dateAndPrice, departurePoints, allDataObject, requir
 
 
       <div className="mt-16 flex flex-col">
-      <Checkbox 
+        <Checkbox
           allDataObject={allDataObject}
           requiredArray={requiredArray}
           isRequired={true}
@@ -287,7 +285,7 @@ function FormStater({ code, dateAndPrice, departurePoints, allDataObject, requir
           formState={formState}
         />
         <Button
-          className="w-fit my-8 mx-auto"
+          className="w-fit my-8 md:mx-auto"
           onClick={() => verifying()}
         >
           Odeslat objednávku

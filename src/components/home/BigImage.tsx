@@ -1,4 +1,3 @@
-import Heading from "@components/bricks/Heading";
 import Image from "next/image";
 
 type Props = {
