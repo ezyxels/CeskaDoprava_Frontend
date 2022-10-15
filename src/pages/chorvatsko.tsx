@@ -1,17 +1,16 @@
+import BasicContact from '@components/bricks/BasicContact'
 import BasicHero from '@components/bricks/BasicHero'
 import Button from '@components/bricks/Button'
-import Informations from '@components/chorvatsko/Informations'
-import Seo from '@components/root/seo/Seo'
-import React from 'react'
-import { HiArrowSmDown } from 'react-icons/hi'
-import DeparturePoints from '@components/chorvatsko/DeparturePoints'
+import ParallaxImage from "@components/bricks/ParallaxImage"
 import Dates from '@components/chorvatsko/Dates'
+import DeparturePoints from '@components/chorvatsko/DeparturePoints'
+import Form from '@components/chorvatsko/form/Form'
+import Informations from '@components/chorvatsko/Informations'
 import Pricing from '@components/chorvatsko/Pricing'
 import Questions from '@components/chorvatsko/Questions'
-import BasicContact from '@components/bricks/BasicContact'
-import Form from '@components/chorvatsko/form/Form'
+import Seo from '@components/root/seo/Seo'
 import { ipToFetch } from '@configs/globalConfig'
-import ParallaxImage from "@components/bricks/ParallaxImage"
+import { HiArrowSmDown } from 'react-icons/hi'
 
 type Props = {
   prices: any;
@@ -21,7 +20,7 @@ type Props = {
 }
 
 
-interface SpecialPricesProps{
+interface SpecialPricesProps {
   cena: string;
   mesto: [
     {
@@ -30,7 +29,7 @@ interface SpecialPricesProps{
   ]
 }
 
-interface DeparturePointsProps{
+interface DeparturePointsProps {
   oblast: string;
   stat: string;
   mesto: [{
@@ -38,7 +37,7 @@ interface DeparturePointsProps{
   }];
 }
 
-export default function chorvatsko({prices, months, departurePoints, specialPrices }: Props) {
+export default function chorvatsko({ prices, months, departurePoints, specialPrices }: Props) {
   return (
     <>
       <Seo title="Česká doprava" description="" />
@@ -49,23 +48,23 @@ export default function chorvatsko({prices, months, departurePoints, specialPric
         imageAlt="Obrázek Chorvatsko"
         imageSrc="/images/conf.jpg"
       >
-        <div className="flex gap-5">
-            <a href="#ukazka">
-              <Button className="w-full md:w-fit h-full">Více informací <HiArrowSmDown className="inline-block"></HiArrowSmDown></Button>
-            </a>
-            <a href="#formular">
-              <Button variant={"outlined"} className="w-full md:w-fit h-full">Objednávkový formulář</Button>
-            </a>
-          </div>
+        <div className="flex flex-col md:flex-row gap-5">
+          <a href="#ukazka">
+            <Button className="w-full md:w-fit" rightIcon={<HiArrowSmDown />}>Více informací</Button>
+          </a>
+          <a href="#formular">
+            <Button variant={"outlined"} className="w-full md:w-fit">Objednávkový formulář</Button>
+          </a>
+        </div>
       </BasicHero>
       <Informations />
-      <ParallaxImage className="w-screen aspect-[5/3] bg-body-100" speed={-10}/>
-      <DeparturePoints departurePoints={departurePoints}/>
-      <Dates months={months}/>
-      <Pricing prices={prices} specialPrices={specialPrices}/>
-      <Form prices={prices} months={months} departurePoints={departurePoints} specialPrices={specialPrices}/>
+      <ParallaxImage className="w-screen aspect-[5/3] bg-body-100" speed={-10} />
+      <DeparturePoints departurePoints={departurePoints} />
+      <Dates months={months} />
+      <Pricing prices={prices} specialPrices={specialPrices} />
+      <Form prices={prices} months={months} departurePoints={departurePoints} specialPrices={specialPrices} />
       <Questions />
-      <BasicContact 
+      <BasicContact
         heading='Kontaktujte nás'
         text='Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero magnam doloremque provident sint deserunt dignissimos sapiente atque facere.'
       />
@@ -73,7 +72,7 @@ export default function chorvatsko({prices, months, departurePoints, specialPric
   )
 }
 
-export async function getStaticProps(){
+export async function getStaticProps() {
   const pricesQuery = "?populate[jizdne][populate][0]=x"
   const monthsQuery = "&populate[mesice][populate][0]=datumCr&populate[mesice][populate][1]=datumHr"
   const departurePointsQuery = "&populate[odjezdMista][populate][0]=mesto"

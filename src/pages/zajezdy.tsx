@@ -23,7 +23,7 @@ export default function zajezdy({ calendar, catalog, conditions }: Props) {
         imageAlt="Obrázek"
         imagePosition="right"
       >
-        <div className="flex flex-row gap-3">
+        <div className="flex flex-col md:flex-row gap-5">
           <a href="#filter">
             <Button className="w-full md:w-fit" rightIcon={<HiArrowSmDown />}>Zobrazit zájezdy</Button>
           </a>
@@ -37,7 +37,7 @@ export default function zajezdy({ calendar, catalog, conditions }: Props) {
       <ContentAndFilter />
 
       {/* Kalendář, Katalog, Podmínky -> ke stažení */}
-      <Downloads 
+      <Downloads
         calendar={calendar}
         catalog={catalog}
         conditions={conditions}
@@ -46,7 +46,7 @@ export default function zajezdy({ calendar, catalog, conditions }: Props) {
   )
 }
 
-export async function getStaticProps(){
+export async function getStaticProps() {
   const res = await fetch(ipToFetch + "/api/informace?populate[katalog][fields][0]=url&populate[kalendar][fields][1]=url&populate[podminky][fields][2]=url")
   const dataAndMeta = await res.json()
   const data = dataAndMeta.data.attributes

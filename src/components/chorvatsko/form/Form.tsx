@@ -1,5 +1,3 @@
-import { jsPDF } from "jspdf";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import Customer from "./Customer";
@@ -19,26 +17,26 @@ type FormProps = {
   departurePoints: departurePoints[];
 }
 
-interface Months{
-  datumCr:[
+interface Months {
+  datumCr: [
     {
       datum: string;
     }
   ];
-  datumHr:[
+  datumHr: [
     {
       datum: string;
     }
   ]
 }
 
-interface Prices{
+interface Prices {
   oblast: string;
   zpatecni: string;
   jednosmerna: string;
 }
 
-interface SpecialPrices{
+interface SpecialPrices {
   cena: string;
   mesto: [
     {
@@ -47,7 +45,7 @@ interface SpecialPrices{
   ]
 }
 
-interface departurePoints{
+interface departurePoints {
   oblast: string;
   stat: string;
   mesto: [{
@@ -86,40 +84,40 @@ function FormStater({ allDataObject, requiredArray, prices, months, specialPrice
   const [passengers, setPassengers] = useState<number>(0);
 
   useEffect(() => {
-    if(formState === "refused"){
+    if (formState === "refused") {
       window.alert("Zapoměl jsi vyplnit některé z povinných polí")
     }
-    else if(formState === "accepted"){
+    else if (formState === "accepted") {
       window.alert("Vše úspěsně vyplněno")
       CreatePdf();
     }
   }, [formState])
 
-  function verifying(){
+  function verifying() {
     setFormState("verifying")
     setTimeout(
       () => {
         let tempState = "verifying"
         Object.entries(requiredArray).map((e) => {
-          if(typeof e[1] === "string"){
-            if(!(e[1] === "gdpr")){
-              if((e[1] in allDataObject) && allDataObject[e[1]] === ""){
+          if (typeof e[1] === "string") {
+            if (!(e[1] === "gdpr")) {
+              if ((e[1] in allDataObject) && allDataObject[e[1]] === "") {
                 tempState = "refused"
                 setFormState("refused")
               }
             }
-            else{
-              if(allDataObject[e[1]] === false || allDataObject[e[1]] === ""){
+            else {
+              if (allDataObject[e[1]] === false || allDataObject[e[1]] === "") {
                 tempState = "refused"
                 setFormState("refused")
               }
             }
           }
-          else if(typeof e[1] === "object"){
-            if(e[1].length !== 0) {
-              if(e[0] in allDataObject){
-                Object.entries(allDataObject[e[0]]).map((elem:any) => {
-                  if(elem[1] === ""){
+          else if (typeof e[1] === "object") {
+            if (e[1].length !== 0) {
+              if (e[0] in allDataObject) {
+                Object.entries(allDataObject[e[0]]).map((elem: any) => {
+                  if (elem[1] === "") {
                     tempState = "refused"
                     setFormState("refused")
                   }
@@ -128,16 +126,16 @@ function FormStater({ allDataObject, requiredArray, prices, months, specialPrice
             }
           }
         })
-        if(tempState === "refused"){
+        if (tempState === "refused") {
           setFormState("refused")
         }
-        else{
+        else {
           setFormState("accepted")
         }
       }, 150
     )
   }
-  
+
   function CreatePdf() {
     console.log(allDataObject)
     /*  
@@ -296,7 +294,7 @@ function FormStater({ allDataObject, requiredArray, prices, months, specialPrice
 
 
       <div className="mt-16 flex flex-col">
-      <Checkbox 
+        <Checkbox
           allDataObject={allDataObject}
           requiredArray={requiredArray}
           isRequired={true}
@@ -305,7 +303,7 @@ function FormStater({ allDataObject, requiredArray, prices, months, specialPrice
           formState={formState}
         />
         <Button
-          className="w-fit my-8 mx-auto"
+          className="w-fit my-8 md:mx-auto"
           onClick={() => verifying()}
         >
           Odeslat objednávku

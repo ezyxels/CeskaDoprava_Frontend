@@ -1,7 +1,6 @@
 import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
 import NearestDeparturesCard from "@components/home/NearestDeparturesCard";
-import { ipToFetch } from "@configs/globalConfig";
 
 
 type Props = {
@@ -13,7 +12,7 @@ export default function NearestDepartures({ trips }: Props) {
       <Heading level={2} size="sm" className="mb-12">
         Nejbližší odjezdy
       </Heading>
-      <div className="grid grid-cols-1 gap-10 xs:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-6 md:gap-10 xs:grid-cols-2 lg:grid-cols-4">
         {trips.map((trip: any) => (
           <NearestDeparturesCard
             tripId={trip.id}
