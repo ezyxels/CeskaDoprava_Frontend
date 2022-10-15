@@ -25,23 +25,42 @@ type Props = {
 }
 
 export default function TripMinimal({ id, name, imageSrc, dateAndPrice, categories, filterCategory, filterDateFrom, filterDateTo }: Props) {
-  const [dateFrom, setDateFrom] = useState<string>("2023-12-31")
-  const [dateTo, setDateTo] = useState<string>("2023-12-31")
-  const [price, setPrice] = useState<number>(0)
+  const [changeables, setChangables] = useState<{ dateFrom: string, dateTo: string, price: number }>
+    ({ dateFrom: "2023-12-31", dateTo: "2023-12-31", price: 0 })
 
-  var tempDateFrom = dateFrom;
-
-  var counterForTags = 0
+  let counterForTags = 0
 
   useEffect(() => {
-    dateAndPrice.map(entry => {
-      if (new Date(entry.datumOd).getTime() > new Date(filterDateFrom).getTime() && new Date(entry.datumOd).getTime() < new Date(tempDateFrom).getTime()) {
-        setDateFrom(changeDateType(entry.datumOd));
-        setDateTo(changeDateType(entry.datumDo));
-        setPrice(entry.cena);
+    let tempDateFrom = "2023-12-31";
+    let tempDateTo = "2023-12-31";
+    let tempPrice = 0;
+
+    dateAndPrice.map((entry, index) => {
+      if ((index + 1) === dateAndPrice.length) {
+        if (new Date(entry.datumOd).getTime() >= new Date(filterDateFrom).getTime() && new Date(entry.datumOd).getTime() < new Date(tempDateFrom).getTime()) {
+          setChangables({
+            dateFrom: changeDateType(entry.datumOd),
+            dateTo: changeDateType(entry.datumDo),
+            price: entry.cena
+          })
+        }
+        else {
+          setChangables({
+            dateFrom: changeDateType(tempDateFrom),
+            dateTo: changeDateType(tempDateTo),
+            price: tempPrice
+          })
+        }
+      }
+      else {
+        if (new Date(entry.datumOd).getTime() >= new Date(filterDateFrom).getTime() && new Date(entry.datumOd).getTime() < new Date(tempDateFrom).getTime()) {
+          tempDateFrom = entry.datumOd;
+          tempDateTo = entry.datumDo;
+          tempPrice = entry.cena;
+        }
       }
     })
-  })
+  }, [filterDateFrom, filterDateTo])
 
   function changeDateType(date: string) {
     var newDate = date.split("-")[2] + "." + date.split("-")[1] + "."
@@ -66,37 +85,39 @@ export default function TripMinimal({ id, name, imageSrc, dateAndPrice, categori
             priority={true}
           />
         </div>
-        <div className="flex flex-row justify-between mt-5">
-          <div className="flex flex-wrap gap-y-2">
-            {categories.map((category: any, key: number) => {
-              if (
-                counterForTags === 0 ||
-                counterForTags === 1 && category.kategorie === filterCategory ||
-                counterForTags === 1 && key === categories.length - 1
-              ) {
-                counterForTags++
-                return (
-                  <span
-                    className="h-fit bg-primary mr-2 text-white px-1 rounded-md uppercase tracking-wider"
-                    key={key}
-                  >
-                    {category.kategorie}
-                  </span>
-                )
-              }
-            })}
+        <div className="px-1.5 pt-5 pb-1.5 flex flex-col">
+          <div className="flex flex-row justify-between">
+            <div className="flex flex-wrap gap-y-2 mb-5">
+              {categories.map((category: any, key: number) => {
+                if (
+                  counterForTags === 0 ||
+                  counterForTags === 1 && category.kategorie === filterCategory ||
+                  counterForTags === 1 && key === categories.length - 1
+                ) {
+                  counterForTags++
+                  return (
+                    <span
+                      className="h-fit text-sm bg-primary mr-2 text-white px-1 rounded-md uppercase tracking-wider"
+                      key={key}
+                    >
+                      {category.kategorie}
+                    </span>
+                  )
+                }
+              })}
+            </div>
+            <span className="min-w-[110px]">{changeables.dateFrom} - {changeables.dateTo}</span>
           </div>
-          <span className="min-w-[110px]">{dateFrom} - {dateTo.slice(0, 6)}</span>
-        </div>
-        <span className="text-lg font-bold text-black pt-3">{name}</span>
-        <span
-          className="text-gray-600 font-semibold"
-        >
-          {price} Kč
-        </span>
-        <div className="flex flex-row justify-between w-full text-primary font-semibold">
-          Zobrazit více
-          <HiArrowNarrowRight />
+          <span className="mt-auto text-lg font-bold text-black pt-3">{name}</span>
+          <span
+            className="text-gray-600 font-semibold"
+          >
+            {changeables.price} Kč
+          </span>
+          <div className="flex flex-row justify-between w-full text-primary font-semibold">
+            Zobrazit více
+            <HiArrowNarrowRight />
+          </div>
         </div>
       </a>
     </Link>
