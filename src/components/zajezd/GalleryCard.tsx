@@ -1,29 +1,45 @@
 import Image from "next/image";
+import { HiChevronLeft, HiChevronRight, HiX } from "react-icons/hi";
 
 type Props = {
   imageSrc: string;
-  show: any;
+  index: number;
 }
-export default function GalleryCard({ imageSrc, show }: Props) {
+export default function GalleryCard({ imageSrc, index }: Props) {
   return (
     <div
-      className={`relative transition ease-in duration-300 transform ${show ? "" : "translate-y-16 opacity-0"
-        }`}
+      className="hidden w-full h-full fixed z-10 target:block top-0 left-0 bg-black/60"
+      id={"img" + index}
     >
-      <div className="absolute inset-0 z-10 flex transition duration-200 ease-in hover:opacity-0">
-        <div className="absolute inset-0 bg-black opacity-70"></div>
-        <div className="mx-auto text-white z-10 self-center uppercase tracking-widest text-sm">
-          Hello World
-        </div>
+      <a
+        href={"#img" + (index - 1)}
+        className="left-[7%] top-1/2 absolute text-3xl cursor-pointer hover:scale-125 duration-150
+         rounded-md border-[3px] border-primary text-primary bg-white"
+      >
+        <HiChevronLeft />
+      </a>
+      <a
+        href="#_"
+        className="top-[10%] right-[10%] absolute text-3xl cursor-pointer hover:scale-125 duration-150
+         rounded-md border-[3px] border-primary text-primary bg-white"
+      >
+        <HiX />
+      </a>
+      <div
+        className="relative w-3/5 h-3/5  top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
+      >
+        <Image
+          src={imageSrc}
+          layout="fill"
+        />
       </div>
-      <Image
-        src={imageSrc}
-        alt={"Obrázek"}
-        objectFit='cover'
-        layout='responsive'
-        width={150}
-        height={150}
-      />
+      <a
+        href={"#img" + (index + 1)}
+        className="right-[7%] top-1/2 absolute text-3xl cursor-pointer hover:scale-125 duration-150
+         rounded-md border-[3px] border-primary text-primary bg-white"
+      >
+        <HiChevronRight />
+      </a>
     </div>
-  );
+  )
 }
