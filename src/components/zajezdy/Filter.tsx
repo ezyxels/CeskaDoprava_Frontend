@@ -1,6 +1,5 @@
 import Wrapper from "@components/bricks/Wrapper";
 import DatePicker from "@components/forms/DatePicker";
-import { useState } from "react";
 import { ScrollContainer } from 'react-indiana-drag-scroll';
 import 'react-indiana-drag-scroll/dist/style.css';
 import { tagAndText } from "./References";
@@ -16,7 +15,6 @@ type Props = {
 }
 
 export default function Filter({ category = "Vse", setCategory, dateFrom = "26.09.", setDateFrom, dateTo = "26.09.", setDateTo }: Props) {
-  const [focused, setFocused] = useState<string>(category)
 
   return (
     <section
@@ -25,7 +23,7 @@ export default function Filter({ category = "Vse", setCategory, dateFrom = "26.0
     >
       <Wrapper
         size="lg"
-        className={`min-h-[75px] flex flex-row py-5 xl:py-16 justify-between`}
+        className={`min-h-[75px] !w-full flex flex-row py-5 xl:py-16 justify-between`}
       >
         <div className={`grid grid-cols-1 xl:flex xl:flex-row justify-between w-full`}>
 
@@ -48,7 +46,7 @@ export default function Filter({ category = "Vse", setCategory, dateFrom = "26.0
               </li>
             ))}
           </ScrollContainer>
-          <div className={`flex xl:my-auto justify-end gap-5`}>
+          <div className={`grid grid-cols-2 sm:flex xl:my-auto justify-center sm:justify-end gap-5`}>
             <DatePicker
               text="Datum od"
               startDay="today"
@@ -56,16 +54,18 @@ export default function Filter({ category = "Vse", setCategory, dateFrom = "26.0
               datePickerAlign="left"
               datePickerValueAlign="right"
               tabIndex={0}
-              inputClassName="rounded-lg border border-gray-500 w-[153px] h-12"
+              inputClassName="rounded-lg border border-gray-500 w-full sm:w-[153px] h-12"
             />
             <DatePicker
               text="Datum do"
+              startDay={31}
+              startMonth={11}
               startYear={new Date().getFullYear() + 1}
               setFunction={setDateTo}
               datePickerAlign="right"
               datePickerValueAlign="right"
               tabIndex={0}
-              inputClassName="rounded-lg border border-gray-500 w-[153px] h-12"
+              inputClassName="rounded-lg border border-gray-500 w-full sm:w-[153px] h-12"
             />
           </div>
         </div>
