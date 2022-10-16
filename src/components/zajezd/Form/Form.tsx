@@ -243,6 +243,7 @@ function FormStater({ code, dateAndPrice, departurePoints, allDataObject, requir
     <Wrapper
       size="base"
       as={"section"}
+      className="mb-16"
     >
       <div className="mt-12">
         <Heading level={2} size={"xl"}>Objednávkový formulář</Heading>

@@ -3,15 +3,15 @@ import { useState } from "react";
 
 import ContentFilter from "./ContentFilter";
 import DatesAll from "./DatesAll";
-import Information from "./Information";
-import Gallery from "./Gallery";
 import Form from "./Form/Form";
+import Gallery from "./Gallery";
+import Information from "./Information";
 
 type Props = {
   code: string;
   imageSrc: string;
   otherImages?: any;
-  dateAndPrice : [{
+  dateAndPrice: [{
     datumOd: string;
     datumDo: string;
     cena: number;
@@ -52,51 +52,51 @@ export default function ContentCreator({
   const [content, setContent] = useState("informace");
   var contentShown: any;
 
-  if(content === "informace"){
-    contentShown = 
-      <Information 
-          text={text}
-          information={information}
-          housing={housing}
-          catering={catering}
-          transport={transport}
-          programme={programme}
-          events={events}
-          tips={tips}
-          comment={comment}
+  if (content === "informace") {
+    contentShown =
+      <Information
+        text={text}
+        information={information}
+        housing={housing}
+        catering={catering}
+        transport={transport}
+        programme={programme}
+        events={events}
+        tips={tips}
+        comment={comment}
       />
-  } 
-  else if(content === "termin"){
-    contentShown = 
+  }
+  else if (content === "termin") {
+    contentShown =
       <DatesAll
-        dateAndPrice ={dateAndPrice}
+        dateAndPrice={dateAndPrice}
       />
   }
 
-  
-  else if(content === "galerie"){
-    contentShown = 
-      <Gallery images={otherImages}/>
+
+  else if (content === "galerie") {
+    contentShown =
+      <Gallery images={otherImages} />
   }
-   else if(content === "objednavka"){
-    contentShown = 
-      <Form 
+  else if (content === "objednavka") {
+    contentShown =
+      <Form
         code={code}
-        dateAndPrice ={dateAndPrice}
+        dateAndPrice={dateAndPrice}
         departurePoints={departurePoints}
-    />
+      />
   }
-  
 
 
 
 
-  return(
+
+  return (
     <Wrapper
       size="sm"
       as={"section"}
     >
-      <ContentFilter content={content} setContent={setContent}/>
+      <ContentFilter content={content} setContent={setContent} />
 
       {contentShown}
     </Wrapper>

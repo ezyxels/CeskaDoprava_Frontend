@@ -1,15 +1,6 @@
-import { Fragment, useState, useEffect } from 'react'
-import { Combobox, Transition } from '@headlessui/react'
-import { HiCheck, HiChevronDown } from 'react-icons/hi'
-
-const people = [
-  { id: 1, name: 'Wade Cooper' },
-  { id: 2, name: 'Arlene Mccoy' },
-  { id: 3, name: 'Devon Webb' },
-  { id: 4, name: 'Tom Cook' },
-  { id: 5, name: 'Tanya Fox' },
-  { id: 6, name: 'Hellen Schmidt' },
-]
+import { Combobox, Transition } from '@headlessui/react';
+import { Fragment, useEffect, useState } from 'react';
+import { HiCheck, HiChevronDown } from 'react-icons/hi';
 
 type Props = {
   name: string;
@@ -19,7 +10,7 @@ type Props = {
   className?: string;
   values: any;
   allDataObject: any;
-  requiredArray?:  any;
+  requiredArray?: any;
   oneOfMany?: boolean | string;
   formState?: "waiting" | "verifying" | "refused" | "accepted";
   setFunction?: any;
@@ -39,8 +30,8 @@ export default function ComboSelect({
   formState,
   setFunction,
   rare = false,
-}: Props){  
-  const [inValidation, setInValidation] = useState<undefined |"waiting" | "verifying" | "refused" | "accepted">("waiting")
+}: Props) {
+  const [inValidation, setInValidation] = useState<undefined | "waiting" | "verifying" | "refused" | "accepted">("waiting")
   const [selected, setSelected] = useState(values[0])
   const [query, setQuery] = useState('')
 
@@ -48,39 +39,39 @@ export default function ComboSelect({
     query === ''
       ? values
       : values.filter((point: any) =>
-          point
-            .toLowerCase()
-            .replace(/\s+/g, '')
-            .includes(query.toLowerCase().replace(/\s+/g, ''))
-        )
+        point
+          .toLowerCase()
+          .replace(/\s+/g, '')
+          .includes(query.toLowerCase().replace(/\s+/g, ''))
+      )
 
   useEffect(() => {
-    if(oneOfMany === false){
-      if(allDataObject[name] === undefined){
+    if (oneOfMany === false) {
+      if (allDataObject[name] === undefined) {
         allDataObject[name] === selected;
       }
-      if(isRequired && requiredArray !== undefined){
-        if(!requiredArray.includes(name)){
+      if (isRequired && requiredArray !== undefined) {
+        if (!requiredArray.includes(name)) {
           requiredArray?.push(name)
         }
       }
     }
-    else if(typeof oneOfMany === "string"){
-      if(allDataObject[oneOfMany] === undefined){
+    else if (typeof oneOfMany === "string") {
+      if (allDataObject[oneOfMany] === undefined) {
         allDataObject[oneOfMany] = {}
       }
-      else{
-        if(allDataObject[oneOfMany][name] === undefined)
+      else {
+        if (allDataObject[oneOfMany][name] === undefined)
           allDataObject[oneOfMany][name] = ""
       }
-      
-      if(isRequired && requiredArray !== undefined){
-        if(requiredArray[oneOfMany] === undefined){
+
+      if (isRequired && requiredArray !== undefined) {
+        if (requiredArray[oneOfMany] === undefined) {
           requiredArray[oneOfMany] = []
           requiredArray[oneOfMany].push(name);
         }
-        else{
-          if(!requiredArray[oneOfMany].includes(name)){
+        else {
+          if (!requiredArray[oneOfMany].includes(name)) {
             requiredArray[oneOfMany].push(name);
           }
         }
@@ -89,18 +80,18 @@ export default function ComboSelect({
   })
 
   useEffect(() => {
-    allDataObject[name]=selected;
-  },[selected])
-      
+    allDataObject[name] = selected;
+  }, [selected])
+
   useEffect(() => {
     setInValidation(formState)
-  },[formState])
-      
+  }, [formState])
+
 
   return (
     <div className='relative block w-full'>
-      <label 
-        className="font-semibold text-black cursor-pointer" 
+      <label
+        className="font-semibold text-black cursor-pointer"
         htmlFor={name}
       >
         {label}
@@ -127,11 +118,10 @@ export default function ComboSelect({
               className={`h-auto w-full rounded-md border
               border-body bg-body-200 px-4 py-3 text-base 
               font-normal  transition duration-150 
-              focus:border-primary focus:bg-white focus:!outline-none focus:ring-1 focus:ring-primary ${
-            isDisabled
-              ? "pointer-events-none cursor-not-allowed opacity-60"
-              : "cursor-default opacity-100"
-          }`}
+              focus:border-primary focus:bg-white focus:!outline-none focus:ring-1 focus:ring-primary ${isDisabled
+                  ? "pointer-events-none cursor-not-allowed opacity-60"
+                  : "cursor-default opacity-100"
+                }`}
               displayValue={(point: string) => point}
               onChange={(event) => setQuery(event.target.value)}
             />
@@ -159,8 +149,7 @@ export default function ComboSelect({
                   <Combobox.Option
                     key={point}
                     className={({ active }) =>
-                      `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                        active ? 'bg-primary text-white' : 'text-gray-900'
+                      `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-primary text-white' : 'text-gray-900'
                       }`
                     }
                     value={point}
@@ -168,17 +157,15 @@ export default function ComboSelect({
                     {({ selected, active }) => (
                       <>
                         <span
-                          className={`block truncate ${
-                            selected ? 'font-medium' : 'font-normal'
-                          }`}
+                          className={`block truncate ${selected ? 'font-medium' : 'font-normal'
+                            }`}
                         >
                           {point}
                         </span>
                         {selected ? (
                           <span
-                            className={`absolute h-full inset-y-0 left-0 flex items-center pl-3 ${
-                              active ? 'text-white' : 'text-primary'
-                            }`}
+                            className={`absolute h-full inset-y-0 left-0 flex items-center pl-3 ${active ? 'text-white' : 'text-primary'
+                              }`}
                           >
                             <HiCheck className="h-5 w-5" aria-hidden="true" />
                           </span>
