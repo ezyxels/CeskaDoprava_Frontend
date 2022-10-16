@@ -1,23 +1,21 @@
-import Heading from '@components/bricks/Heading'
-import Wrapper from '@components/bricks/Wrapper'
-import { stringify } from 'querystring'
-import React from 'react'
+import Heading from '@components/bricks/Heading';
+import Wrapper from '@components/bricks/Wrapper';
 
 type Props = {
-  prices:{
+  prices: {
     oblast: string;
     jednosmerna: number;
     zpatecni: number;
   }[],
   specialPrices: {
     cena: string,
-    mesto:{
-      nazev:string
+    mesto: {
+      nazev: string
     }[],
   }[],
 }
 
-export default function Pricing({prices, specialPrices}: Props) {
+export default function Pricing({ prices, specialPrices }: Props) {
   return (
     <div className='bg-body-100'>
       <Wrapper as="section" size="base" paddedContent='sm'>
@@ -30,19 +28,19 @@ export default function Pricing({prices, specialPrices}: Props) {
           <div>
             <Heading level={3} size="base">Jízdné</Heading>
             <table className='max-w-2xl w-full'>
-                <thead>
-                  <tr>
-                    <td><Heading level={4} size="xs" className='mb-2 mt-7'>Cílová oblast</Heading></td>
-                    <td><Heading level={4} size="xs" align='right' className='mb-2 mt-7'>Zpáteční jízdenka</Heading></td>
-                    <td><Heading level={4} size="xs" align='right' className='mb-2 mt-7'>Jednosměrná jízdenka</Heading></td>
-                  </tr>
-                </thead>
+              <thead>
+                <tr>
+                  <td><Heading level={4} size="xs" className='mb-2 mt-7'>Cílová oblast</Heading></td>
+                  <td><Heading level={4} size="xs" align='right' className='mb-2 mt-7'>Zpáteční jízdenka</Heading></td>
+                  <td><Heading level={4} size="xs" align='right' className='mb-2 mt-7'>Jednosměrná jízdenka</Heading></td>
+                </tr>
+              </thead>
               <tbody>
-                {prices.map((e:any, key:number) => (
+                {prices.map((e: any, key: number) => (
                   <tr key={key}>
                     <td>{e.oblast}</td>
-                    <td className='text-primary text-right py-2'>{e.jednosmerna} Kč</td>
-                    <td className='text-primary text-right py-2'>{e.zpatecni} Kč</td>
+                    <td className='text-primary text-right py-2 font-medium'>{e.jednosmerna} Kč</td>
+                    <td className='text-primary text-right py-2 font-medium'>{e.zpatecni} Kč</td>
                   </tr>
                 ))}
               </tbody>
@@ -61,16 +59,16 @@ export default function Pricing({prices, specialPrices}: Props) {
                 </tr>
               </thead>
               <tbody className='divide-y-2'>
-                {specialPrices.map((e:any, key:number) => {
-                  return(
+                {specialPrices.map((e: any, key: number) => {
+                  return (
                     <tr key={key}>
                       <td>
-                        {e.mesto.map((mesto:any, key:number) => (
-                          key !== e.mesto.length-1 ? mesto.nazev + ", " : mesto.nazev
-                          )
+                        {e.mesto.map((mesto: any, key: number) => (
+                          key !== e.mesto.length - 1 ? mesto.nazev + ", " : mesto.nazev
+                        )
                         )}
                       </td>
-                      <td className='text-primary text-right py-2'>{e.cena}{e.cena !== "Zdarma" && " Kč / osoba"}</td>
+                      <td className='text-primary text-right py-2 font-medium'>{e.cena}{e.cena !== "Zdarma" && " Kč / osoba"}</td>
                     </tr>
                   )
                 })}

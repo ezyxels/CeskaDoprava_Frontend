@@ -51,11 +51,12 @@ export default function Filter({ category = "Vse", setCategory, dateFrom = "26.0
           <div className={`flex xl:my-auto justify-end gap-5`}>
             <DatePicker
               text="Datum od"
+              startDay="today"
               setFunction={setDateFrom}
               datePickerAlign="left"
               datePickerValueAlign="right"
               tabIndex={0}
-              inputClassName="rounded-lg border border-gray-500 w-36 h-12"
+              inputClassName="rounded-lg border border-gray-500 w-[153px] h-12"
             />
             <DatePicker
               text="Datum do"
@@ -64,7 +65,7 @@ export default function Filter({ category = "Vse", setCategory, dateFrom = "26.0
               datePickerAlign="right"
               datePickerValueAlign="right"
               tabIndex={0}
-              inputClassName="rounded-lg border border-gray-500 w-36 h-12"
+              inputClassName="rounded-lg border border-gray-500 w-[153px] h-12"
             />
           </div>
         </div>

@@ -1,14 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
+import { useEffect, useRef, useState } from 'react';
+import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import ScrollContainer from 'react-indiana-drag-scroll';
 
 type DatePickerProps = {
   text?: string;
   label?: string;
   name?: string;
-  startDay?: number;
-  startMonth?: number;
-  startYear?: number;
+  startDay?: number | "today";
+  startMonth?: number | "today";
+  startYear?: number | "today";
   setFunction?: any;
   defaultTextAlign?: "left" | "center" | "right"
   datePickerValueAlign?: "left" | "center" | "right"
@@ -26,16 +26,16 @@ type DatePickerProps = {
 
 const months = [
   "leden", "únor", "březen", "duben", "květen",
-   "červen", "červenec", "srpen", "září",  "říjen", "listopad", "prosinec",
+  "červen", "červenec", "srpen", "září", "říjen", "listopad", "prosinec",
 ]
 
 export default function DatePicker({
   text,
   label,
   name = "",
-  startDay = new Date().getDate(),
-  startMonth = new Date().getMonth(),
-  startYear=new Date().getFullYear(),
+  startDay,
+  startMonth,
+  startYear,
   setFunction,
   defaultTextAlign = 'left',
   datePickerValueAlign = 'left',
@@ -52,82 +52,98 @@ export default function DatePicker({
 }: DatePickerProps) {
   const [inValidation, setInValidation] = useState<"waiting" | "verifying" | "refused" | "accepted">()
   const [activated, setActivated] = useState<boolean>(false)
+
+  if (startDay === "today" || startMonth === "today" || startYear === "today") {
+    if (startDay === "today") {
+      startDay = new Date().getDate();
+      startMonth = new Date().getMonth();
+      startYear = new Date().getFullYear();
+    }
+    if (startMonth === "today") {
+      startMonth = new Date().getMonth();
+      startYear = new Date().getFullYear();
+    }
+    if (startYear === "today") {
+      startYear = new Date().getFullYear();
+    }
+  }
+
   const [day, setDay] = useState<number | undefined>(startDay)
   const [month, setMonth] = useState<number | undefined>(startMonth)
   const [year, setYear] = useState<number | undefined>(startYear)
   let content: any;
   let inputText: any;
-  const clickerRef:any = useRef()
+  const clickerRef: any = useRef()
 
-  
+
   useEffect(() => {
-    if(oneOfMany === false){
-      if(allDataObject !== undefined){
-        if(allDataObject[name] === undefined){
+    if (oneOfMany === false) {
+      if (allDataObject !== undefined) {
+        if (allDataObject[name] === undefined) {
           allDataObject[name] = "";
         }
       }
-      if(isRequired && requiredArray !== undefined){
-        if(!requiredArray.includes(name)){
+      if (isRequired && requiredArray !== undefined) {
+        if (!requiredArray.includes(name)) {
           requiredArray?.push(name)
         }
       }
     }
-    else{
-      if(allDataObject !== undefined){
-        if(allDataObject[oneOfMany] === undefined){
+    else {
+      if (allDataObject !== undefined) {
+        if (allDataObject[oneOfMany] === undefined) {
           allDataObject[oneOfMany] = {}
         }
-        else{
-          if(allDataObject[oneOfMany][name] === undefined)
+        else {
+          if (allDataObject[oneOfMany][name] === undefined)
             allDataObject[oneOfMany][name] = ""
         }
       }
-      if(isRequired && requiredArray !== undefined){
-        if(requiredArray[oneOfMany] === undefined){
+      if (isRequired && requiredArray !== undefined) {
+        if (requiredArray[oneOfMany] === undefined) {
           requiredArray[oneOfMany] = []
           requiredArray[oneOfMany].push(name);
         }
-        else{
-          if(!requiredArray[oneOfMany].includes(name)){
+        else {
+          if (!requiredArray[oneOfMany].includes(name)) {
             requiredArray[oneOfMany].push(name);
           }
         }
       }
-    }  
+    }
   })
 
   useEffect(() => {
-    if(activated){
+    if (activated) {
       document.addEventListener('mousedown', closeDatePicker);
     }
-    else{
+    else {
       document.removeEventListener('mousedown', closeDatePicker);
     }
-    if(allDataObject !== undefined){
-      if(oneOfMany === false){
-        if(day !== undefined && month !== undefined && year !== undefined){
-          allDataObject[name] = day + "." + months[month] + " " + year 
+    if (allDataObject !== undefined) {
+      if (oneOfMany === false) {
+        if (day !== undefined && month !== undefined && year !== undefined) {
+          allDataObject[name] = day + "." + months[month] + " " + year
         }
-        else{
+        else {
           allDataObject[name] = ""
         }
       }
-      else{
-        if(day !== undefined && month !== undefined && year !== undefined){
-          allDataObject[oneOfMany][name] = day + "." + months[month] + " " + year 
+      else {
+        if (day !== undefined && month !== undefined && year !== undefined) {
+          allDataObject[oneOfMany][name] = day + "." + months[month] + " " + year
         }
-        else{
+        else {
           allDataObject[oneOfMany][name] = ""
         }
       }
     }
     setInValidation(formState)
-  },[activated, formState])
+  }, [activated, formState])
 
-  
-  function closeDatePicker(e:any){
-    if(clickerRef.current && activated && !clickerRef.current.contains(e.target)){
+
+  function closeDatePicker(e: any) {
+    if (clickerRef.current && activated && !clickerRef.current.contains(e.target)) {
       setActivated(false)
     }
   }
@@ -135,14 +151,14 @@ export default function DatePicker({
 
   /* Vytvoření klikacích spanů */
 
-  if(year !== undefined){
-    if(month !== undefined){
-      if(day !== undefined){
-        
-      /* Pokud je vyplněn rok, měsíc a den  */
+  if (year !== undefined) {
+    if (month !== undefined) {
+      if (day !== undefined) {
+
+        /* Pokud je vyplněn rok, měsíc a den  */
         inputText = <>
           <span /* Den */
-            className='cursor-pointer'
+            className='cursor-pointer mr-1'
             onClick={() => {
               setDay(undefined)
             }}
@@ -169,12 +185,12 @@ export default function DatePicker({
             {year}
           </span>
         </>
-        }
+      }
 
-        
+
       /* Pokud je vyplněn pouze rok a měsíc */
-      else{
-        inputText = 
+      else {
+        inputText =
           <>
             <span /* Měsíc */
               className='cursor-pointer mr-1'
@@ -183,7 +199,7 @@ export default function DatePicker({
                 setDay(undefined)
               }}
             >
-             {months[month]}
+              {months[month]}
             </span>
             <span /* Rok */
               className='cursor-pointer'
@@ -197,13 +213,13 @@ export default function DatePicker({
             </span>
           </>
       }
-      content = 
-        <ShowDays 
-          setDay={setDay} 
-          setMonth={setMonth} 
-          setYear={setYear} 
-          day={day} 
-          month={month} 
+      content =
+        <ShowDays
+          setDay={setDay}
+          setMonth={setMonth}
+          setYear={setYear}
+          day={day}
+          month={month}
           year={year}
           setActivated={setActivated}
           setFunction={setFunction}
@@ -213,83 +229,83 @@ export default function DatePicker({
         />
     }
 
-    
-      /* Pokud je vyplněn pouze rok */
-    else{
-      inputText = 
+
+    /* Pokud je vyplněn pouze rok */
+    else {
+      inputText =
         <span /* Rok */
           className='cursor-pointer'
           onClick={() => setYear(undefined)}
         >
           {year}
         </span>
-      content = <ShowMonths month={month} setMonth={setMonth} year={year} setYear={setYear}/>
+      content = <ShowMonths month={month} setMonth={setMonth} year={year} setYear={setYear} />
     }
   }
-  else{
-    content = <ShowYears setYear={setYear} year={year} yearStart={yearStart} yearEnd={yearEnd}/>
+  else {
+    content = <ShowYears setYear={setYear} year={year} yearStart={yearStart} yearEnd={yearEnd} />
   }
   return (
     <>
-    <span className='relative' ref={clickerRef} tabIndex={tabIndex}>
-    <div className={`flex-col md:max-w-sm
+      <span className='relative' ref={clickerRef} tabIndex={tabIndex}>
+        <div className={`flex-col md:max-w-sm
       ${label !== undefined ? "flex" : "hidden"}
     `}>
-      <label 
-        className="font-semibold text-black cursor-pointer mb-3" 
-        htmlFor={name}
-        onClick={() => setActivated(true)}
-      >
-        {label}
-        {isRequired && <span className="text-primary ml-1">*</span>}
-        {(inValidation === "refused" &&
-          isRequired &&
-          oneOfMany === false &&
-          allDataObject[name] === "")
-          &&
-          <span className="text-primary ml-1">Toto pole je povinné!</span>
-        }
-        {(inValidation === "refused" &&
-          isRequired &&
-          oneOfMany !== false &&
-          allDataObject[oneOfMany][name] === "")
-          &&
-          <span className="text-primary ml-1">Toto pole je povinné!</span>
-        }
-      </label>
-    </div>
+          <label
+            className="font-semibold text-black cursor-pointer mb-3"
+            htmlFor={name}
+            onClick={() => setActivated(true)}
+          >
+            {label}
+            {isRequired && <span className="text-primary ml-1">*</span>}
+            {(inValidation === "refused" &&
+              isRequired &&
+              oneOfMany === false &&
+              allDataObject[name] === "")
+              &&
+              <span className="text-primary ml-1">Toto pole je povinné!</span>
+            }
+            {(inValidation === "refused" &&
+              isRequired &&
+              oneOfMany !== false &&
+              allDataObject[oneOfMany][name] === "")
+              &&
+              <span className="text-primary ml-1">Toto pole je povinné!</span>
+            }
+          </label>
+        </div>
 
-      {/* Jakoby input */}
-      <div className={`
-        cursor-pointer p-1.5 flex items-center transition duration-default
-        ${activated && "bg-transparent !border-primary !outline-none ring-2 ring-primary !bg-white"}
-        ${(inputText === undefined && defaultTextAlign === "left") && "justify-start"}
-        ${(inputText === undefined && defaultTextAlign === "center") && "justify-center"}
-        ${(inputText === undefined && defaultTextAlign === "right") && "justify-end"}
-        ${(inputText !== undefined && datePickerValueAlign === "left") && "justify-start"}
-        ${(inputText !== undefined && datePickerValueAlign === "center") && "justify-center"}
-        ${(inputText !== undefined && datePickerValueAlign === "right") && "justify-end"}
-        ${inputClassName === undefined ? 
-          "rounded-md w-full h-12 bg-body-200" 
-          : 
-          inputClassName
-        }
-        `}
-        onClick={() => {setActivated(true)}}
-      >
-        {inputText === undefined ? text : inputText}
-      </div>
+        {/* Jakoby input */}
+        <div className={`
+          cursor-pointer p-1.5 flex items-center transition duration-default
+          ${activated && "bg-transparent !border-primary !outline-none ring-2 ring-primary !bg-white"}
+          ${(inputText === undefined && defaultTextAlign === "left") && "justify-start"}
+          ${(inputText === undefined && defaultTextAlign === "center") && "justify-center"}
+          ${(inputText === undefined && defaultTextAlign === "right") && "justify-end"}
+          ${(inputText !== undefined && datePickerValueAlign === "left") && "justify-start"}
+          ${(inputText !== undefined && datePickerValueAlign === "center") && "justify-center"}
+          ${(inputText !== undefined && datePickerValueAlign === "right") && "justify-end"}
+          ${inputClassName === undefined ?
+            "rounded-md w-full h-12 bg-body-200"
+            :
+            inputClassName
+          }
+          `}
+          onClick={() => { setActivated(true) }}
+        >
+          {inputText === undefined ? text : inputText}
+        </div>
 
-      {/* Datepicker */}
-      <ScrollContainer component={"div"}  className={`absolute mt-5 rounded-lg bg-gray-50 z-50 w-60 h-fit max-h-60 overflow-y-scroll border-2 border-muted flex flex-col
+        {/* Datepicker */}
+        <ScrollContainer component={"div"} className={`absolute mt-5 rounded-lg bg-gray-50 z-50 w-60 h-fit max-h-60 overflow-y-scroll border-2 border-muted flex flex-col
           ${!activated && "hidden"}
           ${datePickerAlign === "left" && "left-0"}
           ${datePickerAlign === "right" && "right-0"}
         `}
         >
-        {content}
-      </ScrollContainer>
-    </span>
+          {content}
+        </ScrollContainer>
+      </span>
     </>
   )
 }
@@ -302,13 +318,13 @@ type ShowYearsProps = {
   yearEnd: number;
 }
 
-function ShowYears({year, setYear, yearStart, yearEnd}: ShowYearsProps){
-  let yearValues:any = [];
-  for ( let i = yearStart; i <= yearEnd; i++){
+function ShowYears({ year, setYear, yearStart, yearEnd }: ShowYearsProps) {
+  let yearValues: any = [];
+  for (let i = yearStart; i <= yearEnd; i++) {
     yearValues.push(
       <span key={i} className='rounded-md hover:bg-gray-200 text-center cursor-pointer' onClick={() => setYear(i)}>{i}</span>)
   }
-  return(
+  return (
     <div className='grid grid-cols-3 p-3 gap-3'>
       {yearValues}
     </div>
@@ -322,20 +338,20 @@ type ShowMonthsProps = {
   setYear: any;
 }
 
-function ShowMonths({month, setMonth, year, setYear}: ShowMonthsProps){
-  let monthValues:any = [];
-  for ( let i = 0; i <= 11; i++){
+function ShowMonths({ month, setMonth, year, setYear }: ShowMonthsProps) {
+  let monthValues: any = [];
+  for (let i = 0; i <= 11; i++) {
     monthValues.push(
       <span key={i} className='rounded-md hover:bg-gray-200 text-center cursor-pointer' onClick={() => setMonth(i)}>{months[i]}</span>)
   }
 
-  return(
+  return (
     <>
       <div className='grid grid-cols-7 w-full border-b border-gray-700'>
-          <span className='col-span-1 flex justify-start text-3xl cursor-pointer' onClick={() => setYear(year - 1)} ><HiChevronLeft></HiChevronLeft></span>
-          <span className='col-span-5 flex justify-center text-xl font-bold cursor-pointer' onClick={() => setYear(undefined)}>{year}</span>
-          <span className='col-span-1 flex justify-end text-3xl cursor-pointer' onClick={() => setYear(year + 1)} ><HiChevronRight></HiChevronRight></span>
-        </div>
+        <span className='col-span-1 flex justify-start items-center text-3xl cursor-pointer' onClick={() => setYear(year - 1)} ><HiChevronLeft></HiChevronLeft></span>
+        <span className='col-span-5 flex justify-center text-xl font-bold cursor-pointer' onClick={() => setYear(undefined)}>{year}</span>
+        <span className='col-span-1 flex justify-end items-center text-3xl cursor-pointer' onClick={() => setYear(year + 1)} ><HiChevronRight></HiChevronRight></span>
+      </div>
       <div className='grid grid-cols-3 p-3 gap-3'>
         {monthValues}
       </div>
@@ -357,60 +373,60 @@ type ShowDaysProps = {
   oneOfMany: boolean | string;
 }
 
-function ShowDays({day, setDay, month, setMonth, year, setYear, setActivated, setFunction, name, allDataObject, oneOfMany}: ShowDaysProps){
-  let dayValues:any = [];
-  let monthWithZero = (month+1) < 10 ? "0" + (month+1) : (month+1);
-  for ( let i = 1; i <= new Date(year, month + 1, 0).getDate(); i++){
+function ShowDays({ day, setDay, month, setMonth, year, setYear, setActivated, setFunction, name, allDataObject, oneOfMany }: ShowDaysProps) {
+  let dayValues: any = [];
+  let monthWithZero = (month + 1) < 10 ? "0" + (month + 1) : (month + 1);
+  for (let i = 1; i <= new Date(year, month + 1, 0).getDate(); i++) {
     let dayWithZero = i < 10 ? "0" + i : i;
     dayValues.push(
-      <span 
+      <span
         key={i}
-        className='rounded-md hover:bg-gray-200 text-center cursor-pointer' 
+        className='rounded-md hover:bg-gray-200 text-center cursor-pointer'
         onClick={() => {
           setDay(i)
           setActivated(false)
           setFunction !== undefined && setFunction(year + "-" + monthWithZero + "-" + dayWithZero)
-          if(allDataObject !== undefined){
-            if(oneOfMany === false){
+          if (allDataObject !== undefined) {
+            if (oneOfMany === false) {
               allDataObject[name] = (year + "-" + monthWithZero + "-" + dayWithZero)
             }
-            else if(typeof oneOfMany === "string"){
+            else if (typeof oneOfMany === "string") {
               allDataObject[oneOfMany][name] = (year + "-" + monthWithZero + "-" + dayWithZero)
             }
           }
         }}
-        >
-          {i}
-        </span>
-      )
+      >
+        {i}
+      </span>
+    )
   }
 
-  return(
+  return (
     <>
       <div className='grid grid-cols-7 w-full border-b border-gray-700'>
-        <span className='col-span-1 flex justify-start text-3xl cursor-pointer' 
+        <span className='col-span-1 flex justify-start items-center text-3xl cursor-pointer'
           onClick={() => {
-            if(month === 0){
+            if (month === 0) {
               setMonth(11)
               setYear(year - 1)
             }
-            else{
+            else {
               setMonth(month - 1)
             }
           }}
-        ><HiChevronLeft></HiChevronLeft></span>
+        ><HiChevronLeft /></span>
         <span className='col-span-5 flex justify-center text-xl font-bold cursor-pointer' onClick={() => setMonth(undefined)}>{months[month]}</span>
-        <span className='col-span-1 flex justify-end text-3xl cursor-pointer' 
+        <span className='col-span-1 flex justify-end items-center text-3xl cursor-pointer'
           onClick={() => {
-            if(month === 11){
+            if (month === 11) {
               setMonth(0)
               setYear(year + 1)
             }
-            else{
+            else {
               setMonth(month + 1)
             }
           }}
-        ><HiChevronRight></HiChevronRight></span>
+        ><HiChevronRight /></span>
       </div>
       <div className='grid grid-cols-7 p-2 gap-2'>
         {dayValues}

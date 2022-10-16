@@ -25,18 +25,38 @@ export default function NearestDeparturesCard({
   dateAndPrice,
   className = "",
 }: Props) {
-  const [dateFrom, setDateFrom] = useState<string>("2023-12-31")
-  const [dateTo, setDateTo] = useState<string>("2023-12-31")
-  var tempDateFrom = dateFrom;
+  const [changeables, setChangables] = useState<{ dateFrom: string, dateTo: string }>
+    ({ dateFrom: "2023-12-31", dateTo: "2023-12-31" })
+
+  let counterForTags = 0
 
   useEffect(() => {
-    dateAndPrice.map(entry => {
-      if (new Date(entry.datumOd).getTime() < new Date(tempDateFrom).getTime()) {
-        setDateFrom(changeDateType(entry.datumOd));
-        setDateTo(changeDateType(entry.datumDo));
+    let tempDateFrom = "2023-12-31";
+    let tempDateTo = "2023-12-31";
+
+    dateAndPrice.map((entry, index) => {
+      if ((index + 1) === dateAndPrice.length) {
+        if (new Date(entry.datumOd).getTime() >= new Date().getTime() && new Date(entry.datumOd).getTime() < new Date(tempDateFrom).getTime()) {
+          setChangables({
+            dateFrom: changeDateType(entry.datumOd),
+            dateTo: changeDateType(entry.datumDo),
+          })
+        }
+        else {
+          setChangables({
+            dateFrom: changeDateType(tempDateFrom),
+            dateTo: changeDateType(tempDateTo),
+          })
+        }
+      }
+      else {
+        if (new Date(entry.datumOd).getTime() >= new Date().getTime() && new Date(entry.datumOd).getTime() < new Date(tempDateFrom).getTime()) {
+          tempDateFrom = entry.datumOd;
+          tempDateTo = entry.datumDo;
+        }
       }
     })
-  })
+  }, [])
 
 
   function changeDateType(date: string) {
@@ -62,7 +82,7 @@ export default function NearestDeparturesCard({
           {country} - {name}
         </span>
         <span className="block mt-auto">
-          {dateFrom} - {dateTo}
+          {changeables.dateFrom} - {changeables.dateTo}
         </span>
       </a>
     </Link>

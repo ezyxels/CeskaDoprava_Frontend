@@ -1,6 +1,6 @@
 import { useState } from "react";
 import VisibilitySensor from "react-visibility-sensor";
-import GalleryCard from "./GalleryCard"
+import GalleryCard from "./GalleryCard";
 
 
 type Props = {
@@ -26,9 +26,9 @@ export default function Gallery({ images }: Props) {
   };
 
   return (
-    <div 
+    <div
       id="galerie"
-      className="grid grid-cols-2 md:grid-cols-3 gap-1"
+      className="grid grid-cols-2 md:grid-cols-3 gap-1 pb-32"
     >
       {images &&
         images.map((imageSrc: any, index: number) => (
