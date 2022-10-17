@@ -1,6 +1,10 @@
 @layer components {
-
-  .c-link, .c-link-2, .c-link-3-a, .c-link-3-b, .c-link-3-c, .c-link-4 {
+  .c-link,
+  .c-link-2,
+  .c-link-3-a,
+  .c-link-3-b,
+  .c-link-3-c,
+  .c-link-4 {
     display: inline;
     max-width: max-content;
     cursor: pointer;
@@ -11,7 +15,7 @@
   }
 
   .c-link:hover {
-      opacity: 0.7;
+    opacity: 0.7;
   }
 
   .c-link-2 {
@@ -75,7 +79,7 @@
       background-color: currentColor;
       transform-origin: left;
       transform: scale3d(0, 1, 1);
-      transition: transform 700ms 200ms cubic-bezier(.16,1,.3,1);
+      transition: transform 700ms 200ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     &::after {
@@ -90,7 +94,7 @@
       background-color: currentColor;
       transform-origin: right;
       transform: scale3d(1, 1, 1);
-      transition: transform 700ms cubic-bezier(.16,1,.3,1);
+      transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     &:hover::before {
@@ -142,7 +146,7 @@
     /* Animated line */
     &::after {
       position: absolute;
-      top: 2px);
+      top: 2px;
       bottom: 0;
       left: 0;
       right: 0;
@@ -165,4 +169,14 @@
 .lib-input-hp {
   display: none;
   visibility: hidden;
+}
+
+#eZscroller::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+#eZscroller {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

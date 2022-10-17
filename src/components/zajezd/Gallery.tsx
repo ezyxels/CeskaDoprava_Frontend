@@ -1,8 +1,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { HiChevronLeft, HiChevronRight, HiX } from "react-icons/hi";
-import { ScrollContainer } from 'react-indiana-drag-scroll';
-import 'react-indiana-drag-scroll/dist/style.css';
 import { useSwipeable } from "react-swipeable";
 
 
@@ -19,7 +17,11 @@ export default function Gallery({ images }: Props) {
   useEffect(() => {
     if (imageIndex !== undefined) {
       document.body.classList.add("helper-scroll-lock");
-    } else {
+      document.getElementById("eZscroller")!.scrollLeft =
+        document.getElementById("tiny" + imageIndex)!.offsetLeft -
+        (document.getElementById("tiny" + imageIndex)!.clientWidth / 2) - 20;
+    }
+    else {
       document.body.classList.remove("helper-scroll-lock");
     }
   }, [imageIndex]);
@@ -39,12 +41,16 @@ export default function Gallery({ images }: Props) {
       {/* Opened gallery */}
       {imageIndex !== undefined &&
         <div className="fixed z-10 inset-0 bg-black">
-          <div className="w-full h-3/4 flex flex-row items-center justify-center gap-x-5 md:gap-x-20 px-5 pt-20">
+          <div className="w-full relative h-3/4 flex flex-row items-center justify-center md:gap-x-20 px-5 pt-20">
             {/* Gallery arrow left */}
             <span
               onClick={() => imageIndex !== 0 && setImageIndex(imageIndex - 1)}
-              className="hidden md:flex text-3xl cursor-pointer hover:scale-125 duration-150
-              rounded-md  border-2 border-gray-500 text-gray-500 z-20"
+              className="absolute top-0 left-0 w-1/4 h-full md:w-10 md:h-10
+                md:static flex text-3xl cursor-pointer md:hover:scale-125 duration-150
+                rounded-md md:border-2 border-gray-500 text-gray-500 z-40
+                md:items-center justify-center
+                "
+
             >
               <HiChevronLeft />
             </span>
@@ -54,7 +60,7 @@ export default function Gallery({ images }: Props) {
             <span
               onClick={() => setImageIndex(undefined)}
               className="top-[100px] right-[20px] absolute text-3xl cursor-pointer hover:scale-125 duration-150
-              rounded-md border-2 border-gray-500 text-gray-500 z-20"
+              rounded-md border-2 border-gray-500 text-gray-500 z-50"
             >
               <HiX />
             </span>
@@ -62,7 +68,7 @@ export default function Gallery({ images }: Props) {
 
             {/* Gallery main image */}
             <div
-              className="relative w-full md:w-3/5 aspect-[16/9] z-20"
+              className="relative w-full md:w-3/5 lg:w-[55%] aspect-[16/9] z-20"
               {...handlers}
             >
               <Image
@@ -76,8 +82,11 @@ export default function Gallery({ images }: Props) {
             {/* Gallery arrow right */}
             <span
               onClick={() => imageIndex !== (images.length - 1) && setImageIndex(imageIndex + 1)}
-              className="hidden md:flex text-3xl cursor-pointer hover:scale-125 duration-150
-                rounded-md  border-2 border-gray-500 text-gray-500 z-20"
+              className="absolute top-0 right-0 w-1/4 h-full md:w-10 md:h-10
+                md:static flex text-3xl cursor-pointer md:hover:scale-125 duration-150
+                rounded-md md:border-2 border-gray-500 text-gray-500 z-40
+                md:items-center justify-center
+                "
             >
               <HiChevronRight />
             </span>
@@ -85,25 +94,30 @@ export default function Gallery({ images }: Props) {
 
 
           {/* Gallery small images */}
-          <ScrollContainer
-            className="flex flex-row min-w-full h-1/4 my-auto px-5 md:px-40 gap-x-3 border-t border-gray-800 items-center"
-          >
-            {images &&
-              images.map((imageSrc: any, index: number) => (
-                <span
-                  onClick={() => setImageIndex(index)}
-                  className={`${images.indexOf(imageSrc) === imageIndex ? "scale-100" : "scale-75 hover:scale-90"} hover:shadow-md duration-200 relative cursor-pointer min-w-[150px] aspect-[4/3]
-                  `}
-                >
-                  <Image
-                    src={imageSrc}
-                    layout="fill"
-                    className="rounded-md object-cover"
-                  />
-                </span>
-              )
-              )}
-          </ScrollContainer>
+          <div className="w-full border-t border-gray-800 h-1/4 flex items-center">
+            <div
+              id="eZscroller"
+              className="mx-5 md:mx-32 relative overflow-auto scroll flex flex-row gap-x-3 items-center"
+            >
+              {images &&
+                images.map((imageSrc: any, index: number) => (
+                  <span
+                    id={"tiny" + index}
+                    key={index}
+                    onClick={() => setImageIndex(index)}
+                    className={`${images.indexOf(imageSrc) === imageIndex ? "scale-100" : "scale-75 hover:scale-90"} hover:shadow-md duration-200 relative cursor-pointer min-w-[150px] aspect-[4/3]
+                    `}
+                  >
+                    <Image
+                      src={imageSrc}
+                      layout="fill"
+                      className="rounded-md object-cover"
+                    />
+                  </span>
+                )
+                )}
+            </div>
+          </div>
         </div>
       }
 
@@ -111,7 +125,7 @@ export default function Gallery({ images }: Props) {
       <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
         {images &&
           images.map((imageSrc: any, index: number) => (
-            <span onClick={() => setImageIndex(index)} className="hover:scale-105 aspect-[4/3] hover:shadow-md duration-200 relative cursor-pointer">
+            <span key={index} onClick={() => setImageIndex(index)} className="hover:scale-105 aspect-[4/3] hover:shadow-md duration-200 relative cursor-pointer">
               <Image
                 src={imageSrc}
                 layout="fill"
