@@ -1,6 +1,8 @@
+import ScrollReveal from "@components/bricks/ScrollReveal";
 import { useEffect, useState } from "react";
 import { Autoplay, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -14,14 +16,6 @@ type Props = {
   reviews: any;
 }
 
-/* type Review = {
-  name: string;
-  destination: string;
-  text: string;
-  imageSrc: string;
-} */
-
-
 export default function Reviews({ reviews }: Props) {
   const [data, setData] = useState<any>()
 
@@ -32,46 +26,45 @@ export default function Reviews({ reviews }: Props) {
   if (data !== undefined) {
     return (
       <Wrapper as={"section"} paddedContent="base">
-        <Heading level={2} size="lg" className="mb-5 pt-12">
-          Co o nás říkají naši cestující?
-        </Heading>
-        <p className="max-w-prose">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis aliquam eius, totam quasi delectus recusandae corrupti iusto vero consectetur a consequatur quas ex autem, dolor corporis dolore repellat, id est aspernatur sint?
-        </p>
-        <Swiper
-          slidesPerView={1}
-          grabCursor={true}
-          breakpoints={{
-            576: {
-              slidesPerView: 2,
-            },
-            960: {
-              slidesPerView: 3,
-            },
-          }}
-          pagination={{ clickable: true }}
-          spaceBetween={30}
-          loop={true}
-          modules={[Pagination, Autoplay]}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: true,
-          }}
-        >
-          {data.map((review:any, key:number) => (
-            <SwiperSlide key={key} className="pb-16">
-              <ReviewCard
-                name={review.attributes.jmeno}
-                destination={review.attributes.destinace}
-                text={review.attributes.text}
-                imageSrc={review.attributes.fotka.data.attributes.url}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        <div>
-
-        </div>
+        <ScrollReveal>
+          <Heading level={2} size="lg" className="mb-5 pt-12">
+            Co o nás říkají naši cestující?
+          </Heading>
+          <p className="max-w-prose">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis aliquam eius, totam quasi delectus recusandae corrupti iusto vero consectetur a consequatur quas ex autem, dolor corporis dolore repellat, id est aspernatur sint?
+          </p>
+          <Swiper
+            slidesPerView={1}
+            grabCursor={true}
+            breakpoints={{
+              576: {
+                slidesPerView: 2,
+              },
+              960: {
+                slidesPerView: 3,
+              },
+            }}
+            pagination={{ clickable: true }}
+            spaceBetween={30}
+            loop={true}
+            modules={[Pagination, Autoplay]}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: true,
+            }}
+          >
+            {data.map((review: any, key: number) => (
+              <SwiperSlide key={key} className="pb-16">
+                <ReviewCard
+                  name={review.attributes.jmeno}
+                  destination={review.attributes.destinace}
+                  text={review.attributes.text}
+                  imageSrc={review.attributes.fotka.data.attributes.url}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </ScrollReveal>
       </Wrapper>
     )
   }

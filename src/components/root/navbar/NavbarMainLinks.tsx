@@ -10,7 +10,7 @@ export default function NavbarMainLinks({
 }: NavbarMainLinksOptions) {
   return (
     <ul
-      className={`list-none space-x-5 xl:space-x-12 2xl:space-x-16 ${className}`}
+      className={`list-none space-x-5 xl:space-x-12 ${className}`}
     >
       {mainRoutes.map((route) => (route.main &&
         <li key={route.label}>

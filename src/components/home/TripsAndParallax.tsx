@@ -1,5 +1,6 @@
 import Button from "@components/bricks/Button";
 import Heading from "@components/bricks/Heading";
+import ScrollReveal from "@components/bricks/ScrollReveal";
 import Wrapper from "@components/bricks/Wrapper";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,20 +13,22 @@ export default function TripsAndParallax() {
         as={"section"}
         paddedContent="base"
       >
-        <Heading level={2} size="lg" className="max-w-lg mb-10">
-          Pojeďte s námi na dovolenou po celé ČR i do zahraničí
-        </Heading>
-        <p className="max-w-prose mb-10">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
-          consequuntur dignissimos voluptatibus quos facilis architecto iure
-          eaque nobis voluptas natus fugit nulla aperiam eius ducimus, excepturi
-          sunt reprehenderit ea odio.
-        </p>
-        <Link href="/zajezdy">
-          <a>
-            <Button>Zobrazit zájezdy</Button>
-          </a>
-        </Link>
+        <ScrollReveal staggerChildren>
+          <Heading level={2} size="lg" className="max-w-lg mb-10">
+            Pojeďte s námi na dovolenou po celé ČR i do zahraničí
+          </Heading>
+          <p className="max-w-prose mb-10">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
+            consequuntur dignissimos voluptatibus quos facilis architecto iure
+            eaque nobis voluptas natus fugit nulla aperiam eius ducimus, excepturi
+            sunt reprehenderit ea odio.
+          </p>
+          <Link href="/zajezdy">
+            <a>
+              <Button>Zobrazit zájezdy</Button>
+            </a>
+          </Link>
+        </ScrollReveal>
       </Wrapper>
 
       <Wrapper size="lg">
