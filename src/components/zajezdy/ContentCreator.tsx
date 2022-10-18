@@ -100,7 +100,7 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
         paddedContent="sm"
       >
         <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+          className="grid grid-cols-1 items-start md:grid-cols-2 lg:grid-cols-3 gap-10"
         >
           {data.map((trip: any, key: number) => (
             <TripMinimal

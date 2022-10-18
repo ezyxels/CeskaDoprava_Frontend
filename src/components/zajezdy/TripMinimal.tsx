@@ -72,10 +72,10 @@ export default function TripMinimal({ id, name, imageSrc, dateAndPrice, categori
       href={`/zajezd/${id}`}
     >
       <a
-        className="flex flex-col transition duration-300 hover:-translate-y-2 hover:shadow-lg rounded-lg"
+        className="flex flex-col transition duration-300 hover:-translate-y-2 rounded-lg hover:shadow-xl overflow-hidden"
       >
         <div
-          className="relative w-full h-[250px] rounded-md overflow-hidden"
+          className="relative w-full h-[250px] overflow-hidden"
         >
           <Image
             src={imageSrc}
@@ -85,9 +85,9 @@ export default function TripMinimal({ id, name, imageSrc, dateAndPrice, categori
             priority={true}
           />
         </div>
-        <div className="px-1.5 pt-5 pb-1.5 flex flex-col">
+        <div className="px-5 py-6 flex flex-col">
           <div className="flex flex-row justify-between">
-            <div className="flex flex-wrap gap-y-2 mb-5">
+            <div className="flex flex-wrap gap-2 mb-5">
               {categories.map((category: any, key: number) => {
                 if (
                   counterForTags === 0 ||
@@ -97,7 +97,7 @@ export default function TripMinimal({ id, name, imageSrc, dateAndPrice, categori
                   counterForTags++
                   return (
                     <span
-                      className="h-fit text-sm bg-primary mr-2 text-white px-1 rounded-md uppercase tracking-wider"
+                      className="h-fit text-xs bg-primary text-white px-1 rounded-md uppercase tracking-wider"
                       key={key}
                     >
                       {category.kategorie}

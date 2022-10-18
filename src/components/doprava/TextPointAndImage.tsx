@@ -1,4 +1,5 @@
 import Heading from '@components/bricks/Heading';
+import ScrollReveal from "@components/bricks/ScrollReveal";
 import Wrapper from '@components/bricks/Wrapper';
 import Image from 'next/image';
 
@@ -68,7 +69,7 @@ export default function TextPointAndImage({
       <div className="w-full mt-12 lg:mt-0 lg:w-1/2">
         <h3 className="text-3xl text-gray-900 font-bold">{heading}</h3>
         <p className="mt-5 leading-6">{perex}</p>
-        <div className='mt-5'>
+        <ScrollReveal staggerChildren className='mt-5'>
           {points.map((item, key) => (
             <div
               className="py-3 lg:px-5 flex flex-col lg:flex-row gap-y-3"
@@ -84,7 +85,7 @@ export default function TextPointAndImage({
             </div>
           ))}
 
-        </div>
+        </ScrollReveal>
       </div>
     </Wrapper>
   )
