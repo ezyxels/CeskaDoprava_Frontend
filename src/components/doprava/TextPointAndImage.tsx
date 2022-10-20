@@ -75,9 +75,9 @@ export default function TextPointAndImage({
               className="py-3 lg:px-5 flex flex-col lg:flex-row gap-y-3"
               key={key}
             >
-              <div className="flex justify-center items-center w-10 min-w-[40px] h-10 min-h-[40px] mt-2 mr-5 bg-primary rounded-full text-white text-3xl">
+              <span className="flex justify-center items-center w-8 min-w-[32px] h-8 min-h-[32px] mt-2 mr-5 bg-primary rounded-full text-white text-xl">
                 {item.icon}
-              </div>
+              </span>
               <div className="flex flex-col gap-y-1">
                 <Heading size="base" level={3} className="text-gray-900">{item.heading}</Heading>
                 <p className="text-gray-700 mt-1 leading-5">{item.text}</p>

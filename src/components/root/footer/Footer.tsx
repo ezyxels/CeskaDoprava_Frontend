@@ -1,4 +1,3 @@
-import BrandLogo from "@components/bricks/BrandLogo";
 import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
 import SocialLinks from "@components/root/socials/SocialLinks";
@@ -97,9 +96,16 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/brand">
+              <Link href="">
                 <a className="c-link-3-a text-base font-medium text-muted outline-none focus-visible:ring-4 focus-visible:ring-primary/70">
-                  Grafické podklady
+                  Katalog 2023
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href="">
+                <a className="c-link-3-a text-base font-medium text-muted outline-none focus-visible:ring-4 focus-visible:ring-primary/70">
+                  Obchodní podmínky
                 </a>
               </Link>
             </li>

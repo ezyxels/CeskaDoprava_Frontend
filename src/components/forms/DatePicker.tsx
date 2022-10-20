@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
+import { HiChevronDown, HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import ScrollContainer from 'react-indiana-drag-scroll';
 
 type DatePickerProps = {
@@ -297,7 +297,7 @@ export default function DatePicker({
         </div>
 
         {/* Datepicker */}
-        <ScrollContainer component={"div"} className={`absolute mt-5 rounded-lg bg-gray-50 z-50 w-60 h-fit max-h-60 overflow-y-scroll border-2 border-muted flex flex-col
+        <ScrollContainer component={"div"} className={`absolute mt-5 rounded-lg bg-gray-50 z-50 w-64 h-fit max-h-72 overflow-y-scroll border-2 border-muted flex flex-col
           ${!activated && "hidden"}
           ${datePickerAlign === "left" && "left-0"}
           ${datePickerAlign === "right" && "right-0"}
@@ -347,9 +347,9 @@ function ShowMonths({ month, setMonth, year, setYear }: ShowMonthsProps) {
 
   return (
     <>
-      <div className='grid grid-cols-7 w-full border-b border-gray-700'>
+      <div className='grid grid-cols-7 w-full h-14 border-b border-gray-700'>
         <span className='col-span-1 flex justify-start items-center text-3xl cursor-pointer' onClick={() => setYear(year - 1)} ><HiChevronLeft></HiChevronLeft></span>
-        <span className='col-span-5 flex justify-center text-xl font-bold cursor-pointer' onClick={() => setYear(undefined)}>{year}</span>
+        <span className='col-span-5 flex justify-center items-center text-xl font-bold cursor-pointer' onClick={() => setYear(undefined)}>{year}</span>
         <span className='col-span-1 flex justify-end items-center text-3xl cursor-pointer' onClick={() => setYear(year + 1)} ><HiChevronRight></HiChevronRight></span>
       </div>
       <div className='grid grid-cols-3 p-3 gap-3'>
@@ -375,9 +375,19 @@ type ShowDaysProps = {
 
 function ShowDays({ day, setDay, month, setMonth, year, setYear, setActivated, setFunction, name, allDataObject, oneOfMany }: ShowDaysProps) {
   let dayValues: any = [];
+  let skippedDays: any = [];
   let monthWithZero = (month + 1) < 10 ? "0" + (month + 1) : (month + 1);
+
   for (let i = 1; i <= new Date(year, month + 1, 0).getDate(); i++) {
     let dayWithZero = i < 10 ? "0" + i : i;
+
+    if (i === 1 && new Date(year, month, 0).getDay() !== 1) {
+      for (let i = 1; i <= new Date(year, month, 0).getDay(); i++) {
+        dayValues.push(
+          <span key={"spacer" + i}></span>
+        )
+      }
+    }
     dayValues.push(
       <span
         key={i}
@@ -403,32 +413,44 @@ function ShowDays({ day, setDay, month, setMonth, year, setYear, setActivated, s
 
   return (
     <>
-      <div className='grid grid-cols-7 w-full border-b border-gray-700'>
-        <span className='col-span-1 flex justify-start items-center text-3xl cursor-pointer'
-          onClick={() => {
-            if (month === 0) {
-              setMonth(11)
-              setYear(year - 1)
-            }
-            else {
-              setMonth(month - 1)
-            }
-          }}
-        ><HiChevronLeft /></span>
-        <span className='col-span-5 flex justify-center text-xl font-bold cursor-pointer' onClick={() => setMonth(undefined)}>{months[month]}</span>
-        <span className='col-span-1 flex justify-end items-center text-3xl cursor-pointer'
-          onClick={() => {
-            if (month === 11) {
-              setMonth(0)
-              setYear(year + 1)
-            }
-            else {
-              setMonth(month + 1)
-            }
-          }}
-        ><HiChevronRight /></span>
+      <div className='flex w-full h-14 justify-between border-b border-gray-700 px-2'>
+        <span className='flex items-center font-bold cursor-pointer' onClick={() => { setYear(undefined), setMonth(undefined) }}>{months[month] + "  " + year + "  "}<HiChevronDown className='flex justify-end items-center text-3xl cursor-pointer' /></span>
+        <div className='flex gap-x-4'>
+          <span className='flex justify-start items-center text-3xl cursor-pointer'
+            onClick={() => {
+              if (month === 0) {
+                setMonth(11)
+                setYear(year - 1)
+              }
+              else {
+                setMonth(month - 1)
+              }
+            }}
+          ><HiChevronLeft /></span>
+          <span className='flex justify-end items-center text-3xl cursor-pointer'
+            onClick={() => {
+              if (month === 11) {
+                setMonth(0)
+                setYear(year + 1)
+              }
+              else {
+                setMonth(month + 1)
+              }
+            }}
+          ><HiChevronRight /></span>
+        </div>
       </div>
+
       <div className='grid grid-cols-7 p-2 gap-2'>
+        <span>Po</span>
+        <span>Út</span>
+        <span>St</span>
+        <span>Čt</span>
+        <span>Pá</span>
+        <span>So</span>
+        <span>Ne</span>
+      </div>
+      <div className='grid grid-cols-7 px-2 gap-x-2 gap-y-1'>
         {dayValues}
       </div>
     </>

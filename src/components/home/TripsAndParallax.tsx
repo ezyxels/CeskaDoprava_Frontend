@@ -50,7 +50,7 @@ function JustParallax({ className = "" }: JustParallaxProps) {
         {/* 1 */}
         <Parallax speed={3} className="relative aspect-[3/5] my-auto hidden md:flex">
           <Image
-            src="/images/conf.jpg"
+            src="/images/home/parallax/1.jpg"
             alt="Obrázek"
             layout="fill"
             objectFit="cover"
@@ -63,7 +63,7 @@ function JustParallax({ className = "" }: JustParallaxProps) {
         <Parallax speed={-5} className="flex flex-col gap-5">
           <div className="relative aspect-[3/5]">
             <Image
-              src="/images/conf.jpg"
+              src="/images/home/parallax/2.jpg"
               alt="Obrázek"
               layout="fill"
               objectFit="cover"
@@ -73,7 +73,7 @@ function JustParallax({ className = "" }: JustParallaxProps) {
           </div>
           <div className="relative aspect-[3/5]">
             <Image
-              src="/images/conf.jpg"
+              src="/images/home/parallax/3.jpg"
               alt="Obrázek"
               layout="fill"
               objectFit="cover"
@@ -87,7 +87,7 @@ function JustParallax({ className = "" }: JustParallaxProps) {
         <Parallax speed={5} className="flex flex-col gap-5">
           <div className="relative aspect-[3/5]">
             <Image
-              src="/images/conf.jpg"
+              src="/images/home/parallax/4.jpg"
               alt="Obrázek"
               layout="fill"
               objectFit="cover"
@@ -97,7 +97,7 @@ function JustParallax({ className = "" }: JustParallaxProps) {
           </div>
           <div className="relative aspect-[3/5]">
             <Image
-              src="/images/conf.jpg"
+              src="/images/home/parallax/5.jpg"
               alt="Obrázek"
               layout="fill"
               objectFit="cover"
@@ -110,7 +110,7 @@ function JustParallax({ className = "" }: JustParallaxProps) {
         {/* 1 */}
         <Parallax speed={-3} className="relative aspect-[3/5] my-auto hidden md:flex">
           <Image
-            src="/images/conf.jpg"
+            src="/images/home/parallax/6.jpg"
             alt="Obrázek"
             layout="fill"
             objectFit="cover"

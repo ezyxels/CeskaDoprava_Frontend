@@ -21,10 +21,10 @@ export default function Hero() {
           <Heading level={2} size="sm">Kontakt cestovní agentura + autobusem do Chorvatska</Heading>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores placeat ab magni quia vitae vero at incidunt. Doloremque, delectus quo.</p>
           <div>
-            <a href={"tel:" + globalConfig.client.phone} className='flex items-center text-primary font-medium'>
+            <a href={"tel:" + globalConfig.client.phone} className='c-link-3-a flex items-center text-primary font-medium'>
               <HiPhone className='mr-2' /> {globalConfig.client.phone}
             </a>
-            <a href={"mailto:" + globalConfig.client.email} className='flex items-center text-primary font-medium'>
+            <a href={"mailto:" + globalConfig.client.email} className='c-link-3-a flex items-center text-primary font-medium'>
               <HiMail className='mr-2' />{globalConfig.client.email}
             </a>
           </div>
@@ -35,10 +35,10 @@ export default function Hero() {
           <Heading level={2} size="sm">Kontakt autobusová a nákladní doprava</Heading>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores placeat ab magni quia vitae vero at incidunt. Doloremque, delectus quo.</p>
           <div>
-            <a href={"tel:" + globalConfig.client.phone} className='flex items-center text-primary font-medium'>
+            <a href={"tel:" + globalConfig.client.phone} className='c-link-3-a flex items-center text-primary font-medium'>
               <HiPhone className='mr-2' /> {globalConfig.client.phone}
             </a>
-            <a href={"mailto:" + globalConfig.client.email} className='flex items-center text-primary font-medium'>
+            <a href={"mailto:" + globalConfig.client.email} className='c-link-3-a flex items-center text-primary font-medium'>
               <HiMail className='mr-2' />{globalConfig.client.email}
             </a>
           </div>
@@ -49,10 +49,10 @@ export default function Hero() {
           <Heading level={2} size="sm">Kontakt fakturace</Heading>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores placeat ab magni quia vitae vero at incidunt. Doloremque, delectus quo.</p>
           <div>
-            <a href={"tel:" + globalConfig.client.phone} className='flex items-center text-primary font-medium'>
+            <a href={"tel:" + globalConfig.client.phone} className='c-link-3-a flex items-center text-primary font-medium'>
               <HiPhone className='mr-2' /> {globalConfig.client.phone}
             </a>
-            <a href={"mailto:" + globalConfig.client.email} className='flex items-center text-primary font-medium'>
+            <a href={"mailto:" + globalConfig.client.email} className='c-link-3-a flex items-center text-primary font-medium'>
               <HiMail className='mr-2' />{globalConfig.client.email}
             </a>
           </div>

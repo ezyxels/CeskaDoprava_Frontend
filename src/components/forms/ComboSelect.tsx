@@ -59,10 +59,11 @@ export default function ComboSelect({
     else if (typeof oneOfMany === "string") {
       if (allDataObject[oneOfMany] === undefined) {
         allDataObject[oneOfMany] = {}
+        allDataObject[oneOfMany][name] = selected
       }
       else {
         if (allDataObject[oneOfMany][name] === undefined)
-          allDataObject[oneOfMany][name] = ""
+          allDataObject[oneOfMany][name] = selected
       }
 
       if (isRequired && requiredArray !== undefined) {

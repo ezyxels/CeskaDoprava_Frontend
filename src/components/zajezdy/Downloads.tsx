@@ -20,13 +20,13 @@ export default function Downloads({ calendar, catalog, conditions }: Props) {
       >
         <Heading level={3} size={"lg"} className="font-bold text-black">Informace ke stažení</Heading>
 
-        <div className="grid md:grid-cols-3 gap-5 mt-20">
+        <div className="grid md:grid-cols-3 gap-8 mt-20">
 
           {/* Kalendář */}
           <a
             href={calendar}
             download
-            className="bg-white px-5 py-8 flex flex-col rounded-md hover:shadow-xl hover:-translate-y-3 transition-all duration-500"
+            className="bg-white px-5 py-8 flex flex-col rounded-md hover:shadow-md hover:scale-105 duration-500"
           >
             <HiOutlineCalendar
               className="text-primary h-40 w-40 md:h-20 md:w-20 my-auto [&>path]:stroke-1"
@@ -49,7 +49,7 @@ export default function Downloads({ calendar, catalog, conditions }: Props) {
           <a
             href={catalog}
             download
-            className="bg-white px-5 py-8 flex flex-col rounded-md hover:shadow-xl hover:-translate-y-3 transition-all duration-500"
+            className="bg-white px-5 py-8 flex flex-col rounded-md hover:shadow-md hover:scale-105 duration-500"
           >
             <HiOutlineBookOpen
               className="text-primary h-40 w-40 md:h-20 md:w-20 my-auto [&>path]:stroke-1"
@@ -70,7 +70,7 @@ export default function Downloads({ calendar, catalog, conditions }: Props) {
           <a
             href={conditions}
             download
-            className="bg-white px-5 py-8 flex flex-col rounded-md hover:shadow-xl hover:-translate-y-3 transition-all duration-500"
+            className="bg-white px-5 py-8 flex flex-col rounded-md hover:shadow-md hover:scale-105 duration-500"
           >
             <HiOutlineClipboardList
               className="text-primary h-40 w-40 md:h-20 md:w-20 my-auto [&>path]:stroke-1"

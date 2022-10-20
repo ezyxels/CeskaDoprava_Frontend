@@ -30,24 +30,21 @@ type DateAndPrice = {
 }
 
 export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
-  const [data, setData] = useState<Trip[]>();
-  const [noTrips, setNoTrips] = useState<boolean>(false);
+  const [data, setData] = useState<Trip[] | undefined>(undefined);
   const [hasItemsLeft, setHasItemsLeft] = useState<boolean>(true);
   const itemsAtStart = 6;
   const addItems = 3;
   const populateQuery = "?populate[0]=uvodniFoto&populate[1]=kategorie&populate[2]=terminACena"
-  var categoryQuery = category === "Vse" ? "" : "&filters[kategorie][kategorie][$containsi]=" + category;
-  var dateQuery = "&filters[terminACena][datumOd][$gte]=" + dateFrom + "&filters[terminACena][datumDo][$lte]=" + dateTo;
-  const fieldsQuery = "";
-
+  let categoryQuery = category === "Vse" ? "" : "&filters[kategorie][kategorie][$containsi]=" + category;
+  let dateQuery = "&filters[terminACena][datumOd][$gte]=" + dateFrom + "&filters[terminACena][datumDo][$lte]=" + dateTo;
+  const fieldsQuery = "&fields[0]=nazev";
 
   useEffect(() => {
     getData(0, itemsAtStart, true)
-    setNoTrips(false)
   }, [category, dateFrom, dateTo])
 
   async function getData(currentAmount: number, addXItems: number, filterChanged: boolean) {
-    var paginationQuery = "&pagination[start]=" + currentAmount + "&pagination[limit]=" + addXItems;
+    let paginationQuery = "&pagination[start]=" + currentAmount + "&pagination[limit]=" + addXItems;
     await fetch(ipToFetch + "/api/zajezds"
       + populateQuery
       + categoryQuery
@@ -57,35 +54,43 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
     )
       .then(response => response.json())
       .then((all) => {
+        /* Pokud se to úspěšně připojilo */
         if (all.data !== undefined && all.data !== null) {
+          /* Pokud zatím nejsou žádný data nebo se změnil filtr */
           if (data === undefined || filterChanged) {
+            /* Pokud se v databázi nenašla žádná data podle parametrů */
             if (all.data.length === 0) {
-              setNoTrips(true)
+              setData(undefined)
             }
+            /* Pokud se našli data */
             else {
-              setData((all.data))
+              setData(all.data)
+              /* Pokud je stažených dat míň než bylo požádáno -> skryje tlačítko */
               if (all.data.length < currentAmount + addXItems) {
                 setHasItemsLeft(false);
               }
             }
           }
+          /* Pokud už existujou nějaký data */
           else {
-            var tempDataArray = data;
-            tempDataArray.push(...all.data)
-            setData(tempDataArray)
+            let tempDataArray = data;
+            tempDataArray.push(...all.data);
+            setData(tempDataArray);
 
-            if (all.data.length < currentAmount + addXItems) {
+            /* Pokud je dat míň než bylo požádáno -> skryje tlačítko */
+            if (data.length < currentAmount + addXItems) {
               setHasItemsLeft(false);
             }
           }
         }
+        /* Špatný připojení/požadavek */
         else {
-          setNoTrips(true);
+          setData(undefined)
         }
       })
   }
 
-  if (data === undefined || data === null || noTrips) {
+  if (data === undefined || data === null) {
     return (
       <Wrapper paddedContent="lg">
         <Heading level={3} size={"base"}>Bohužel, ve vyžadovaných parametrech není žádný zájezd</Heading>

@@ -1,8 +1,8 @@
 import Button from "@components/bricks/Button";
 import Heading from "@components/bricks/Heading";
+import ComboSelect from "@components/forms/ComboSelect";
 import DatePicker from "@components/forms/DatePicker";
 import Input from "@components/forms/Input";
-import Select from "@components/forms/Select";
 import { useEffect, useState } from "react";
 
 type Props = {
@@ -166,7 +166,7 @@ function AddOthers({
         oneOfMany="phones"
         formState={formState}
       />
-      <Select
+      <ComboSelect
         name={`points${id}`}
         label="Místo odjezdu"
         isRequired={true}
@@ -174,11 +174,8 @@ function AddOthers({
         allDataObject={allDataObject}
         oneOfMany={"points"}
         formState={formState}
-      >
-        {departurePointsCz.map((city: string, key: number) => (
-          <option value={city} key={key}>{city}</option>
-        ))}
-      </Select>
+        values={departurePointsCz}
+      />
     </div>
   )
 }

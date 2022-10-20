@@ -47,11 +47,11 @@ export default function Gallery({ images }: Props) {
             {/* Gallery arrow left */}
             <span
               onClick={() => imageIndex !== 0 && setImageIndex(imageIndex - 1)}
-              className="absolute top-0 left-0 w-1/4 h-full md:w-10 md:h-10
+              className={`absolute top-0 left-0 w-1/4 h-full md:w-10 md:h-10
                 md:static flex text-3xl cursor-pointer md:hover:scale-125 duration-150
                 rounded-md md:border-2 border-gray-500 text-gray-500 z-[150]
                 md:items-center justify-center
-                "
+                `}
 
             >
               <HiChevronLeft className="hidden md:block" />
@@ -84,11 +84,11 @@ export default function Gallery({ images }: Props) {
             {/* Gallery arrow right */}
             <span
               onClick={() => imageIndex !== (images.length - 1) && setImageIndex(imageIndex + 1)}
-              className="absolute top-0 right-0 w-1/4 h-full md:w-10 md:h-10
+              className={`absolute top-0 right-0 w-1/4 h-full md:w-10 md:h-10
                 md:static flex text-3xl cursor-pointer md:hover:scale-125 duration-150
                 rounded-md md:border-2 border-gray-500 text-gray-500 z-[150]
                 md:items-center justify-center
-                "
+                `}
             >
               <HiChevronRight className="hidden md:block" />
             </span>
