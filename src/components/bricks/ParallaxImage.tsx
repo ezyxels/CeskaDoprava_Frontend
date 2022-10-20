@@ -4,7 +4,7 @@ import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 type Props = {
   className?: string;
   speed?: number;
-  url?: string;
+  src?: string;
   alt?: string;
   animOnPhone?: true | false;
 }
@@ -12,7 +12,7 @@ type Props = {
 export default function ParallaxImage({
   className,
   speed = 3,
-  url = "/images/conf.jpg",
+  src = "/images/conf.jpg",
   alt = "image alt",
   animOnPhone = true
 }: Props) {
@@ -21,7 +21,7 @@ export default function ParallaxImage({
       <ParallaxProvider>
         <Parallax speed={speed} className={`relative ${className}`}>
           <Image
-            src={url}
+            src={src}
             alt={alt}
             layout="fill"
             objectFit="cover"
@@ -36,7 +36,7 @@ export default function ParallaxImage({
       <ParallaxProvider>
         <Parallax speed={speed} className={`relative hidden md:block ${className}`}>
           <Image
-            src={url}
+            src={src}
             alt={alt}
             layout="fill"
             objectFit="cover"
@@ -45,7 +45,7 @@ export default function ParallaxImage({
         </Parallax>
         <div className={`relative block md:hidden ${className}`}>
           <Image
-            src={url}
+            src={src}
             alt={alt}
             layout="fill"
             objectFit="cover"

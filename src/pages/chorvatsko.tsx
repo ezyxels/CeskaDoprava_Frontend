@@ -48,12 +48,12 @@ export default function chorvatsko({ prices, months, departurePoints, specialPri
         imageAlt="Obrázek Chorvatsko"
         imageSrc="/images/conf.jpg"
       >
-        <div className="flex flex-col md:flex-row gap-5">
+        <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-5">
           <a href="#ukazka">
-            <Button className="w-full md:w-fit" rightIcon={<HiArrowSmDown />}>Více informací</Button>
+            <Button className="w-full sm:w-fit md:w-full lg:w-fit !px-3" rightIcon={<HiArrowSmDown />}>Více informací</Button>
           </a>
           <a href="#formular">
-            <Button variant={"outlined"} className="w-full md:w-fit">Objednávkový formulář</Button>
+            <Button variant={"outlined"} className="w-full sm:w-fit md:w-full lg:w-fit !px-3">Objednávkový formulář</Button>
           </a>
         </div>
       </BasicHero>

@@ -23,12 +23,12 @@ export default function zajezdy({ calendar, catalog, conditions }: Props) {
         imageAlt="Obrázek"
         imagePosition="right"
       >
-        <div className="flex flex-col md:flex-row gap-5">
+        <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-5">
           <a href="#filter">
-            <Button className="w-full md:w-fit" rightIcon={<HiArrowSmDown />}>Zobrazit zájezdy</Button>
+            <Button className="w-full sm:w-fit md:w-full lg:w-fit !px-3" rightIcon={<HiArrowSmDown />}>Zobrazit zájezdy</Button>
           </a>
           <a href="#keStazeni">
-            <Button variant={"outlined"} className="w-full md:w-fit">Informace ke stažení</Button>
+            <Button variant={"outlined"} className="w-full sm:w-fit md:w-full lg:w-fit !px-3">Informace ke stažení</Button>
           </a>
         </div>
       </BasicHero>

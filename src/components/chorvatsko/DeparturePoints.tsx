@@ -1,3 +1,4 @@
+import ScrollReveal from '@components/bricks/ScrollReveal';
 import { useState } from 'react';
 import { ScrollContainer } from 'react-indiana-drag-scroll';
 import 'react-indiana-drag-scroll/dist/style.css';
@@ -25,8 +26,10 @@ export default function DeparturePoints({ departurePoints }: Props) {
 
   return (
     <Wrapper as="section" size="base" paddedContent='sm' className='mt-20'>
-      <Heading level={2} size="xl">Nástupní a výstupní místa</Heading>
-      <p className='mt-10 max-w-prose'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur ullam cupiditate ea eveniet vel voluptatum expedita iusto cum dicta libero velit porro neque recusandae eius cumque, quidem sequi hic corporis alias deleniti?</p>
+      <ScrollReveal>
+        <Heading level={2} size="xl">Nástupní a výstupní místa</Heading>
+        <p className='mt-10 max-w-prose'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur ullam cupiditate ea eveniet vel voluptatum expedita iusto cum dicta libero velit porro neque recusandae eius cumque, quidem sequi hic corporis alias deleniti?</p>
+      </ScrollReveal>
 
       {/*  On pc */}
       <div className={`hidden mt-10 md:grid md:grid-cols-5 gap-x-5`}>

@@ -6,7 +6,7 @@ import Link from "next/link"
 
 export default function Croatia() {
   return (
-    <Wrapper paddedContent="none" className="mt-32">
+    <Wrapper paddedContent="none" className="mt-28 md:mt-48">
       <ScrollReveal staggerChildren>
         <Heading level={2} size={"lg"} className="mb-5">K moři za pár kaček?</Heading>
         <p className="mb-10 max-w-prose">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos, cumque voluptas esse dolor repudiandae impedit, et ullam, officia natus obcaecati accusantium sequi. Perferendis, nobis ullam. Nemo, quidem sed! Eaque recusandae doloremque similique.</p>

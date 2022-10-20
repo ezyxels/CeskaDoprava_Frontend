@@ -1,3 +1,5 @@
+import emailjs from "@emailjs/browser";
+import jsPDF from "jspdf";
 import { useEffect, useState } from "react";
 
 import Customer from "./Customer";
@@ -137,125 +139,169 @@ function FormStater({ allDataObject, requiredArray, prices, months, specialPrice
   }
 
   function CreatePdf() {
-    console.log(allDataObject)
-    /*  
-    
     const doc = new jsPDF();
-     doc.setFontSize(25)
-     doc.text("Informace o zájezdu:", 60, 10)
- 
-     doc.setFontSize(15)
-     doc.text(
-       "Kód zájezdu: " + allDataObject.code,
-       20,
-       30
-     )
- 
-     doc.text(
-       "Termín: " + allDataObject.date,
-       20,
-       40
-     )
- 
-     doc.text(
-       "Nástupní / výstupní místo: " + allDataObject.departurePoint,
-       20,
-       50
-     )
- 
-     doc.text("Poznámka od zákazníka:", 20, 60)
-     doc.text(allDataObject.comment, 20,70)
- 
-     
-     doc.setFontSize(25)
-     doc.text("Objednavatel:", 70, 100)
- 
-     doc.setFontSize(15)
-     doc.text(
-       "Jméno: " + allDataObject.name,
-       20,
-       120
-     )
- 
-     doc.text(
-       "Narození: " + allDataObject.birth,
-       20,
-       130
-     )
- 
-     
-     doc.text(
-       "Číslo: " + allDataObject.phone,
-       20, 
-       140
-     )
-     
-     doc.text(
-       "E-mail: " + allDataObject.email,
-       20,
-       150
-     )
- 
-     
-     doc.setFontSize(25)
-     doc.text("Další cestující:", 65, 165)
- 
-     doc.setFontSize(15)
- 
-     if(nameNext !== undefined && birthNext !== undefined){
-       Object.entries(nameNext).map((name: any, i) => {
-         if(i % 2 == 0){  
-           doc.text(
-             "Jméno: " + name[1].value,
-             20,
-             180 + i * 10
-           )
-         }
-         else{
-           doc.text(
-             "Jméno: " + name[1].value,
-             120,
-             180 + (i-1) * 10
-           )
-         }
-       })
- 
-       Object.entries(birthNext).map((birth:any, i) => {
-         if(i % 2 == 0){  
-           doc.text(
-             "Narození: " + birth[1].value,
-             20,
-             187 + i * 10
-           )
-         }
-         else{
-           doc.text(
-             "Narození: " + birth[1].value,
-             120,
-             187 + (i-1) * 10
-           )
-         }
-       })
-     }
- 
-     doc.line(10, 255, 200, 255)
-     doc.text("Cena za osobu", 20, 265)
-     doc.text(JSON.parse(dateAndPrice).cena + ",-", 88, 265, "right")
-     doc.text("Pocet osob", 20, 273)
-     doc.line(10, 277, 95, 277)
-     doc.text("Celková cena", 20, 285)
-     if(nameNext !== undefined){
-       doc.text(nameNext.length.toString(), 85, 273, "right")
-       doc.text(allDataObject.price + " Kc", 92, 285, "right")
-     }
-     else{
-       doc.text("1", 85, 273, "right")      
-       doc.text(allDataObject.price + " Kc", 92, 285, "right")
-     }
-     doc.text("Podpis: ....................", 145, 285)
- 
-     //doc.save("objednavka.pdf")
-     doc.output('dataurlnewwindow') */
+    doc.setFontSize(25)
+    doc.text("Informace o zájezdu ______ :", 60, 10)
+
+    doc.setFontSize(15)
+    doc.text(
+      "Termín odjezdu Česká Republika: \n\t" + allDataObject.dateCz,
+      20,
+      30
+    )
+
+    doc.text(
+      "Nástupní místo Česká Republika: \n\t" + allDataObject.pointCz,
+      120,
+      30
+    )
+
+    doc.text(
+      "Termín odjezdu Chorvatsko: \n\t" + allDataObject.dateHr,
+      20,
+      50
+    )
+
+    doc.text(
+      "Nástupní místo Chorvatsko: \n\t" + allDataObject.pointHr,
+      120,
+      50
+    )
+
+
+    doc.text("Poznámka od zákazníka:", 20, 75)
+    doc.text(allDataObject.comment, 20, 70)
+
+
+    doc.setFontSize(25)
+    doc.text("Objednavatel:", 70, 100)
+
+    doc.setFontSize(15)
+    doc.text(
+      "Jméno: " + allDataObject.name,
+      20,
+      120
+    )
+
+    doc.text(
+      "Narození: " + allDataObject.birth,
+      20,
+      130
+    )
+
+
+    doc.text(
+      "Číslo: " + allDataObject.phone,
+      20,
+      140
+    )
+
+    doc.text(
+      "E-mail: " + allDataObject.email,
+      20,
+      150
+    )
+
+
+    doc.setFontSize(20)
+    doc.text("Další cestující:", 65, 165)
+
+    doc.setFontSize(15)
+
+    if (allDataObject.names !== undefined) {
+      Object.values(allDataObject.names).map((name: any, i: number) => {
+        if (i % 2 == 0) {
+          doc.text(
+            "Jméno: " + name,
+            20,
+            180 + i * 16
+          )
+        }
+        else {
+          doc.text(
+            "Jméno: " + name,
+            120,
+            180 + (i - 1) * 16
+          )
+        }
+      })
+
+      Object.values(allDataObject.births).map((birth: any, i: number) => {
+        if (i % 2 == 0) {
+          doc.text(
+            "Narození: " + birth,
+            20,
+            187 + i * 16
+          )
+        }
+        else {
+          doc.text(
+            "Narození: " + birth,
+            120,
+            187 + (i - 1) * 16
+          )
+        }
+      })
+
+      Object.values(allDataObject.phones).map((phone: any, i: number) => {
+        if (i % 2 == 0) {
+          doc.text(
+            "Telefon: " + phone,
+            20,
+            194 + i * 16
+          )
+        }
+        else {
+          doc.text(
+            "Telefon: " + phone,
+            120,
+            194 + (i - 1) * 16
+          )
+        }
+      })
+
+      Object.values(allDataObject.points).map((point: any, i: number) => {
+        if (i % 2 == 0) {
+          doc.text(
+            "Nástupní místo: " + point,
+            20,
+            201 + i * 16
+          )
+        }
+        else {
+          doc.text(
+            "Nástupní místo: " + point,
+            120,
+            201 + (i - 1) * 16
+          )
+        }
+      })
+    }
+    doc.line(10, 255, 200, 255)
+    doc.text("Cena za osobu", 20, 265)
+    doc.text("_________ ,-", 88, 265, undefined, "right")
+    doc.text("Pocet osob", 20, 273)
+    doc.line(10, 277, 95, 277)
+    doc.text("Celková cena", 20, 285)
+
+    doc.text("Podpis: ....................", 145, 285)
+
+    doc.output('dataurlnewwindow')
+    //sendEmail(doc.output('datauristring'))
+  }
+
+  function sendEmail(doc: any) {
+    emailjs.send(
+      process.env.SERVICE_ID!,
+      "template_fy1kysa",
+      {
+        name: allDataObject.name,
+        phone: allDataObject.phone,
+        email: allDataObject.email,
+        createdPdf: doc
+      },
+      process.env.PUBLIC_KEY!
+    );
   }
 
   return (

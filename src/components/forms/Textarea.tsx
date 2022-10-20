@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import { useEffect, useState } from "react";
 
 type Props = {
   as?: React.ElementType;
@@ -11,7 +11,7 @@ type Props = {
   isRequired?: boolean;
   className?: string;
   allDataObject: any;
-  requiredArray?:  any;
+  requiredArray?: any;
   oneOfMany?: boolean | string;
   position?: number;
   formState?: "waiting" | "verifying" | "refused" | "accepted";
@@ -33,50 +33,50 @@ export default function Textarea({
   formState,
   ...rest
 }: Props) {
-  const [inValidation, setInValidation] = useState<undefined |"waiting" | "verifying" | "refused" | "accepted">("waiting")
+  const [inValidation, setInValidation] = useState<undefined | "waiting" | "verifying" | "refused" | "accepted">("waiting")
 
-    useEffect(() => {
-      if(oneOfMany === false){
-        if(allDataObject[name] === undefined){
-          allDataObject[name] = "";
-        }
-        if(isRequired && requiredArray !== undefined){
-          if(!requiredArray.includes(name)){
-            requiredArray?.push(name)
-          }
+  useEffect(() => {
+    if (oneOfMany === false) {
+      if (allDataObject[name] === undefined) {
+        allDataObject[name] = "";
+      }
+      if (isRequired && requiredArray !== undefined) {
+        if (!requiredArray.includes(name)) {
+          requiredArray?.push(name)
         }
       }
-      else if(typeof oneOfMany === "string"){
-        if(allDataObject[oneOfMany] === undefined){
-          allDataObject[oneOfMany] = {}
+    }
+    else if (typeof oneOfMany === "string") {
+      if (allDataObject[oneOfMany] === undefined) {
+        allDataObject[oneOfMany] = {}
+      }
+      else {
+        if (allDataObject[oneOfMany][name] === undefined)
+          allDataObject[oneOfMany][name] = ""
+      }
+
+      if (isRequired && requiredArray !== undefined) {
+        if (requiredArray[oneOfMany] === undefined) {
+          requiredArray[oneOfMany] = []
+          requiredArray[oneOfMany].push(name);
         }
-        else{
-          if(allDataObject[oneOfMany][name] === undefined)
-            allDataObject[oneOfMany][name] = ""
-        }
-        
-        if(isRequired && requiredArray !== undefined){
-          if(requiredArray[oneOfMany] === undefined){
-            requiredArray[oneOfMany] = []
+        else {
+          if (!requiredArray[oneOfMany].includes(name)) {
             requiredArray[oneOfMany].push(name);
           }
-          else{
-            if(!requiredArray[oneOfMany].includes(name)){
-              requiredArray[oneOfMany].push(name);
-            }
-          }
         }
       }
-    })
+    }
+  })
 
   useEffect(() => {
     setInValidation(formState)
-  },[formState])
+  }, [formState])
 
   return (
     <Tag className={`block w-full ${className}`}>
-     <label 
-        className="font-semibold text-black cursor-pointer" 
+      <label
+        className="font-semibold text-black cursor-pointer"
         htmlFor={name}
       >
         {label}
@@ -105,18 +105,17 @@ export default function Textarea({
       border bg-body-200 rounded-md border-body-200
       text-base font-normal text-gray-900 transition duration-150
       placeholder:text-body placeholder:opacity-60
-      focus:border-primary focus:bg-white focus:!outline-none focus:ring-1 focus:ring-primary ${
-        isDisabled
-          ? "cursor-not-allowed pointer-events-none opacity-60"
-          : "cursor-text opacity-100"
-      }`}
+      focus:border-primary focus:bg-white focus:!outline-none focus:ring-1 focus:ring-primary ${isDisabled
+            ? "cursor-not-allowed pointer-events-none opacity-60"
+            : "cursor-text opacity-100"
+          }`}
         disabled={isDisabled}
         required={isRequired}
-        onChange={(e:any) => {
-          if(oneOfMany === false){
-            allDataObject[name]=e.target.value
+        onChange={(e: any) => {
+          if (oneOfMany === false) {
+            allDataObject[name] = e.target.value
           }
-          else if(typeof oneOfMany === "string"){
+          else if (typeof oneOfMany === "string") {
             allDataObject[oneOfMany][name] = e.target.value
           }
         }}

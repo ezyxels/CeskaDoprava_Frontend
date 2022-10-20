@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import { useEffect, useState } from "react";
 
 type Props = {
   type: string;
@@ -10,7 +10,7 @@ type Props = {
   className?: string;
   defaultValue?: string;
   allDataObject: any;
-  requiredArray?:  any;
+  requiredArray?: any;
   oneOfMany?: boolean | string;
   formState?: "waiting" | "verifying" | "refused" | "accepted";
 }
@@ -29,40 +29,40 @@ export default function Input({
   oneOfMany = false,
   formState
 }: Props) {
-  const [inValidation, setInValidation] = useState<undefined |"waiting" | "verifying" | "refused" | "accepted">("waiting")
+  const [inValidation, setInValidation] = useState<undefined | "waiting" | "verifying" | "refused" | "accepted">("waiting")
 
   useEffect(() => {
-    if(oneOfMany === false){
-      if(allDataObject[name] === undefined){
-        if(defaultValue === "__false"){
+    if (oneOfMany === false) {
+      if (allDataObject[name] === undefined) {
+        if (defaultValue === "__false") {
           allDataObject[name] = "";
         }
-        else{
+        else {
           allDataObject[name] = defaultValue;
         }
       }
-      if(isRequired && requiredArray !== undefined){
-        if(!requiredArray.includes(name)){
+      if (isRequired && requiredArray !== undefined) {
+        if (!requiredArray.includes(name)) {
           requiredArray?.push(name)
         }
       }
     }
-    else if(typeof oneOfMany === "string"){
-      if(allDataObject[oneOfMany] === undefined){
+    else if (typeof oneOfMany === "string") {
+      if (allDataObject[oneOfMany] === undefined) {
         allDataObject[oneOfMany] = {}
       }
-      else{
-        if(allDataObject[oneOfMany][name] === undefined)
+      else {
+        if (allDataObject[oneOfMany][name] === undefined)
           allDataObject[oneOfMany][name] = ""
       }
-      
-      if(isRequired && requiredArray !== undefined){
-        if(requiredArray[oneOfMany] === undefined){
+
+      if (isRequired && requiredArray !== undefined) {
+        if (requiredArray[oneOfMany] === undefined) {
           requiredArray[oneOfMany] = []
           requiredArray[oneOfMany].push(name);
         }
-        else{
-          if(!requiredArray[oneOfMany].includes(name)){
+        else {
+          if (!requiredArray[oneOfMany].includes(name)) {
             requiredArray[oneOfMany].push(name);
           }
         }
@@ -72,12 +72,12 @@ export default function Input({
 
   useEffect(() => {
     setInValidation(formState)
-  },[formState])
+  }, [formState])
 
   return (
     <div className={`w-full`}>
-      <label 
-        className="font-semibold text-black cursor-pointer" 
+      <label
+        className="font-semibold text-black cursor-pointer"
         htmlFor={name}
       >
         {label}
@@ -106,20 +106,19 @@ export default function Input({
         bg-body-200 rounded-md border border-body-200 
         transition duration-default ${className}
         focus:bg-transparent focus:border-primary focus:relative focus:z-1
-        focus:!outline-none focus:ring-2 focus:ring-primary ${
-          isDisabled
+        focus:!outline-none focus:ring-2 focus:ring-primary ${isDisabled
             ? "cursor-not-allowed pointer-events-none opacity-60"
             : "cursor-text opacity-100"
-        }`}
+          }`}
         disabled={isDisabled}
         required={isRequired}
         readOnly={isReadOnly}
         defaultValue={defaultValue !== "__false" ? defaultValue : ""}
-        onChange={(e:any) => {
-          if(oneOfMany === false){
-            allDataObject[name]=e.target.value
+        onChange={(e: any) => {
+          if (oneOfMany === false) {
+            allDataObject[name] = e.target.value
           }
-          else if(typeof oneOfMany === "string"){
+          else if (typeof oneOfMany === "string") {
             allDataObject[oneOfMany][name] = e.target.value
           }
         }}

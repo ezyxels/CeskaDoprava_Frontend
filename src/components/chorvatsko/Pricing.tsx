@@ -1,4 +1,5 @@
 import Heading from '@components/bricks/Heading';
+import ScrollReveal from '@components/bricks/ScrollReveal';
 import Wrapper from '@components/bricks/Wrapper';
 
 type Props = {
@@ -19,12 +20,14 @@ export default function Pricing({ prices, specialPrices }: Props) {
   return (
     <div className='bg-body-100'>
       <Wrapper as="section" size="base" paddedContent='sm'>
-        <Heading level={2} size="xl">Ceníky odjezdů</Heading>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-20 my-10'>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex delectus possimus odit ipsam voluptas. Maxime aut aliquam dignissimos harum illum saepe modi iste voluptates, ratione dicta ad vitae cupiditate quas laborum nisi.</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At voluptates, vel nisi eius nihil reprehenderit, quidem temporibus iste corrupti quisquam culpa autem inventore harum?</p>
-        </div>
-        <div className='flex flex-col gap-16 mt-20'>
+        <ScrollReveal>
+          <Heading level={2} size="xl">Ceníky odjezdů</Heading>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-20 my-10'>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex delectus possimus odit ipsam voluptas. Maxime aut aliquam dignissimos harum illum saepe modi iste voluptates, ratione dicta ad vitae cupiditate quas laborum nisi.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At voluptates, vel nisi eius nihil reprehenderit, quidem temporibus iste corrupti quisquam culpa autem inventore harum?</p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal staggerChildren className='flex flex-col gap-16 mt-20'>
           <div>
             <Heading level={3} size="base">Jízdné</Heading>
             <table className='max-w-2xl w-full'>
@@ -75,7 +78,7 @@ export default function Pricing({ prices, specialPrices }: Props) {
               </tbody>
             </table>
           </div>
-        </div>
+        </ScrollReveal>
       </Wrapper>
     </div>
   )

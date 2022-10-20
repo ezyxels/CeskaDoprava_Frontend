@@ -34,7 +34,12 @@ export default function Home({ trips, reviews }: Props) {
       <Reviews reviews={reviews} />
 
       {/* Obrázek */}
-      <ParallaxImage className="w-screen aspect-[5/3]" speed={-8} animOnPhone={false} />
+      <ParallaxImage
+        className="w-screen aspect-[5/3]"
+        speed={-8}
+        animOnPhone={false}
+        src="/images/home/chorvatsko.jpg"
+      />
 
       {/* Chorvatsko */}
       <Croatia />
