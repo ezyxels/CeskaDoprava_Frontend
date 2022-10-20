@@ -85,7 +85,7 @@ export default function zajezd({
         categories={categories}
       />
       <ParallaxImage
-        url={imageSrc}
+        src={imageSrc}
         alt="Úvodní fotka zájezdu"
         className='w-[90%] mx-auto rounded-lg overflow-hidden aspect-[5/3] mt-28'
         speed={-6}
