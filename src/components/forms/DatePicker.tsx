@@ -414,7 +414,7 @@ function ShowDays({ day, setDay, month, setMonth, year, setYear, setActivated, s
   return (
     <>
       <div className='flex w-full h-14 justify-between border-b border-gray-700 px-2'>
-        <span className='flex items-center font-bold cursor-pointer' onClick={() => { setYear(undefined), setMonth(undefined) }}>{months[month] + "  " + year + "  "}<HiChevronDown className='flex justify-end items-center text-3xl cursor-pointer' /></span>
+        <span className='flex items-center font-bold cursor-pointer' onClick={() => { setYear(undefined), setMonth(undefined), setDay(undefined) }}>{months[month] + "  " + year + "  "}<HiChevronDown className='flex justify-end items-center text-3xl cursor-pointer' /></span>
         <div className='flex gap-x-4'>
           <span className='flex justify-start items-center text-3xl cursor-pointer'
             onClick={() => {
