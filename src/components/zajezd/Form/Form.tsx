@@ -248,7 +248,7 @@ function FormStater({ code, dateAndPrice, departurePoints, allDataObject, requir
     doc.text("Celková cena", 20, posY += 7)
     doc.text(
       allDataObject.names !== undefined ?
-        (allDataObject.price * Object.keys(allDataObject.names).length).toString() + ",-"
+        (allDataObject.price * (Object.keys(allDataObject.names).length + 1)).toString() + ",-"
         :
         allDataObject.price + ",-",
       92, posY, undefined, "right"
