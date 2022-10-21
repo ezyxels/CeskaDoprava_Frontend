@@ -239,7 +239,7 @@ function FormStater({ code, dateAndPrice, departurePoints, allDataObject, requir
     doc.text("Počet osob", 20, posY += 10)
     doc.text(
       allDataObject.names !== undefined ?
-        (Object.keys(allDataObject.names).length).toString()
+        (Object.keys(allDataObject.names).length + 1).toString()
         :
         "1",
       85, posY
