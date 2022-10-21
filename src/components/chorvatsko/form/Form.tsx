@@ -10,7 +10,7 @@ import Button from "@components/bricks/Button";
 import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
 import Checkbox from "@components/forms/Checkbox";
-
+import "public/fonts/DejaVuSans.js";
 
 type FormProps = {
   prices: Prices[];
@@ -139,152 +139,163 @@ function FormStater({ allDataObject, requiredArray, prices, months, specialPrice
   }
 
   function CreatePdf() {
+    console.log(allDataObject)
+    let posY = 0;
     const doc = new jsPDF();
+    doc.setFont("DejaVuSans", "normal")
+
+    /* Zájezd */
     doc.setFontSize(25)
-    doc.text("Informace o zájezdu ______ :", 60, 10)
+    doc.text("Informace o zájezdu ______ :", 60, posY += 10)
 
     doc.setFontSize(15)
     doc.text(
-      "Termín odjezdu Česká Republika: \n\t" + allDataObject.dateCz,
+      "Termín odjezdu Česká Republika:\n     " + allDataObject.dateCz,
       20,
-      30
+      posY += 20
     )
 
     doc.text(
-      "Nástupní místo Česká Republika: \n\t" + allDataObject.pointCz,
+      "Nástupní místo Česká Republika:\n     " + allDataObject.pointCz,
       120,
-      30
+      posY
     )
 
     doc.text(
-      "Termín odjezdu Chorvatsko: \n\t" + allDataObject.dateHr,
+      "Termín odjezdu Chorvatsko:\n     " + allDataObject.dateHr,
       20,
-      50
+      posY += 15
     )
 
     doc.text(
-      "Nástupní místo Chorvatsko: \n\t" + allDataObject.pointHr,
+      "Nástupní místo Chorvatsko:\n     " + allDataObject.pointHr,
       120,
-      50
+      posY
     )
 
 
-    doc.text("Poznámka od zákazníka:", 20, 75)
-    doc.text(allDataObject.comment, 20, 70)
+    doc.text("Poznámka od zákazníka:", 20, posY += 20)
+    doc.text(allDataObject.comment, 20, posY += 10)
 
 
     doc.setFontSize(25)
-    doc.text("Objednavatel:", 70, 100)
+    doc.text("Objednavatel:", 70, posY += 20)
 
     doc.setFontSize(15)
     doc.text(
       "Jméno: " + allDataObject.name,
       20,
-      120
+      posY += 10
     )
 
     doc.text(
       "Narození: " + allDataObject.birth,
       20,
-      130
+      posY += 10
     )
 
 
     doc.text(
       "Číslo: " + allDataObject.phone,
       20,
-      140
+      posY += 10
     )
 
     doc.text(
       "E-mail: " + allDataObject.email,
       20,
-      150
+      posY += 10
     )
 
-
-    doc.setFontSize(20)
-    doc.text("Další cestující:", 65, 165)
-
-    doc.setFontSize(15)
-
+    /* Další cestující */
     if (allDataObject.names !== undefined) {
-      Object.values(allDataObject.names).map((name: any, i: number) => {
-        if (i % 2 == 0) {
-          doc.text(
-            "Jméno: " + name,
-            20,
-            180 + i * 16
-          )
-        }
-        else {
-          doc.text(
-            "Jméno: " + name,
-            120,
-            180 + (i - 1) * 16
-          )
-        }
-      })
+      doc.setFontSize(20)
+      doc.text("Další cestující:", 75, posY += 15)
 
-      Object.values(allDataObject.births).map((birth: any, i: number) => {
-        if (i % 2 == 0) {
-          doc.text(
-            "Narození: " + birth,
-            20,
-            187 + i * 16
-          )
-        }
-        else {
-          doc.text(
-            "Narození: " + birth,
-            120,
-            187 + (i - 1) * 16
-          )
-        }
-      })
+      doc.setFontSize(15)
+      for (let i = 1; i <= Object.values(allDataObject.names).length; i++) {
 
-      Object.values(allDataObject.phones).map((phone: any, i: number) => {
-        if (i % 2 == 0) {
+        /* Pokud by to přeteklo stránku vytvoří novou */
+        if (posY + 40 >= 250 && i % 2 !== 0) {
+          posY = 10;
+          doc.addPage()
+          doc.setFontSize(25)
+          doc.text("Informace o zájezdu ______ :", 60, posY += 20)
+          doc.setFontSize(20)
+          doc.text("Další cestující:", 75, posY += 15)
+          doc.setFontSize(15)
+          posY -= 20
+        }
+        if (i % 2 !== 0) {
           doc.text(
-            "Telefon: " + phone,
+            "Jméno: " + allDataObject.names["names" + i],
             20,
-            194 + i * 16
+            i === 1 ? posY += 15 : posY += 40
+          )
+          doc.text(
+            "Narození: " + allDataObject.births["births" + i],
+            20,
+            posY + 7
+          )
+          doc.text(
+            "Telefon: " + allDataObject.phones["phones" + i],
+            20,
+            posY + 14
+          )
+          doc.text(
+            "Nástupní místo: " + allDataObject.points["points" + i],
+            20,
+            posY + 21
           )
         }
         else {
           doc.text(
-            "Telefon: " + phone,
+            "Jméno: " + allDataObject.names["names" + i],
             120,
-            194 + (i - 1) * 16
+            posY
           )
-        }
-      })
-
-      Object.values(allDataObject.points).map((point: any, i: number) => {
-        if (i % 2 == 0) {
           doc.text(
-            "Nástupní místo: " + point,
-            20,
-            201 + i * 16
-          )
-        }
-        else {
-          doc.text(
-            "Nástupní místo: " + point,
+            "Narození: " + allDataObject.births["births" + i],
             120,
-            201 + (i - 1) * 16
+            posY + 7
+          )
+          doc.text(
+            "Telefon: " + allDataObject.phones["phones" + i],
+            120,
+            posY + 14
+          )
+          doc.text(
+            "Nástupní místo: " + allDataObject.points["points" + i],
+            120,
+            posY + 21
           )
         }
-      })
+      }
     }
-    doc.line(10, 255, 200, 255)
-    doc.text("Cena za osobu", 20, 265)
-    doc.text("_________ ,-", 88, 265, undefined, "right")
-    doc.text("Pocet osob", 20, 273)
-    doc.line(10, 277, 95, 277)
-    doc.text("Celková cena", 20, 285)
 
-    doc.text("Podpis: ....................", 145, 285)
+    /* Cena a počet osob */
+    doc.line(10, posY += 40, 200, posY)
+    doc.text("Cena za osobu", 20, posY += 10)
+    doc.text("________ ,-", 92, posY, undefined, "right")
+    doc.text("Pocet osob", 20, posY += 10)
+    doc.text(
+      allDataObject.names !== undefined ?
+        (Object.keys(allDataObject.names).length).toString()
+        :
+        "1",
+      85, posY
+    )
+    doc.line(10, posY += 5, 89, posY)
+    doc.text("Celková cena", 20, posY += 7)
+    doc.text("________ ,-", 92, posY, undefined, "right")
+    doc.text("Podpis: ____________", 145, posY)
+
+
+    /* Page counter */
+    for (let i = 1; i <= doc.getNumberOfPages(); i++) {
+      doc.setPage(i)
+      doc.text(i + " / " + doc.getNumberOfPages(), 190, 290)
+    }
 
     doc.output('dataurlnewwindow')
     //sendEmail(doc.output('datauristring'))
