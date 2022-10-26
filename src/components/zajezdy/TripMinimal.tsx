@@ -83,6 +83,9 @@ export default function TripMinimal({ id, name, imageSrc, dateAndPrice, categori
             layout='fill'
             objectFit='cover'
             priority={true}
+            sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
           />
         </div>
         <div className="px-5 py-6 flex flex-col">
@@ -106,7 +109,7 @@ export default function TripMinimal({ id, name, imageSrc, dateAndPrice, categori
                 }
               })}
             </div>
-            <span className="min-w-[110px]">{changeables.dateFrom} - {changeables.dateTo}</span>
+            <span className="min-w-[100px]">{changeables.dateFrom} - {changeables.dateTo}</span>
           </div>
           <span className="mt-auto text-lg font-bold text-black pt-3">{name}</span>
           <span

@@ -67,23 +67,28 @@ export default function NearestDeparturesCard({
   return (
     <Link href={`/zajezd/${tripId}`}>
       <a
-        className={`flex flex-col items-start transition duration-200 md:gap-2 hover:-translate-y-4 ${className}`}
+        className={`flex flex-col items-start transition duration-200 md:gap-2 hover:-translate-y-2 hover:shadow-xl overflow-hidden rounded-lg ${className}`}
       >
-        <div className="relative aspect-square w-full overflow-hidden rounded-lg">
+        <div className="relative w-full aspect-square">
           <Image
             src={imageSrc}
             alt={imageAlt}
             layout="fill"
             objectFit="cover"
             loading="eager"
+            sizes="(max-width: 768px) 50vw,
+              (max-width: 1200px) 25vw,
+              25vw"
           />
         </div>
-        <span className="block mt-2 text-lg font-semibold text-rich leading-6">
-          {country} - {name}
-        </span>
-        <span className="block mt-auto">
-          {changeables.dateFrom} - {changeables.dateTo}
-        </span>
+        <div className="px-2 py-2 flex flex-col">
+          <span className="block text-lg font-semibold text-rich leading-6">
+            {country} - {name}
+          </span>
+          <span className="block mt-auto">
+            {changeables.dateFrom} - {changeables.dateTo}
+          </span>
+        </div>
       </a>
     </Link>
   );

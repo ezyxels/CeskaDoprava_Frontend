@@ -28,6 +28,9 @@ export default function BasicHero({ heading, text, imageSrc = "", imageAlt, imag
           layout="fill"
           objectFit="cover"
           loading="eager"
+          sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              50vw"
         />
       </div>
     </Wrapper>

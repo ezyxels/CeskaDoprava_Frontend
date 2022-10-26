@@ -76,6 +76,7 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
             let tempDataArray = data;
             tempDataArray.push(...all.data);
             setData(tempDataArray);
+            console.log(data);
 
             /* Pokud je dat míň než bylo požádáno -> skryje tlačítko */
             if (data.length < currentAmount + addXItems) {

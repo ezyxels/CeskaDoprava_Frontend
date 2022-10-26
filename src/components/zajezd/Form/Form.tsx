@@ -326,7 +326,7 @@ function FormStater({ code, dateAndPrice, departurePoints, allDataObject, requir
           formState={formState}
         />
         <Button
-          className="w-fit my-8 md:mx-auto"
+          className="w-fit my-8"
           onClick={(e: any) => verifying(e)}
         >
           Odeslat objednávku

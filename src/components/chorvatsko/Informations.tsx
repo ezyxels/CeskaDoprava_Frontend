@@ -8,7 +8,7 @@ export default function Informations() {
     <div className='bg-body-100 pb-20'>
       <Wrapper as="section" size="base" paddedContent="base" className="justify-center items-center flex flex-col">
         <ScrollReveal>
-          <Heading level={2} size={"lg"} className="mb-10">Jak to funguje</Heading>
+          <Heading level={2} size={"lg"} align="center" className="mb-10">Jak to funguje</Heading>
           <p className='text-center max-w-prose'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam quasi sint explicabo ex illo minima vel quidem, deleniti at, sequi aut laborum eaque inventore nostrum, iste deserunt nemo? Commodi blanditiis ipsum sint.</p>
         </ScrollReveal>
         <ScrollReveal staggerChildren className='grid grid-cols-1 md:grid-cols-3 gap-x-5 lg:gap-x-10 gap-y-12 mt-32'>

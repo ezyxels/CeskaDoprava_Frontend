@@ -9,7 +9,7 @@ type Props = {
 
 export default function ReviewCard({ name, destination, text, imageSrc }: Props) {
   return (
-    <div className="mt-20 px-10 py-8 flex flex-col items-center justify-center text-center border border-gray-200">
+    <div className="mt-20 px-6 py-8 flex flex-col items-center justify-center text-center border border-gray-200">
       <div className="flex flex-row w-full pb-5">
         <div className="w-16 h-16 relative rounded-full overflow-hidden">
           <Image
@@ -20,7 +20,7 @@ export default function ReviewCard({ name, destination, text, imageSrc }: Props)
             loading="eager"
           />
         </div>
-        <div className="w-[calc(100%_-_60px)] px-5 my-auto">
+        <div className="w-[calc(100%_-_60px)] px-2 my-auto">
           <p className="font-semibold text-left">{name}</p>
           <p className="text-sm text-gray-400 text-left">{destination}</p>
         </div>
