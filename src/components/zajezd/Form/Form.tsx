@@ -20,11 +20,7 @@ type FormProps = {
     datumDo: string,
     cena: number
   }];
-  departurePoints: [{
-    mesto: string,
-    ulice: string,
-    cisloPopisne: number
-  }];
+  departurePoints: string[];
 }
 
 export default function Form({ code, dateAndPrice, departurePoints }: FormProps) {
@@ -50,11 +46,7 @@ type FormStaterProps = {
     datumDo: string,
     cena: number
   }];
-  departurePoints: [{
-    mesto: string,
-    ulice: string,
-    cisloPopisne: number
-  }];
+  departurePoints: string[];
   allDataObject: any;
   requiredArray: any;
 }

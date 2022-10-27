@@ -11,6 +11,7 @@ type Props = {
   events?: string;
   tips?: string;
   comment?: string;
+  departurePoints: any;
 }
 
 export default function Information({
@@ -22,7 +23,8 @@ export default function Information({
   programme,
   events,
   tips,
-  comment
+  comment,
+  departurePoints
 }: Props) {
   return (
     <Wrapper
@@ -49,6 +51,14 @@ export default function Information({
       <div className={`${transport === null ? "hidden" : "block"}`}>
         <Heading level={2} size={"lg"}>Doprava</Heading>
         <p className="text-sm my-10">{transport}</p>
+      </div>
+      <div className={`${departurePoints.length === 0 ? "hidden" : "block"}`}>
+        <Heading level={2} size={"lg"}>Odjezdová Místa</Heading>
+        <p className="text-sm my-10">
+          {departurePoints.map((city: any, i: any) => (
+            i + 1 === departurePoints.length ? city : city + ", "
+          ))}
+        </p>
       </div>
       <div className={` ${programme === null ? "hidden" : "block"}`}>
         <Heading level={2} size={"lg"}>Program</Heading>

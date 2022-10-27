@@ -35,7 +35,7 @@ type Props = {
   events?: string;
   tips?: string;
   comment?: string;
-  vse: any;
+  trasy: any;
 }
 
 
@@ -59,10 +59,9 @@ export default function zajezd({
   events,
   tips,
   comment,
-  vse
+  trasy
 }: Props) {
   const [lowestPrice, setLowestPrice] = useState<number>(9999999)
-
   useEffect(() => {
     dateAndPrice.map((e: any, index: number) => {
       let tmp = lowestPrice
@@ -105,38 +104,48 @@ export default function zajezd({
         events={events}
         tips={tips}
         comment={comment}
+        trasy={trasy}
       />
     </>
   )
 }
 
 export async function getStaticProps({ params }: any) {
-  const data = (await (await fetch(ipToFetch + "/api/zajezds/" + params.zajezdId + "?populate[terminACena][fields][0]=datumOd&populate[terminACena][fields][1]=datumDo&populate[terminACena][fields][2]=cena&populate[kategorie][fields][3]=kategorie&populate[odjezdovaMista][fields][4]=mesto&populate[odjezdovaMista][fields][5]=ulice&populate[odjezdovaMista][fields][6]=cisloPopisne&populate[uvodniFoto][fields][7]=url&populate[dalsiFoto][fields][8]=url&populate[terminACena][fields][9]=pocetDni&populate[terminACena][fields][10]=pocetNoci")).json()).data
+  const zajezdData = (await (await fetch(ipToFetch + "/api/zajezds/" + params.zajezdId + "?populate[terminACena][fields][0]=datumOd&populate[terminACena][fields][1]=datumDo&populate[terminACena][fields][2]=cena&populate[kategorie][fields][3]=kategorie&populate[odjezdovaMista][fields][4]=mesto&populate[odjezdovaMista][fields][5]=ulice&populate[odjezdovaMista][fields][6]=cisloPopisne&populate[uvodniFoto][fields][7]=url&populate[dalsiFoto][fields][8]=url&populate[terminACena][fields][9]=pocetDni&populate[terminACena][fields][10]=pocetNoci&populate[trasy][fields][11]=oznaceniTrasy")).json()).data
+  let trasyString = ""
+  zajezdData.attributes.trasy.map((e: any, i: number) => {
+    if (trasyString === "") {
+      trasyString += "?filters[$or][" + i + "][oznaceni][$eq]=" + e.oznaceniTrasy
+    }
+    else {
+      trasyString += "&filters[$or][" + i + "][oznaceni][$eq]=" + e.oznaceniTrasy
+    }
+  })
+  const trasyData = (await (await fetch(ipToFetch + "/api/trasas" + trasyString + "&populate=%2A")).json()).data
 
   return {
     props: {
-      country: data.attributes.stat,
-      location: data.attributes.lokace,
-      name: data.attributes.nazev,
-      perex: data.attributes.kratkyPopis,
-      code: data.attributes.kod,
-      categories: data.attributes.kategorie,
-      imageSrc: data.attributes.uvodniFoto.data.attributes.url,
-      otherImages: data.attributes.dalsiFoto.data.map((e: any) => {
+      country: zajezdData.attributes.stat,
+      location: zajezdData.attributes.lokace,
+      name: zajezdData.attributes.nazev,
+      perex: zajezdData.attributes.kratkyPopis,
+      code: zajezdData.attributes.kod,
+      categories: zajezdData.attributes.kategorie,
+      imageSrc: zajezdData.attributes.uvodniFoto.data.attributes.url,
+      otherImages: zajezdData.attributes.dalsiFoto.data.map((e: any) => {
         return (e.attributes.url)
       }),
-      dateAndPrice: data.attributes.terminACena,
-      departurePoints: data.attributes.odjezdovaMista,
-      text: data.attributes.popis,
-      information: data.attributes.informace,
-      housing: data.attributes.ubytovani,
-      catering: data.attributes.stravovani,
-      transport: data.attributes.doprava,
-      programme: data.attributes.program,
-      events: data.attributes.zabava,
-      tips: data.attributes.tipy,
-      comment: data.attributes.poznamka,
-      vse: data
+      dateAndPrice: zajezdData.attributes.terminACena,
+      text: zajezdData.attributes.popis,
+      information: zajezdData.attributes.informace,
+      housing: zajezdData.attributes.ubytovani,
+      catering: zajezdData.attributes.stravovani,
+      transport: zajezdData.attributes.doprava,
+      programme: zajezdData.attributes.program,
+      events: zajezdData.attributes.zabava,
+      tips: zajezdData.attributes.tipy,
+      comment: zajezdData.attributes.poznamka,
+      trasy: trasyData
     }
   }
 }
