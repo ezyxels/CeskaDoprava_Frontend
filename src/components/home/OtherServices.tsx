@@ -26,6 +26,9 @@ export default function OtherServices() {
                 layout="fill"
                 objectFit="cover"
                 loading="lazy"
+                sizes="(max-width: 768px) 100vw,
+                  (max-width: 1200px) 50vw,
+                  50vw"
                 className="group-hover:scale-110 transition-transform origin-center duration-300"
               />
               <div className="w-full h-full absolute inset-0 bg-gradient-to-t from-gray-900/90 to-transparent transition-transform duration-300 group-hover:translate-y-20 md:group-hover:translate-y-28 "></div>
@@ -40,6 +43,9 @@ export default function OtherServices() {
                 layout="fill"
                 objectFit="cover"
                 loading="lazy"
+                sizes="(max-width: 768px) 100vw,
+                  (max-width: 1200px) 50vw,
+                  50vw"
                 className="group-hover:scale-110 transition-transform origin-center duration-300"
               />
               <div className="w-full h-full absolute inset-0 bg-gradient-to-t from-gray-900/90 to-transparent transition-transform duration-300 group-hover:translate-y-20 md:group-hover:translate-y-28 "></div>
@@ -56,6 +62,9 @@ export default function OtherServices() {
               layout="fill"
               objectFit="cover"
               loading="lazy"
+              sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 100vw,
+              100vw"
               className="group-hover:scale-110 transition-transform origin-center duration-300"
             />
             <div className="w-full h-full absolute inset-0 bg-gradient-to-t from-gray-900/90 to-transparent transition-transform duration-300 group-hover:translate-y-20 md:group-hover:translate-y-28 "></div>

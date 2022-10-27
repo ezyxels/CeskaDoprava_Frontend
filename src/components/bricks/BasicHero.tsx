@@ -7,11 +7,23 @@ type Props = {
   text: string;
   imageSrc?: string;
   imageAlt?: string;
+  imageSizeSm?: string;
+  imageSizeMd?: string;
+  imageSizeLg?: string;
   imagePosition?: "left" | "right";
   children?: React.ReactNode;
 }
 
-export default function BasicHero({ heading, text, imageSrc = "", imageAlt, imagePosition = "right", children }: Props) {
+export default function BasicHero({
+  heading,
+  text,
+  imageSrc = "",
+  imageAlt,
+  imageSizeSm = "100vw",
+  imageSizeMd = "100vw",
+  imageSizeLg = "100vw",
+  imagePosition = "right",
+  children }: Props) {
   return (
     <Wrapper as={"header"} size={"base"} paddedContent={"lg"} className={`flex flex-col gap-10 ${imagePosition === "left" ? "md:flex-row-reverse" : "md:flex-row"}`}>
       <div className="mt-20 md:mt-0 md:w-1/2 flex justify-center items-center">
@@ -28,9 +40,9 @@ export default function BasicHero({ heading, text, imageSrc = "", imageAlt, imag
           layout="fill"
           objectFit="cover"
           loading="eager"
-          sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              50vw"
+          sizes={`(max-width: 768px) ${imageSizeSm},
+              (max-width: 1200px) ${imageSizeMd},
+              ${imageSizeLg}`}
         />
       </div>
     </Wrapper>

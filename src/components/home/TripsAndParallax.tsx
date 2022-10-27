@@ -56,9 +56,9 @@ function JustParallax({ className = "" }: JustParallaxProps) {
             objectFit="cover"
             loading="lazy"
             className="rounded-xl"
-            sizes="(max-width: 768px) 60vw,
-              (max-width: 1200px) 60vw,
-              60vw"
+            sizes="(max-width: 768px) 0,
+            (max-width: 1200px) 20vw,
+            20vw"
           />
         </Parallax>
 
@@ -73,7 +73,7 @@ function JustParallax({ className = "" }: JustParallaxProps) {
               loading="lazy"
               className="rounded-xl"
               sizes="(max-width: 768px) 50vw,
-              (max-width: 1200px) 25vw,
+              (max-width: 1200px) 20vw,
               20vw"
             />
           </div>
@@ -86,7 +86,7 @@ function JustParallax({ className = "" }: JustParallaxProps) {
               loading="lazy"
               className="rounded-xl"
               sizes="(max-width: 768px) 50vw,
-              (max-width: 1200px) 25vw,
+              (max-width: 1200px) 20vw,
               20vw"
             />
           </div>
@@ -103,7 +103,7 @@ function JustParallax({ className = "" }: JustParallaxProps) {
               loading="lazy"
               className="rounded-xl"
               sizes="(max-width: 768px) 50vw,
-              (max-width: 1200px) 25vw,
+              (max-width: 1200px) 20vw,
               20vw"
             />
           </div>
@@ -116,7 +116,7 @@ function JustParallax({ className = "" }: JustParallaxProps) {
               loading="lazy"
               className="rounded-xl"
               sizes="(max-width: 768px) 50vw,
-              (max-width: 1200px) 25vw,
+              (max-width: 1200px) 20vw,
               20vw"
             />
           </div>
@@ -131,9 +131,9 @@ function JustParallax({ className = "" }: JustParallaxProps) {
             objectFit="cover"
             loading="lazy"
             className="rounded-xl"
-            sizes="(max-width: 768px) 50vw,
-              (max-width: 1200px) 25vw,
-              20vw"
+            sizes="(max-width: 768px) 0,
+            (max-width: 1200px) 20vw,
+            20ww"
           />
         </Parallax>
 
