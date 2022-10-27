@@ -78,7 +78,7 @@ export default function Aftermovie() {
             <div className="relative top-1/2 bottom-1/2 z-[200] mx-auto w-[90%] max-w-6xl -translate-y-1/2 transform">
               <div className="aspect-[16/9]">
                 <video controls className="object-cover">
-                  <source src="/videos/ceska-doprava-preview.mp4" type="video/mp4" />
+                  <source src="/videos/ceska-doprava-video.mp4" type="video/mp4" />
                   Váš prohlížeč nepodporuje video
                 </video>
               </div>
