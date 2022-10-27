@@ -32,6 +32,7 @@ type Props = {
   events?: string;
   tips?: string;
   comment?: string;
+  trasy: any;
 }
 
 export default function ContentCreator({
@@ -47,10 +48,20 @@ export default function ContentCreator({
   programme,
   events,
   tips,
-  comment
+  comment,
+  trasy
 }: Props) {
   const [content, setContent] = useState("informace");
-  var contentShown: any;
+  let contentShown: any;
+  let allDeparturePoints: string[] = [];
+
+
+  trasy !== null && trasy.map((e: any, i: number) => {
+    e.attributes.mesta.map((en: any) => (
+      !allDeparturePoints.includes(en.nazevMesta) && allDeparturePoints.push(en.nazevMesta)
+    ))
+  })
+
 
   if (content === "informace") {
     contentShown =
@@ -64,6 +75,7 @@ export default function ContentCreator({
         events={events}
         tips={tips}
         comment={comment}
+        departurePoints={allDeparturePoints}
       />
   }
   else if (content === "termin") {
@@ -83,7 +95,7 @@ export default function ContentCreator({
       <Form
         code={code}
         dateAndPrice={dateAndPrice}
-        departurePoints={departurePoints}
+        departurePoints={allDeparturePoints}
       />
   }
 
