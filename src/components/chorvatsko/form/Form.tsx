@@ -360,7 +360,7 @@ function FormStater({ allDataObject, requiredArray, prices, months, specialPrice
           formState={formState}
         />
         <Button
-          className="w-fit my-8 md:mx-auto"
+          className="w-fit my-8"
           onClick={() => verifying()}
         >
           Odeslat objednávku

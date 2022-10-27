@@ -29,8 +29,10 @@ type DateAndPrice = {
   cena: number;
 }
 
+let data: Trip[] = [];
+
 export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
-  const [data, setData] = useState<Trip[] | undefined>(undefined);
+  const [dataCounter, setDataCounter] = useState<number | null>(null);
   const [hasItemsLeft, setHasItemsLeft] = useState<boolean>(true);
   const itemsAtStart = 6;
   const addItems = 3;
@@ -57,14 +59,16 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
         /* Pokud se to úspěšně připojilo */
         if (all.data !== undefined && all.data !== null) {
           /* Pokud zatím nejsou žádný data nebo se změnil filtr */
-          if (data === undefined || filterChanged) {
+          if (dataCounter === 0 || dataCounter === null || filterChanged) {
             /* Pokud se v databázi nenašla žádná data podle parametrů */
             if (all.data.length === 0) {
-              setData(undefined)
+              data = [];
+              setDataCounter(0);
             }
             /* Pokud se našli data */
             else {
-              setData(all.data)
+              data = all.data;
+              setDataCounter(all.data.length);
               /* Pokud je stažených dat míň než bylo požádáno -> skryje tlačítko */
               if (all.data.length < currentAmount + addXItems) {
                 setHasItemsLeft(false);
@@ -73,9 +77,8 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
           }
           /* Pokud už existujou nějaký data */
           else {
-            let tempDataArray = data;
-            tempDataArray.push(...all.data);
-            setData(tempDataArray);
+            data.push(...all.data);
+            setDataCounter(data.length)
 
             /* Pokud je dat míň než bylo požádáno -> skryje tlačítko */
             if (data.length < currentAmount + addXItems) {
@@ -85,12 +88,13 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
         }
         /* Špatný připojení/požadavek */
         else {
-          setData(undefined)
+          data = [];
+          setDataCounter(null);
         }
       })
   }
 
-  if (data === undefined || data === null) {
+  if (dataCounter === 0) {
     return (
       <Wrapper paddedContent="lg">
         <Heading level={3} size={"base"}>Bohužel, ve vyžadovaných parametrech není žádný zájezd</Heading>
@@ -124,7 +128,7 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
         {hasItemsLeft &&
           <Button
             className="mx-auto !flex w-fit mt-24"
-            onClick={() => getData(data.length, addItems, false)}
+            onClick={() => getData(dataCounter!, addItems, false)}
           >
             zobrazit další
           </Button>

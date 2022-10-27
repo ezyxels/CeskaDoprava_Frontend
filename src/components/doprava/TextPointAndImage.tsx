@@ -45,6 +45,9 @@ export default function TextPointAndImage({
             alt={imageBigAlt}
             layout='fill'
             objectFit='cover'
+            sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              50vw"
           />
         </div>
         <div className='grid grid-cols-2 gap-5'>
@@ -54,6 +57,9 @@ export default function TextPointAndImage({
               alt={imageSmallLeftAlt}
               layout='fill'
               objectFit='cover'
+              sizes="(max-width: 768px) 50vw,
+              (max-width: 1200px) 25vw,
+              25vw"
             />
           </div>
           <div className="relative overflow-hidden rounded-xl aspect-[7/5]">
@@ -62,6 +68,9 @@ export default function TextPointAndImage({
               alt={imageSmallRightAlt}
               layout='fill'
               objectFit='cover'
+              sizes="(max-width: 768px) 50vw,
+              (max-width: 1200px) 25vw,
+              25vw"
             />
           </div>
         </div>

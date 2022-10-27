@@ -76,7 +76,7 @@ export default function Gallery({ images }: Props) {
               <Image
                 src={images[imageIndex]}
                 layout="fill"
-                className="object-contain"
+                objectFit="contain"
               />
             </div>
 
@@ -113,7 +113,11 @@ export default function Gallery({ images }: Props) {
                     <Image
                       src={imageSrc}
                       layout="fill"
-                      className="rounded-md object-cover"
+                      className="rounded-md"
+                      objectFit="cover"
+                      sizes="(max-width: 768px) 50vw,
+                      (max-width: 1200px) 50vw,
+                      50vw"
                     />
                   </span>
                 )
@@ -132,6 +136,9 @@ export default function Gallery({ images }: Props) {
                 src={imageSrc}
                 layout="fill"
                 className="rounded-md object-cover"
+                sizes="(max-width: 768px) 50vw,
+                (max-width: 1200px) 33vw,
+                33vw"
               />
             </span>
           ))}

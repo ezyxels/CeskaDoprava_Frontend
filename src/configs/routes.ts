@@ -35,12 +35,12 @@ export const mainRoutes = [
 
 export const ctaMenu = [
   {
-    label: "+420 775 554 479",
-    link: "tel:+420775554479",
+    label: "+420 721 174 928",
+    link: "tel:+420721174 928",
   },
   {
-    label: "Info@fotofestplzen.cz",
-    link: "mailto:info@fotofestplzen.cz",
+    label: "ceskadoprava@email.cz",
+    link: "mailto:ceskadoprava@email.cz",
   },
 ];
 

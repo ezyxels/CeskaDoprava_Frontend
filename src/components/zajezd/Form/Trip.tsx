@@ -14,11 +14,7 @@ type Props = {
     datumDo: string,
     cena: number
   }[];
-  departurePoints: {
-    mesto: string,
-    ulice: string,
-    cisloPopisne: number
-  }[];
+  departurePoints: string[];
   allDataObject: any;
   requiredArray: any;
 }
@@ -32,7 +28,6 @@ export default function Trip({
   allDataObject,
   requiredArray
 }: Props) {
-  let departurePointsArray: string[] = [];
 
   useEffect(() => {
     if (allDataObject.price === undefined) {
@@ -50,12 +45,6 @@ export default function Trip({
       }
     }
   })
-
-  if (departurePointsArray.length === 0) {
-    departurePoints.map((e: any) => {
-      departurePointsArray.push(e.mesto)
-    })
-  }
 
   function changeDateType(date: string) {
     var newDate = date.split("-")[2] + "." + date.split("-")[1] + "." + date.split("-")[0]
@@ -106,7 +95,7 @@ export default function Trip({
         requiredArray={requiredArray}
         allDataObject={allDataObject}
         formState={formState}
-        values={departurePointsArray}
+        values={departurePoints}
       />
       <Textarea
         className="mt-10"

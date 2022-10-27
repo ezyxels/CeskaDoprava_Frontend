@@ -20,11 +20,7 @@ type FormProps = {
     datumDo: string,
     cena: number
   }];
-  departurePoints: [{
-    mesto: string,
-    ulice: string,
-    cisloPopisne: number
-  }];
+  departurePoints: string[];
 }
 
 export default function Form({ code, dateAndPrice, departurePoints }: FormProps) {
@@ -50,11 +46,7 @@ type FormStaterProps = {
     datumDo: string,
     cena: number
   }];
-  departurePoints: [{
-    mesto: string,
-    ulice: string,
-    cisloPopisne: number
-  }];
+  departurePoints: string[];
   allDataObject: any;
   requiredArray: any;
 }
@@ -326,7 +318,7 @@ function FormStater({ code, dateAndPrice, departurePoints, allDataObject, requir
           formState={formState}
         />
         <Button
-          className="w-fit my-8 md:mx-auto"
+          className="w-fit my-8"
           onClick={(e: any) => verifying(e)}
         >
           Odeslat objednávku

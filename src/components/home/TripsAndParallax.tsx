@@ -48,7 +48,7 @@ function JustParallax({ className = "" }: JustParallaxProps) {
     <ParallaxProvider>
       <div className={`grid grid-cols-2 md:grid-cols-4 gap-5 py-20 ${className}`}>
         {/* 1 */}
-        <Parallax speed={3} className="relative aspect-[3/5] my-auto hidden md:flex">
+        <Parallax speed={3} className="aspect-[3/5] relative my-auto hidden md:block">
           <Image
             src="/images/home/parallax/1.jpg"
             alt="Obrázek"
@@ -56,59 +56,74 @@ function JustParallax({ className = "" }: JustParallaxProps) {
             objectFit="cover"
             loading="lazy"
             className="rounded-xl"
+            sizes="(max-width: 768px) 60vw,
+              (max-width: 1200px) 60vw,
+              60vw"
           />
         </Parallax>
 
         {/* 2 */}
         <Parallax speed={-5} className="flex flex-col gap-5">
-          <div className="relative aspect-[3/5]">
+          <div className="aspect-[3/5] relative">
             <Image
               src="/images/home/parallax/2.jpg"
               alt="Obrázek"
               layout="fill"
               objectFit="cover"
               loading="lazy"
-              className="rounded-xl h-1/2"
+              className="rounded-xl"
+              sizes="(max-width: 768px) 50vw,
+              (max-width: 1200px) 25vw,
+              20vw"
             />
           </div>
-          <div className="relative aspect-[3/5]">
+          <div className="aspect-[3/5] relative">
             <Image
               src="/images/home/parallax/3.jpg"
               alt="Obrázek"
               layout="fill"
               objectFit="cover"
               loading="lazy"
-              className="rounded-xl h-1/2"
+              className="rounded-xl"
+              sizes="(max-width: 768px) 50vw,
+              (max-width: 1200px) 25vw,
+              20vw"
             />
           </div>
         </Parallax>
 
         {/* 2 */}
         <Parallax speed={5} className="flex flex-col gap-5">
-          <div className="relative aspect-[3/5]">
+          <div className="aspect-[3/5] relative">
             <Image
               src="/images/home/parallax/4.jpg"
               alt="Obrázek"
               layout="fill"
               objectFit="cover"
               loading="lazy"
-              className="rounded-xl h-1/2"
+              className="rounded-xl"
+              sizes="(max-width: 768px) 50vw,
+              (max-width: 1200px) 25vw,
+              20vw"
             />
           </div>
-          <div className="relative aspect-[3/5]">
+          <div className="aspect-[3/5] relative">
             <Image
               src="/images/home/parallax/5.jpg"
               alt="Obrázek"
               layout="fill"
               objectFit="cover"
               loading="lazy"
-              className="rounded-xl h-1/2"
+              className="rounded-xl"
+              sizes="(max-width: 768px) 50vw,
+              (max-width: 1200px) 25vw,
+              20vw"
             />
           </div>
         </Parallax>
 
         {/* 1 */}
-        <Parallax speed={-3} className="relative aspect-[3/5] my-auto hidden md:flex">
+        <Parallax speed={-3} className="aspect-[3/5] relative my-auto hidden md:block">
           <Image
             src="/images/home/parallax/6.jpg"
             alt="Obrázek"
@@ -116,6 +131,9 @@ function JustParallax({ className = "" }: JustParallaxProps) {
             objectFit="cover"
             loading="lazy"
             className="rounded-xl"
+            sizes="(max-width: 768px) 50vw,
+              (max-width: 1200px) 25vw,
+              20vw"
           />
         </Parallax>
 
