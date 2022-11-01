@@ -91,10 +91,10 @@ export default function zajezd({
       />
       <ContentCreator
         code={code}
+        country={country}
         imageSrc={imageSrc}
         otherImages={otherImages}
         dateAndPrice={dateAndPrice}
-        departurePoints={departurePoints}
         text={text}
         information={information}
         housing={housing}
