@@ -16,7 +16,7 @@ export default function Hero() {
         </Wrapper>
       </div>
       <div className='relative my-10 bg-transparent -top-[575px] lg:-top-36 -mb-[575px] w-[90%] lg:-mb-36  max-w-[1280px] mx-auto grid lg:grid-cols-3 gap-10'>
-        <div className='bg-white relative px-7 py-12 flex flex-col gap-y-4 shadow-2xl rounded-md'>
+        <div className='bg-white relative px-7 py-12 flex flex-col justify-between gap-y-4 shadow-2xl rounded-md'>
           <span className='absolute left-5 -top-5 h-10 w-10 bg-primary rounded-full flex items-center justify-center text-2xl text-white'><GiPalmTree /></span>
           <Heading level={2} size="sm">Kontakt cestovní agentura + autobusem do Chorvatska</Heading>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores placeat ab magni quia vitae vero at incidunt. Doloremque, delectus quo.</p>
@@ -30,7 +30,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className='bg-white relative px-7 py-12 flex flex-col gap-y-4 shadow-2xl rounded-md'>
+        <div className='bg-white relative px-7 py-12 flex flex-col justify-between gap-y-4 shadow-2xl rounded-md'>
           <span className='absolute left-5 -top-5 h-10 w-10 bg-primary rounded-full flex items-center justify-center text-2xl text-white'><HiTruck /></span>
           <Heading level={2} size="sm">Kontakt autobusová a nákladní doprava</Heading>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores placeat ab magni quia vitae vero at incidunt. Doloremque, delectus quo.</p>
@@ -44,7 +44,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className='bg-white relative px-7 py-12 flex flex-col gap-y-4 shadow-2xl rounded-md'>
+        <div className='bg-white relative px-7 py-12 flex flex-col justify-between gap-y-4 shadow-2xl rounded-md'>
           <span className='absolute left-5 -top-5 h-10 w-10 bg-primary rounded-full flex items-center justify-center text-2xl text-white'><HiCreditCard /></span>
           <Heading level={2} size="sm">Kontakt fakturace</Heading>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores placeat ab magni quia vitae vero at incidunt. Doloremque, delectus quo.</p>
