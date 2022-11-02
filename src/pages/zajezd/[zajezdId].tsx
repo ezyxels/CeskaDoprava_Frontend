@@ -21,11 +21,6 @@ type Props = {
     pocetDni: number,
     pocetNoci: number
   }];
-  departurePoints: [{
-    mesto: string,
-    ulice: string,
-    cisloPopisne: number
-  }];
   text: string;
   information?: string;
   housing?: string;
@@ -49,7 +44,6 @@ export default function zajezd({
   imageSrc,
   otherImages,
   dateAndPrice,
-  departurePoints,
   text,
   information,
   housing,
