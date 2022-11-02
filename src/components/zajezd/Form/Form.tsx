@@ -6,6 +6,7 @@ import Customer from "./Customer";
 import Passengers from "./Passengers";
 import Trip from "./Trip";
 
+import Alert from "@components/bricks/Alert";
 import Button from "@components/bricks/Button";
 import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
@@ -61,10 +62,6 @@ function FormStater({ country, code, dateAndPrice, departurePoints, allDataObjec
 
   useEffect(() => {
     allDataObject.country = country;
-  })
-
-
-  useEffect(() => {
     if (price === undefined) {
       let tempPrice = 0;
       let tempDateFrom = "2025-12-12"
@@ -75,51 +72,42 @@ function FormStater({ country, code, dateAndPrice, departurePoints, allDataObjec
       })
       setPrice(tempPrice)
     }
-
-    if (formState === "refused") {
-      window.alert("Zapoměl jsi vyplnit některé z povinných polí")
-    }
-    else if (formState === "accepted") {
-      window.alert("Vše úspěsně vyplněno")
-      createPdf();
-    }
-  }, [formState])
+  })
 
   function verifying(e: any) {
-    e.preventDefault();
-
     setFormState("verifying")
-    setTimeout(
-      () => {
-        let tempState = "verifying"
-        Object.entries(requiredArray).map((e) => {
-          if (typeof e[1] === "string") {
-            if ((e[1] in allDataObject) && allDataObject[e[1]] === "") {
-              tempState = "refused"
-              setFormState("refused")
-            }
+    let tempState = "verifying"
+    Object.entries(requiredArray).map((e) => {
+      if (typeof e[1] === "string") {
+        if (!(e[1] === "gdpr")) {
+          if ((e[1] in allDataObject) && allDataObject[e[1]] === "") {
+            tempState = "refused"
           }
-          else if (typeof e[1] === "object" && e[1] !== null) {
-            if (Object.keys(e[1]).length !== 0) {
-              if (e[0] in allDataObject) {
-                Object.entries(allDataObject[e[0]]).map((elem: any) => {
-                  if (elem[1] === "") {
-                    tempState = "refused"
-                    setFormState("refused")
-                  }
-                })
-              }
-            }
-          }
-        })
-        if (tempState === "refused") {
-          setFormState("refused")
         }
         else {
-          setFormState("accepted")
+          if (allDataObject[e[1]] === false || allDataObject[e[1]] === "") {
+            tempState = "refused"
+          }
         }
-      }, 150
-    )
+      }
+      else if (typeof e[1] === "object" && e[1] !== null) {
+        if (Object.keys(e[1]).length !== 0) {
+          if (e[0] in allDataObject) {
+            Object.entries(allDataObject[e[0]]).map((elem: any) => {
+              if (elem[1] === "") {
+                tempState = "refused"
+              }
+            })
+          }
+        }
+      }
+    })
+    if (tempState === "refused") {
+      setFormState("refused")
+    }
+    else {
+      setFormState("accepted")
+    }
   }
 
 
@@ -154,6 +142,7 @@ function FormStater({ country, code, dateAndPrice, departurePoints, allDataObjec
 
     doc.output('dataurlnewwindow')
     //sendEmail(doc.output('datauristring'))
+    setFormState("accepted");
   }
 
   function sendEmail(doc: any) {
@@ -167,7 +156,15 @@ function FormStater({ country, code, dateAndPrice, departurePoints, allDataObjec
         createdPdf: doc
       },
       process.env.PUBLIC_KEY!
-    );
+    )
+      .then(
+        () => {
+          setFormState("accepted");
+        },
+        () => {
+          setFormState("refused");
+        }
+      )
   }
 
   return (
@@ -219,10 +216,25 @@ function FormStater({ country, code, dateAndPrice, departurePoints, allDataObjec
         <Button
           className="w-fit my-8"
           onClick={(e: any) => verifying(e)}
+          isLoading={formState === "verifying" ? true : false}
         >
           Odeslat objednávku
         </Button>
       </div>
+      {formState === "accepted" &&
+        <Alert
+          status="success"
+          title="Úspěch!"
+          text="Vaše obědnávka byla úspěšně odeslána"
+        />
+      }
+      {formState === "refused" &&
+        <Alert
+          status="error"
+          title="Chyba!"
+          text="Zapoměli jste vypnit některá pole"
+        />
+      }
     </Wrapper>
   )
 }
