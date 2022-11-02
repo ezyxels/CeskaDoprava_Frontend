@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import { useEffect, useState } from "react";
 
 type Props = {
   name: string;
@@ -9,10 +9,11 @@ type Props = {
   className?: string;
   defaultValue?: string;
   allDataObject: object | any;
-  requiredArray?:  string[] | object[] | any;
+  requiredArray?: string[] | object[] | any;
   oneOfMany?: boolean | string;
   position?: number;
   formState?: "waiting" | "verifying" | "refused" | "accepted";
+  otherState?: any;
 }
 
 export default function Checkbox({
@@ -26,42 +27,43 @@ export default function Checkbox({
   allDataObject,
   requiredArray,
   oneOfMany = false,
-  formState
+  formState,
+  otherState = undefined,
 }: Props) {
-  const [inValidation, setInValidation] = useState<undefined |"waiting" | "verifying" | "refused" | "accepted">("waiting")
+  const [inValidation, setInValidation] = useState<undefined | "waiting" | "verifying" | "refused" | "accepted">("waiting")
 
   useEffect(() => {
-    if(oneOfMany === false){
-      if(allDataObject[name] === undefined){
-        if(defaultValue === "__false"){
+    if (oneOfMany === false) {
+      if (allDataObject[name] === undefined) {
+        if (defaultValue === "__false") {
           allDataObject[name] = "";
         }
-        else{
+        else {
           allDataObject[name] = defaultValue;
         }
       }
-      if(isRequired && requiredArray !== undefined){
-        if(!requiredArray.includes(name)){
+      if (isRequired && requiredArray !== undefined) {
+        if (!requiredArray.includes(name)) {
           requiredArray?.push(name)
         }
       }
     }
-    else if(typeof oneOfMany === "string"){
-      if(allDataObject[oneOfMany] === undefined){
+    else if (typeof oneOfMany === "string") {
+      if (allDataObject[oneOfMany] === undefined) {
         allDataObject[oneOfMany] = {}
       }
-      else{
-        if(allDataObject[oneOfMany][name] === undefined)
+      else {
+        if (allDataObject[oneOfMany][name] === undefined)
           allDataObject[oneOfMany][name] = ""
       }
-      
-      if(isRequired && requiredArray !== undefined){
-        if(requiredArray[oneOfMany] === undefined){
+
+      if (isRequired && requiredArray !== undefined) {
+        if (requiredArray[oneOfMany] === undefined) {
           requiredArray[oneOfMany] = []
           requiredArray[oneOfMany].push(name);
         }
-        else{
-          if(!requiredArray[oneOfMany].includes(name)){
+        else {
+          if (!requiredArray[oneOfMany].includes(name)) {
             requiredArray[oneOfMany].push(name);
           }
         }
@@ -71,7 +73,7 @@ export default function Checkbox({
 
   useEffect(() => {
     setInValidation(formState)
-  },[formState])
+  }, [formState])
 
   return (
     <div className={`w-full flex`}>
@@ -86,25 +88,30 @@ export default function Checkbox({
           hover:ring-4 hover:ring-primary/70 hover:ring-offset-0 
           hover:focus:ring-4 focus:ring-0
           checked:focus:bg-primary
-          ${
-            isDisabled
-              ? "pointer-events-none cursor-not-allowed opacity-60"
-              : "cursor-pointer opacity-100"
+          ${isDisabled
+            ? "pointer-events-none cursor-not-allowed opacity-60"
+            : "cursor-pointer opacity-100"
           }`}
         disabled={isDisabled}
         required={isRequired}
         readOnly={isReadOnly}
-        onChange={(e:any) => {
-          if(oneOfMany === false){
-            allDataObject[name]=e.target.checked;
+        onChange={(e: any) => {
+          if (oneOfMany === false) {
+            if (otherState !== undefined) {
+              otherState(e.target.checked);
+            }
+            allDataObject[name] = e.target.checked;
           }
-          else if(typeof oneOfMany === "string"){
+          else if (typeof oneOfMany === "string") {
+            if (otherState !== undefined) {
+              otherState(e.target.checked);
+            }
             allDataObject[oneOfMany][name] = e.target.checked;
           }
         }}
-      /> 
-      <label 
-        className="font-semibold text-black cursor-pointer" 
+      />
+      <label
+        className="font-semibold text-black cursor-pointer"
         htmlFor={name}
       >
         {label}
@@ -112,17 +119,17 @@ export default function Checkbox({
         {(inValidation === "refused" &&
           isRequired &&
           oneOfMany === false &&
-          (allDataObject[name] === "" || allDataObject[name] === "false" ))
+          (allDataObject[name] === "" || allDataObject[name] === "false"))
           &&
           <span className="text-primary ml-1">Toto pole je povinné!</span>
         }
         {(inValidation === "refused" &&
-            isRequired &&
-            typeof oneOfMany === "string" &&
-            (allDataObject[oneOfMany][name] === "" || allDataObject[oneOfMany][name] === "false" )
-          )
-            &&
-              <span className="text-primary ml-1">Toto pole je povinné!</span>
+          isRequired &&
+          typeof oneOfMany === "string" &&
+          (allDataObject[oneOfMany][name] === "" || allDataObject[oneOfMany][name] === "false")
+        )
+          &&
+          <span className="text-primary ml-1">Toto pole je povinné!</span>
         }
       </label>
     </div>

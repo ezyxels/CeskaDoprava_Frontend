@@ -11,6 +11,7 @@ import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
 import Checkbox from "@components/forms/Checkbox";
 import "public/fonts/DejaVuSans.js";
+import { chorvatsko64 } from "public/images/pdfs/chorvatsko64";
 
 type FormProps = {
   prices: Prices[];
@@ -91,7 +92,7 @@ function FormStater({ allDataObject, requiredArray, prices, months, specialPrice
     }
     else if (formState === "accepted") {
       window.alert("Vše úspěsně vyplněno")
-      CreatePdf();
+      createPdf();
     }
   }, [formState])
 
@@ -138,163 +139,36 @@ function FormStater({ allDataObject, requiredArray, prices, months, specialPrice
     )
   }
 
-  function CreatePdf() {
-    console.log(allDataObject)
-    let posY = 0;
-    const doc = new jsPDF();
-    doc.setFont("DejaVuSans", "normal")
+  function createPdf() {
+    const doc = new jsPDF("p", "mm", "a4");
+    doc.setFont("DejaVuSans", "normal");
+    doc.addImage(chorvatsko64, "JPEG", 0, 0, 210, 297);
+    doc.setFontSize(10);
 
     /* Zájezd */
-    doc.setFontSize(25)
-    doc.text("Informace o zájezdu ______ :", 60, posY += 10)
 
-    doc.setFontSize(15)
-    doc.text(
-      "Termín odjezdu Česká Republika:\n     " + allDataObject.dateCz,
-      20,
-      posY += 20
-    )
+    doc.text("Česká Republika", 57, 66);
+    doc.text("Chorvatsko - " + allDataObject.pointHr, 57, 71);
+    doc.text(allDataObject.zpatecni === true ? "Zpáteční" : "Jednosměrná", 57, 76);
+    doc.text(allDataObject.zpatecni === true ? "Od: " + allDataObject.dateCz + " / Do: " + allDataObject.dateHr : allDataObject.dateCz, 57, 81);
+    doc.text(allDataObject.pointCz, 57, 86);
 
-    doc.text(
-      "Nástupní místo Česká Republika:\n     " + allDataObject.pointCz,
-      120,
-      posY
-    )
+    /* Objednatel */
+    doc.text(allDataObject.name, 40, 99);
+    doc.text(allDataObject.birth, 160, 99);
+    doc.text(allDataObject.phone, 25, 104);
+    doc.text(allDataObject.email, 115, 104);
 
-    doc.text(
-      "Termín odjezdu Chorvatsko:\n     " + allDataObject.dateHr,
-      20,
-      posY += 15
-    )
-
-    doc.text(
-      "Nástupní místo Chorvatsko:\n     " + allDataObject.pointHr,
-      120,
-      posY
-    )
-
-
-    doc.text("Poznámka od zákazníka:", 20, posY += 20)
-    doc.text(allDataObject.comment, 20, posY += 10)
-
-
-    doc.setFontSize(25)
-    doc.text("Objednavatel:", 70, posY += 20)
-
-    doc.setFontSize(15)
-    doc.text(
-      "Jméno: " + allDataObject.name,
-      20,
-      posY += 10
-    )
-
-    doc.text(
-      "Narození: " + allDataObject.birth,
-      20,
-      posY += 10
-    )
-
-
-    doc.text(
-      "Číslo: " + allDataObject.phone,
-      20,
-      posY += 10
-    )
-
-    doc.text(
-      "E-mail: " + allDataObject.email,
-      20,
-      posY += 10
-    )
-
-    /* Další cestující */
+    /*Další cestující*/
     if (allDataObject.names !== undefined) {
-      doc.setFontSize(20)
-      doc.text("Další cestující:", 75, posY += 15)
-
-      doc.setFontSize(15)
+      let fH: number = 121;
       for (let i = 1; i <= Object.values(allDataObject.names).length; i++) {
 
-        /* Pokud by to přeteklo stránku vytvoří novou */
-        if (posY + 40 >= 250 && i % 2 !== 0) {
-          posY = 10;
-          doc.addPage()
-          doc.setFontSize(25)
-          doc.text("Informace o zájezdu ______ :", 60, posY += 20)
-          doc.setFontSize(20)
-          doc.text("Další cestující:", 75, posY += 15)
-          doc.setFontSize(15)
-          posY -= 20
-        }
-        if (i % 2 !== 0) {
-          doc.text(
-            "Jméno: " + allDataObject.names["names" + i],
-            20,
-            i === 1 ? posY += 15 : posY += 40
-          )
-          doc.text(
-            "Narození: " + allDataObject.births["births" + i],
-            20,
-            posY + 7
-          )
-          doc.text(
-            "Telefon: " + allDataObject.phones["phones" + i],
-            20,
-            posY + 14
-          )
-          doc.text(
-            "Nástupní místo: " + allDataObject.points["points" + i],
-            20,
-            posY + 21
-          )
-        }
-        else {
-          doc.text(
-            "Jméno: " + allDataObject.names["names" + i],
-            120,
-            posY
-          )
-          doc.text(
-            "Narození: " + allDataObject.births["births" + i],
-            120,
-            posY + 7
-          )
-          doc.text(
-            "Telefon: " + allDataObject.phones["phones" + i],
-            120,
-            posY + 14
-          )
-          doc.text(
-            "Nástupní místo: " + allDataObject.points["points" + i],
-            120,
-            posY + 21
-          )
-        }
+        doc.text(allDataObject.names["names" + i], 18, fH + (5 * i));
+        doc.text(allDataObject.births["births" + i], 67, fH + (5 * i));
+        doc.text(allDataObject.phones["phones" + i], 105, fH + (5 * i));
+        doc.text(allDataObject.points["points" + i], 150, fH + (5 * i));
       }
-    }
-
-    /* Cena a počet osob */
-    doc.line(10, posY += 40, 200, posY)
-    doc.text("Cena za osobu", 20, posY += 10)
-    doc.text("________ ,-", 92, posY, undefined, "right")
-    doc.text("Pocet osob", 20, posY += 10)
-    doc.text(
-      allDataObject.names !== undefined ?
-        (Object.keys(allDataObject.names).length + 1).toString()
-        :
-        "1",
-      85, posY
-    )
-    doc.line(10, posY += 5, 89, posY)
-    doc.text("Celková cena", 20, posY += 7)
-    doc.text("________ ,-", 92, posY, undefined, "right")
-    doc.text("Podpis: ____________", 145, posY)
-
-
-    /* Page counter */
-    for (let i = 1; i <= doc.getNumberOfPages(); i++) {
-      doc.setPage(i)
-      doc.text(i + " / " + doc.getNumberOfPages(), 190, 290)
     }
 
     doc.output('dataurlnewwindow')

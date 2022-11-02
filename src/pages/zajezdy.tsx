@@ -19,7 +19,7 @@ export default function zajezdy({ calendar, catalog, conditions }: Props) {
       <BasicHero
         heading="Lorem Ipsum dolor sit amet"
         text={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."}
-        imageSrc="/images/conf.jpg"
+        imageSrc="/images/zajezdy/hero.png"
         imageAlt="Obrázek"
         imagePosition="right"
       >

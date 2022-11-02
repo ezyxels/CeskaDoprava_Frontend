@@ -11,7 +11,7 @@ type Props = {
   values: any;
   allDataObject: any;
   requiredArray?: any;
-  oneOfMany?: boolean | string;
+  oneOfMany?: false | string;
   formState?: "waiting" | "verifying" | "refused" | "accepted";
   setFunction?: any;
   rare?: string | boolean;
@@ -33,7 +33,7 @@ export default function ComboSelect({
 }: Props) {
   const [inValidation, setInValidation] = useState<undefined | "waiting" | "verifying" | "refused" | "accepted">("waiting")
   const [selected, setSelected] = useState(values[0])
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState('');
 
   const filteredPoints =
     query === ''
@@ -81,7 +81,12 @@ export default function ComboSelect({
   })
 
   useEffect(() => {
-    allDataObject[name] = selected;
+    if (oneOfMany === false) {
+      allDataObject[name] = selected;
+    }
+    else {
+      allDataObject[oneOfMany][name] = selected;
+    }
   }, [selected])
 
   useEffect(() => {
