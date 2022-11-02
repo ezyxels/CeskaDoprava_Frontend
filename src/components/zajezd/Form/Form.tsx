@@ -106,7 +106,7 @@ function FormStater({ country, code, dateAndPrice, departurePoints, allDataObjec
       setFormState("refused")
     }
     else {
-      setFormState("accepted")
+      createPdf();
     }
   }
 
@@ -141,8 +141,8 @@ function FormStater({ country, code, dateAndPrice, departurePoints, allDataObjec
 
 
     doc.output('dataurlnewwindow')
-    //sendEmail(doc.output('datauristring'))
     setFormState("accepted");
+    //sendEmail(doc.output('datauristring'))
   }
 
   function sendEmail(doc: any) {
