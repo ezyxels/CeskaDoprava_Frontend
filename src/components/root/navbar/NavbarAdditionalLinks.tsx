@@ -1,4 +1,5 @@
 import Button from "@components/bricks/Button";
+import { globalConfig } from "@configs/globalConfig";
 import { ctaMenu } from "@configs/routes";
 import { HiPhone } from "react-icons/hi";
 
@@ -22,7 +23,7 @@ export default function NavbarAdditionalLinks({
         leftIcon={<HiPhone />}
         className="hidden sm:inline-flex"
       >
-        +420 123 456 789
+        {globalConfig.client.phone}
       </Button>
     </div>
   );

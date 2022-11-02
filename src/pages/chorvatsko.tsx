@@ -46,7 +46,7 @@ export default function chorvatsko({ prices, months, departurePoints, specialPri
         text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
         imagePosition="right"
         imageAlt="Obrázek Chorvatsko"
-        imageSrc="/images/conf.jpg"
+        imageSrc="/images/chorvatsko/hero.png"
       >
         <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-5">
           <a href="#ukazka">

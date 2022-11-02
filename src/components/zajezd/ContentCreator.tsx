@@ -9,6 +9,7 @@ import Information from "./Information";
 
 type Props = {
   code: string;
+  country: string;
   imageSrc: string;
   otherImages?: any;
   dateAndPrice: [{
@@ -17,11 +18,6 @@ type Props = {
     cena: number;
     pocetDni: number;
     pocetNoci: number;
-  }];
-  departurePoints: [{
-    mesto: string;
-    ulice: string;
-    cisloPopisne: number;
   }];
   text: string;
   information?: string;
@@ -37,9 +33,9 @@ type Props = {
 
 export default function ContentCreator({
   code,
+  country,
   otherImages,
   dateAndPrice,
-  departurePoints,
   text,
   information,
   housing,
@@ -94,6 +90,7 @@ export default function ContentCreator({
     contentShown =
       <Form
         code={code}
+        country={country}
         dateAndPrice={dateAndPrice}
         departurePoints={allDeparturePoints}
       />

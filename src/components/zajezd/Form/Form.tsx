@@ -1,7 +1,6 @@
 import emailjs from "@emailjs/browser";
 import jsPDF from "jspdf";
 import { useEffect, useState } from "react";
-/*import emailjs from "@emailjs/browser"; */
 
 import Customer from "./Customer";
 import Passengers from "./Passengers";
@@ -12,8 +11,10 @@ import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
 import Checkbox from "@components/forms/Checkbox";
 import "public/fonts/DejaVuSans.js";
+import { smlouva64 } from "public/images/pdfs/smlouva64";
 
 type FormProps = {
+  country: string;
   code: string;
   dateAndPrice: [{
     datumOd: string,
@@ -23,12 +24,13 @@ type FormProps = {
   departurePoints: string[];
 }
 
-export default function Form({ code, dateAndPrice, departurePoints }: FormProps) {
+export default function Form({ country, code, dateAndPrice, departurePoints }: FormProps) {
   let allDataObject: any = {};
   let requiredArray: any = [];
 
   return (
     <FormStater
+      country={country}
       code={code}
       dateAndPrice={dateAndPrice}
       departurePoints={departurePoints}
@@ -40,6 +42,7 @@ export default function Form({ code, dateAndPrice, departurePoints }: FormProps)
 }
 
 type FormStaterProps = {
+  country: string;
   code: string;
   dateAndPrice: [{
     datumOd: string,
@@ -51,10 +54,15 @@ type FormStaterProps = {
   requiredArray: any;
 }
 
-function FormStater({ code, dateAndPrice, departurePoints, allDataObject, requiredArray }: FormStaterProps) {
+function FormStater({ country, code, dateAndPrice, departurePoints, allDataObject, requiredArray }: FormStaterProps) {
   const [formState, setFormState] = useState<"waiting" | "verifying" | "refused" | "accepted">("waiting");
   const [passengers, setPassengers] = useState<number>(0);
   const [price, setPrice] = useState<number>(0);
+
+  useEffect(() => {
+    allDataObject.country = country;
+  })
+
 
   useEffect(() => {
     if (price === undefined) {
@@ -114,144 +122,35 @@ function FormStater({ code, dateAndPrice, departurePoints, allDataObject, requir
     )
   }
 
+
   function createPdf() {
-    let posY = 0;
-    const doc = new jsPDF();
-    doc.setFont("DejaVuSans", "normal")
+    const doc = new jsPDF("p", "mm", "a4");
+    doc.setFont("DejaVuSans", "normal");
+    doc.addImage(smlouva64, "JPEG", 0, 0, 210, 297);
+    doc.setFontSize(10);
 
     /* Zájezd */
-    doc.setFontSize(25)
-    doc.text("Informace o zájezdu ____ :", 60, posY += 20)
-
-    doc.setFontSize(15)
-    doc.text(
-      "Kód zájezdu: " + allDataObject.code,
-      20,
-      posY += 15
-    )
-
-    doc.text(
-      "Termín: " + allDataObject.date,
-      20,
-      posY += 10
-    )
-
-    doc.text(
-      "Nástupní / výstupní místo: " + allDataObject.departurePoint,
-      20,
-      posY += 10
-    )
-
-    doc.text("Poznámka od zákazníka:", 20, posY += 10)
-    doc.text(allDataObject.comment, 20, posY += 10)
-
-
+    doc.text(allDataObject.code, 57, 66);
+    doc.text(allDataObject.country, 57, 71);
+    doc.text(allDataObject.date, 57, 76);
+    doc.text(allDataObject.departurePoint, 57, 86)
 
     /* Objednatel */
-    doc.setFontSize(25)
-    doc.text("Objednavatel:", 70, posY += 20)
+    doc.text(allDataObject.name, 40, 99);
+    doc.text(allDataObject.birth, 165, 99);
+    doc.text(allDataObject.phone, 40, 109);
+    doc.text(allDataObject.email, 120, 109);
 
-    doc.setFontSize(15)
-    doc.text(
-      "Jméno: " + allDataObject.name,
-      20,
-      posY += 15
-    )
-
-    doc.text(
-      "Narození: " + allDataObject.birth,
-      20,
-      posY += 10
-    )
-
-
-    doc.text(
-      "Číslo: " + allDataObject.phone,
-      20,
-      posY += 10
-    )
-
-    doc.text(
-      "E-mail: " + allDataObject.email,
-      20,
-      posY += 10
-    )
-
-
-
-    /* Další cestující */
+    /*Další cestující*/
     if (allDataObject.names !== undefined) {
-      doc.setFontSize(20)
-      doc.text("Další cestující:", 75, posY += 15)
-
-      doc.setFontSize(15)
-
+      let fH: number = 121;
       for (let i = 1; i <= Object.values(allDataObject.names).length; i++) {
-        if (posY + 40 >= 270 && i % 2 !== 0) {
-          posY = 10;
-          doc.addPage()
-          doc.setFontSize(25)
-          doc.text("Informace o zájezdu ______ :", 60, posY += 20)
-          doc.setFontSize(20)
-          doc.text("Další cestující:", 75, posY += 15)
-          doc.setFontSize(15)
-        }
-        if (i % 2 !== 0) {
-          doc.text(
-            "Jméno: " + allDataObject.names["names" + i],
-            20,
-            i === 1 ? posY += 15 : posY += 20
-          )
-          doc.text(
-            "Narození: " + allDataObject.births["births" + i],
-            20,
-            posY + 7
-          )
-        }
-        else {
-          doc.text(
-            "Jméno: " + allDataObject.names["names" + i],
-            120,
-            posY
-          )
-          doc.text(
-            "Narození: " + allDataObject.births["births" + i],
-            120,
-            posY + 7
-          )
-        }
+
+        doc.text(allDataObject.names["names" + i], 15, fH + (5 * i));
+        doc.text(allDataObject.births["births" + i], 70, fH + (5 * i));
       }
     }
 
-
-    /* Cena a počet osob */
-    doc.line(10, posY += 20, 200, posY)
-    doc.text("Cena za osobu", 20, posY += 10)
-    doc.text(allDataObject.price + ",-", 88, posY, undefined, "right")
-    doc.text("Počet osob", 20, posY += 10)
-    doc.text(
-      allDataObject.names !== undefined ?
-        (Object.keys(allDataObject.names).length + 1).toString()
-        :
-        "1",
-      85, posY
-    )
-    doc.line(10, posY += 5, 95, posY)
-    doc.text("Celková cena", 20, posY += 7)
-    doc.text(
-      allDataObject.names !== undefined ?
-        (allDataObject.price * (Object.keys(allDataObject.names).length + 1)).toString() + ",-"
-        :
-        allDataObject.price + ",-",
-      92, posY, undefined, "right"
-    )
-    doc.text("Podpis: ____________", 145, posY)
-
-    /* Page counter */
-    for (let i = 1; i <= doc.getNumberOfPages(); i++) {
-      doc.setPage(i)
-      doc.text(i + " / " + doc.getNumberOfPages(), 190, 290)
-    }
 
     doc.output('dataurlnewwindow')
     //sendEmail(doc.output('datauristring'))
