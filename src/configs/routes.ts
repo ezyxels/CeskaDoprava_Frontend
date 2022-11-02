@@ -2,36 +2,34 @@ export const mainRoutes = [
   {
     label: "Domů",
     path: "/",
-    main: true
+    main: true,
   },
   {
     label: "Zájezdy",
     path: "/zajezdy",
-    main: true
+    main: true,
   },
   {
     label: "Autobusem do Chorvatska",
     path: "/chorvatsko",
-    main: true
-
+    main: true,
   },
   {
     label: "Autobusová doprava",
-    path: "doprava_autobus",
-    main: false
+    path: "/doprava_autobus",
+    main: false,
   },
   {
     label: "Nákladní doprava",
-    path: "doprava_nakladni",
-    main: false
+    path: "/doprava_nakladni",
+    main: false,
   },
   {
     label: "Kontakt",
     path: "/kontakt",
-    main: true
+    main: true,
   },
-
-]
+];
 
 export const ctaMenu = [
   {
@@ -43,4 +41,3 @@ export const ctaMenu = [
     link: "mailto:ceskadoprava@email.cz",
   },
 ];
-
