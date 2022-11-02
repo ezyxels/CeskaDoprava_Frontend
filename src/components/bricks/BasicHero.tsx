@@ -33,12 +33,12 @@ export default function BasicHero({
           {children}
         </div>
       </div>
-      <div className="relative md:w-1/2 aspect-[4/3] md:aspect-square">
+      <div className="relative md:w-1/2 aspect-square">
         <Image
           src={imageSrc}
           alt={imageAlt}
           layout="fill"
-          objectFit="cover"
+          objectFit="contain"
           loading="eager"
           sizes={`(max-width: 768px) ${imageSizeSm},
               (max-width: 1200px) ${imageSizeMd},
