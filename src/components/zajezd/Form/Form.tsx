@@ -11,7 +11,7 @@ import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
 import Checkbox from "@components/forms/Checkbox";
 import "public/fonts/DejaVuSans.js";
-import { smlouva64 } from "public/images/pdfs/smlouva64";
+import { zajezd64 } from "public/images/pdfs/zajezd64";
 
 type FormProps = {
   country: string;
@@ -126,7 +126,7 @@ function FormStater({ country, code, dateAndPrice, departurePoints, allDataObjec
   function createPdf() {
     const doc = new jsPDF("p", "mm", "a4");
     doc.setFont("DejaVuSans", "normal");
-    doc.addImage(smlouva64, "JPEG", 0, 0, 210, 297);
+    doc.addImage(zajezd64, "JPEG", 0, 0, 210, 297);
     doc.setFontSize(10);
 
     /* Zájezd */
@@ -137,9 +137,9 @@ function FormStater({ country, code, dateAndPrice, departurePoints, allDataObjec
 
     /* Objednatel */
     doc.text(allDataObject.name, 40, 99);
-    doc.text(allDataObject.birth, 165, 99);
-    doc.text(allDataObject.phone, 40, 109);
-    doc.text(allDataObject.email, 120, 109);
+    doc.text(allDataObject.birth, 163, 99);
+    doc.text(allDataObject.phone, 25, 104);
+    doc.text(allDataObject.email, 117, 104);
 
     /*Další cestující*/
     if (allDataObject.names !== undefined) {
