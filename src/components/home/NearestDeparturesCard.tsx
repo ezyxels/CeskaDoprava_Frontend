@@ -3,27 +3,29 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type Props = {
-  tripId: number;
-  imageSrc: string;
-  imageAlt: string;
-  country: string;
-  name: string;
-  dateAndPrice: {
+  tripId?: number;
+  imageSrc?: string;
+  imageAlt?: string;
+  country?: string;
+  name?: string;
+  dateAndPrice?: {
     datumOd: string;
     datumDo: string;
     cena: number;
   }[];
   className?: string;
+  fake?: boolean;
 };
 
 export default function NearestDeparturesCard({
   tripId,
-  imageSrc,
-  imageAlt,
-  country,
-  name,
+  imageSrc = "",
+  imageAlt = "",
+  country = "",
+  name = "",
   dateAndPrice,
   className = "",
+  fake = false
 }: Props) {
   const [changeables, setChangables] = useState<{ dateFrom: string, dateTo: string }>
     ({ dateFrom: "2023-12-31", dateTo: "2023-12-31" })
@@ -34,8 +36,8 @@ export default function NearestDeparturesCard({
     let tempDateFrom = "2023-12-31";
     let tempDateTo = "2023-12-31";
 
-    dateAndPrice.map((entry, index) => {
-      if ((index + 1) === dateAndPrice.length) {
+    !fake && dateAndPrice!.map((entry, index) => {
+      if ((index + 1) === dateAndPrice!.length) {
         if (new Date(entry.datumOd).getTime() >= new Date().getTime() && new Date(entry.datumOd).getTime() < new Date(tempDateFrom).getTime()) {
           setChangables({
             dateFrom: changeDateType(entry.datumOd),
@@ -65,28 +67,33 @@ export default function NearestDeparturesCard({
   }
 
   return (
-    <Link href={`/zajezd/${tripId}`}>
+    <Link
+      href={fake ? "" : `/zajezd/${tripId}`}
+    >
       <a
-        className={`flex flex-col items-start transition duration-200 md:gap-2 hover:-translate-y-2 hover:shadow-xl overflow-hidden rounded-lg ${className}`}
+        className={`flex flex-col md:gap-2 overflow-hidden rounded-lg ${fake ? "justify-between" : "items-start transition duration-200 hover:-translate-y-2 hover:shadow-xl"} ${className}`}
+        onClick={(e) => fake && e.preventDefault()}
       >
-        <div className="relative w-full aspect-square">
-          <Image
-            src={imageSrc}
-            alt={imageAlt}
-            layout="fill"
-            objectFit="cover"
-            loading="eager"
-            sizes="(max-width: 768px) 50vw,
-              (max-width: 1200px) 25vw,
-              25vw"
-          />
+        <div className={`relative w-full aspect-square ${fake && "bg-gray-200"}`}>
+          {!fake &&
+            <Image
+              src={imageSrc}
+              alt={imageAlt}
+              layout="fill"
+              objectFit="cover"
+              loading="eager"
+              sizes="(max-width: 768px) 50vw,
+                (max-width: 1200px) 25vw,
+                25vw"
+            />
+          }
         </div>
-        <div className="px-2 py-2 flex flex-col">
-          <span className="block text-lg font-semibold text-rich leading-6">
-            {country} - {name}
+        <div className="px-2 py-2 flex flex-col gap-2">
+          <span className={`block h-5 ${fake ? "w-40 bg-gray-200" : "text-lg font-semibold text-rich leading-6"}`}>
+            {!fake && country + "-" + name}
           </span>
-          <span className="block mt-auto">
-            {changeables.dateFrom} - {changeables.dateTo}
+          <span className={`block h-5 ${fake ? "w-28 bg-gray-200" : "mt-auto"}`}>
+            {!fake && changeables.dateFrom + "-" + changeables.dateTo}
           </span>
         </div>
       </a>

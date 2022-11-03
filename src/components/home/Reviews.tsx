@@ -21,9 +21,9 @@ export default function Reviews({ reviews }: Props) {
 
   useEffect(() => (
     setData(reviews)
-  ), [setData])
+  ), [setData]);
 
-  if (data !== undefined) {
+  if (data !== undefined && data !== null) {
     return (
       <Wrapper as={"section"} paddedContent="base">
         <ScrollReveal>
