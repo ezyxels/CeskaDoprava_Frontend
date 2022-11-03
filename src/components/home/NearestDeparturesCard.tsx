@@ -89,10 +89,10 @@ export default function NearestDeparturesCard({
           }
         </div>
         <div className="px-2 py-2 flex flex-col gap-2">
-          <span className={`block h-5 ${fake ? "w-40 bg-gray-200" : "text-lg font-semibold text-rich leading-6"}`}>
+          <span className={`block ${fake ? "w-40 h-5 bg-gray-200" : "text-lg font-semibold text-rich leading-6"}`}>
             {!fake && country + "-" + name}
           </span>
-          <span className={`block h-5 ${fake ? "w-28 bg-gray-200" : "mt-auto"}`}>
+          <span className={`block ${fake ? "w-28 h-5 bg-gray-200" : "mt-auto"}`}>
             {!fake && changeables.dateFrom + "-" + changeables.dateTo}
           </span>
         </div>
