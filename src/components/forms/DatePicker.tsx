@@ -297,7 +297,7 @@ export default function DatePicker({
         </div>
 
         {/* Datepicker */}
-        <ScrollContainer component={"div"} className={`absolute mt-5 rounded-lg bg-gray-50 z-50 w-64 h-fit max-h-72 overflow-y-scroll border-2 border-muted flex flex-col
+        <ScrollContainer component={"div"} className={`absolute py-1 px-3 mt-5 rounded-lg bg-gray-50 z-50 w-72 h-fit max-h-72 overflow-y-auto border-2 border-muted flex flex-col
           ${!activated && "hidden"}
           ${datePickerAlign === "left" && "left-0"}
           ${datePickerAlign === "right" && "right-0"}

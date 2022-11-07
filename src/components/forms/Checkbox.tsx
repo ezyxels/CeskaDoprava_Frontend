@@ -85,8 +85,6 @@ export default function Checkbox({
         border-primary bg-white transition-shadow duration-150
           checked:bg-primary checked:hover:bg-primary
           checked:focus:border-body hover:!outline-none 
-          hover:ring-4 hover:ring-primary/70 hover:ring-offset-0 
-          hover:focus:ring-4 focus:ring-0
           checked:focus:bg-primary
           ${isDisabled
             ? "pointer-events-none cursor-not-allowed opacity-60"

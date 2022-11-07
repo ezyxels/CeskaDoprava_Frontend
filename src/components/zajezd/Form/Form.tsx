@@ -72,7 +72,7 @@ function FormStater({ country, code, dateAndPrice, departurePoints, allDataObjec
       })
       setPrice(tempPrice)
     }
-  })
+  }, [])
 
   function verifying(e: any) {
     setFormState("verifying")
@@ -173,7 +173,7 @@ function FormStater({ country, code, dateAndPrice, departurePoints, allDataObjec
       as={"section"}
       className="mb-16"
     >
-      <form className="mt-12">
+      <div className="mt-12">
         <Heading level={2} size={"xl"}>Objednávkový formulář</Heading>
         <p className="text-gray-600 max-w-sm mt-10">Pole označená hvězdičkou jsou nutné vyplnit. Veštěré informace týkající se zájezdu naleznete zde nad formulářem</p>
         <Customer
@@ -201,7 +201,7 @@ function FormStater({ country, code, dateAndPrice, departurePoints, allDataObjec
           <span className="text-2xl">Celková cena</span>
           <span className="mt-3 text-3xl">{price * (1 + passengers)},-</span>
         </div>
-      </form>
+      </div>
 
 
       <div className="mt-16 flex flex-col">
