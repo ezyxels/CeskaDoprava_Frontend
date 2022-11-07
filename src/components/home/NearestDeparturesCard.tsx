@@ -71,7 +71,7 @@ export default function NearestDeparturesCard({
       href={fake ? "" : `/zajezd/${tripId}`}
     >
       <a
-        className={`flex flex-col md:gap-2 overflow-hidden rounded-lg ${fake ? "justify-between" : "items-start transition duration-200 hover:-translate-y-2 hover:shadow-xl"} ${className}`}
+        className={`flex flex-col md:gap-2 overflow-hidden rounded-lg ${fake ? "justify-between animate-pulse" : "items-start transition duration-200 hover:-translate-y-2 hover:shadow-xl"} ${className}`}
         onClick={(e) => fake && e.preventDefault()}
       >
         <div className={`relative w-full aspect-square ${fake && "bg-gray-200"}`}>

@@ -39,7 +39,7 @@ export default function ParallaxImage({
   else {
     return (
       <ParallaxProvider>
-        <Parallax speed={speed} className={`block hidden md:block ${className}`}>
+        <Parallax speed={speed} className={`hidden md:block ${className}`}>
           <Image
             src={src}
             alt={alt}
