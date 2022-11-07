@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { HiChevronLeft, HiChevronRight, HiX } from "react-icons/hi";
+import { HiArrowLeft, HiArrowRight, HiX } from "react-icons/hi";
 import { useSwipeable } from "react-swipeable";
 
 
@@ -42,27 +42,27 @@ export default function Gallery({ images }: Props) {
 
       {/* Opened gallery */}
       {imageIndex !== undefined &&
-        <div className="fixed z-[130] inset-0 bg-black/95 backdrop-blur-sm">
+        <div className="fixed z-[130] inset-0 bg-gray-900/70 backdrop-blur-sm">
           <div className="w-full relative h-3/4 flex flex-row items-center justify-center md:gap-x-20 px-5">
             {/* Gallery arrow left */}
             <span
               onClick={() => imageIndex !== 0 && setImageIndex(imageIndex - 1)}
               className={`absolute top-0 left-0 w-1/4 h-full md:w-10 md:h-10
-                md:static flex text-3xl cursor-pointer md:hover:scale-125 duration-150
-                rounded-md md:border-2 border-white text-white z-[150]
+                md:static flex text-3xl cursor-pointer duration-150 opacity-50 hover:opacity-90 hover:bg-gray-500
+                rounded-md border-white text-white z-[150]
                 md:items-center justify-center
                 `}
 
             >
-              <HiChevronLeft className="hidden md:block" />
+              <HiArrowLeft className="hidden md:block" />
             </span>
 
 
             {/* Gallery close button */}
             <span
               onClick={() => setImageIndex(undefined)}
-              className="top-5 right-5 absolute text-3xl cursor-pointer hover:scale-125 duration-150
-              rounded-md border-2 border-white text-white z-[160]"
+              className="top-5 right-5 md:w-10 md:h-10 absolute text-3xl cursor-pointer duration-150 hover:bg-gray-500
+              rounded-md border-white text-white opacity-50 hover:opacity-90 z-[160] flex justify-center items-center"
             >
               <HiX />
             </span>
@@ -85,12 +85,12 @@ export default function Gallery({ images }: Props) {
             <span
               onClick={() => imageIndex !== (images.length - 1) && setImageIndex(imageIndex + 1)}
               className={`absolute top-0 right-0 w-1/4 h-full md:w-10 md:h-10
-                md:static flex text-3xl cursor-pointer md:hover:scale-125 duration-150
-                rounded-md md:border-2 border-white text-white z-[150]
+                md:static flex text-3xl cursor-pointer duration-150 opacity-50 hover:opacity-90 hover:bg-gray-500
+                rounded-md border-white text-white z-[150]
                 md:items-center justify-center
                 `}
             >
-              <HiChevronRight className="hidden md:block" />
+              <HiArrowRight className="hidden md:block" />
             </span>
           </div>
 
