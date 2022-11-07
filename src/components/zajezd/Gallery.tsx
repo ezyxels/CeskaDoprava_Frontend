@@ -42,13 +42,13 @@ export default function Gallery({ images }: Props) {
 
       {/* Opened gallery */}
       {imageIndex !== undefined &&
-        <div className="fixed z-[130] inset-0 bg-gray-900/70 backdrop-blur-sm">
+        <div className="fixed z-[130] inset-0 bg-gray-900/85 backdrop-blur-sm">
           <div className="w-full relative h-3/4 flex flex-row items-center justify-center md:gap-x-20 px-5">
             {/* Gallery arrow left */}
             <span
               onClick={() => imageIndex !== 0 && setImageIndex(imageIndex - 1)}
               className={`absolute top-0 left-0 w-1/4 h-full md:w-10 md:h-10
-                md:static flex text-3xl cursor-pointer duration-150 opacity-50 hover:opacity-90 hover:bg-gray-500
+                md:static flex text-3xl cursor-pointer duration-150 opacity-50 hover:opacity-90
                 rounded-md border-white text-white z-[150]
                 md:items-center justify-center
                 `}
@@ -61,7 +61,7 @@ export default function Gallery({ images }: Props) {
             {/* Gallery close button */}
             <span
               onClick={() => setImageIndex(undefined)}
-              className="top-5 right-5 md:w-10 md:h-10 absolute text-3xl cursor-pointer duration-150 hover:bg-gray-500
+              className="top-5 right-5 md:w-10 md:h-10 absolute text-3xl cursor-pointer duration-150
               rounded-md border-white text-white opacity-50 hover:opacity-90 z-[160] flex justify-center items-center"
             >
               <HiX />
@@ -70,7 +70,7 @@ export default function Gallery({ images }: Props) {
 
             {/* Gallery main image */}
             <div
-              className="relative w-full md:w-3/5 lg:w-[55%] aspect-[16/9] z-[140]"
+              className="relative w-full md:w-3/5 lg:w-[55%] aspect-[16/9] z-[140] select-none"
               {...handlers}
             >
               <Image
@@ -85,7 +85,7 @@ export default function Gallery({ images }: Props) {
             <span
               onClick={() => imageIndex !== (images.length - 1) && setImageIndex(imageIndex + 1)}
               className={`absolute top-0 right-0 w-1/4 h-full md:w-10 md:h-10
-                md:static flex text-3xl cursor-pointer duration-150 opacity-50 hover:opacity-90 hover:bg-gray-500
+                md:static flex text-3xl cursor-pointer duration-150 opacity-50 hover:opacity-90
                 rounded-md border-white text-white z-[150]
                 md:items-center justify-center
                 `}
@@ -107,7 +107,9 @@ export default function Gallery({ images }: Props) {
                     id={"tiny" + index}
                     key={index}
                     onClick={() => setImageIndex(index)}
-                    className={`${images.indexOf(imageSrc) === imageIndex ? "scale-100" : "scale-75 hover:scale-90"} hover:shadow-md duration-200 relative cursor-pointer min-w-[150px] aspect-[4/3]
+                    className={`
+                       hover:shadow-md duration-200 relative cursor-pointer min-w-[150px] aspect-[4/3] select-none
+                      ${images.indexOf(imageSrc) === imageIndex ? "scale-100" : "scale-75 hover:scale-90"}
                     `}
                   >
                     <Image
@@ -131,7 +133,7 @@ export default function Gallery({ images }: Props) {
       <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
         {images &&
           images.map((imageSrc: any, index: number) => (
-            <span key={index} onClick={() => setImageIndex(index)} className="hover:scale-105 aspect-[4/3] hover:shadow-md duration-200 relative cursor-pointer">
+            <span key={index} onClick={() => setImageIndex(index)} className=" select-none hover:scale-105 aspect-[4/3] hover:shadow-md duration-200 relative cursor-pointer">
               <Image
                 src={imageSrc}
                 layout="fill"

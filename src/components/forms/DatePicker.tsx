@@ -297,10 +297,11 @@ export default function DatePicker({
         </div>
 
         {/* Datepicker */}
-        <ScrollContainer component={"div"} className={`absolute pb-3 px-3 mt-5 rounded-lg bg-gray-50 z-50 w-80 h-fit max-h-96 overflow-y-auto shadow-xl flex flex-col
+        <ScrollContainer component={"div"} className={`absolute pb-3 px-3 mt-5 rounded-lg bg-gray-50 z-50 w-80 h-fit overflow-y-auto shadow-xl flex flex-col
           ${!activated && "hidden"}
           ${datePickerAlign === "left" && "left-0"}
           ${datePickerAlign === "right" && "right-0"}
+          ${(year === undefined || months === undefined) && "max-h-72"}
         `}
         >
           {content}
