@@ -43,17 +43,17 @@ export default function chorvatsko({ prices, months, departurePoints, specialPri
       <Seo title="Česká doprava" description="" />
       <BasicHero
         heading="Autobusem do Chorvatska"
-        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
+        text="Komfortní, přímá a cenově dostupná autobusová doprava z jihozápadních Čech do všech Chorvatských letovisek. Užijte si cestování. Vaše dovolená začíná už na palubě našich autobusů"
         imagePosition="right"
         imageAlt="Obrázek Chorvatsko"
         imageSrc="/images/chorvatsko/hero.png"
       >
         <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-5">
-          <a href="#ukazka">
-            <Button className="w-full sm:w-fit md:w-full lg:w-fit !px-3" rightIcon={<HiArrowSmDown />}>Více informací</Button>
+          <a href="#informace">
+            <Button className="w-full sm:w-fit md:w-full lg:w-fit" rightIcon={<HiArrowSmDown />}>Více informací</Button>
           </a>
           <a href="#formular">
-            <Button variant={"outlined"} className="w-full sm:w-fit md:w-full lg:w-fit !px-3">Objednávkový formulář</Button>
+            <Button variant={"outlined"} className="w-full sm:w-fit md:w-full lg:w-fit">Objednávkový formulář</Button>
           </a>
         </div>
       </BasicHero>
@@ -66,7 +66,7 @@ export default function chorvatsko({ prices, months, departurePoints, specialPri
       <Questions />
       <BasicContact
         heading='Kontaktujte nás'
-        text='Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero magnam doloremque provident sint deserunt dignissimos sapiente atque facere.'
+        text='Máte-li další dotazy k autobusové dopravě do Chorvatska, neváhejte nás kontaktovat.'
       />
     </>
   )

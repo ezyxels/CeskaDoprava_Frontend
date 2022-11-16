@@ -18,10 +18,7 @@ export default function TripsAndParallax() {
             Pojeďte s námi na dovolenou po celé ČR i do zahraničí
           </Heading>
           <p className="max-w-prose mb-10">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
-            consequuntur dignissimos voluptatibus quos facilis architecto iure
-            eaque nobis voluptas natus fugit nulla aperiam eius ducimus, excepturi
-            sunt reprehenderit ea odio.
+            Říká se, že zážitky vám nikdo nesebere, a v duchu tohoto hesla pro vás připravujeme jednodenní i vícedenní poznávací zájezdy a výlety za kulturou a odpočinkem. Najdete u nás také bohatou nabídku pobytových dovolených u moře. Jsme váš specialista na Čechy, Chorvatsko, Rakousko, Německo a Polsko
           </p>
           <Link href="/zajezdy">
             <a>

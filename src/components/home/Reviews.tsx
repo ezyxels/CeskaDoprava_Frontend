@@ -31,7 +31,7 @@ export default function Reviews({ reviews }: Props) {
             Co o nás říkají naši cestující?
           </Heading>
           <p className="max-w-prose">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis aliquam eius, totam quasi delectus recusandae corrupti iusto vero consectetur a consequatur quas ex autem, dolor corporis dolore repellat, id est aspernatur sint?
+            Vážíme si každého, kdo se rozhodne s námi cestovat a vyzkoušet naše služby. Zakládáme si na vstřícném a individuálním přístupu ke každému z vás a vaše spokojenost je pro nás na prvním i posledním místě.
           </p>
           <Swiper
             slidesPerView={1}

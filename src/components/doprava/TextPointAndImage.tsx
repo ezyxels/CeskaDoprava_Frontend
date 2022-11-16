@@ -5,7 +5,6 @@ import Image from 'next/image';
 
 type Props = {
   heading: string;
-  perex: string;
   imageBigSrc: string;
   imageBigAlt: string;
   imageSmallLeftSrc: string;
@@ -22,7 +21,6 @@ type Props = {
 
 export default function TextPointAndImage({
   heading,
-  perex,
   points,
   imageBigSrc,
   imageBigAlt,
@@ -77,7 +75,6 @@ export default function TextPointAndImage({
       </div>
       <div className="w-full mt-12 lg:mt-0 lg:w-1/2">
         <h3 className="text-3xl text-gray-900 font-bold">{heading}</h3>
-        <p className="mt-5 leading-6">{perex}</p>
         <ScrollReveal staggerChildren className='mt-5'>
           {points.map((item, key) => (
             <div

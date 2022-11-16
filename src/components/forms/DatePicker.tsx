@@ -297,11 +297,11 @@ export default function DatePicker({
         </div>
 
         {/* Datepicker */}
-        <ScrollContainer component={"div"} className={`absolute pb-3 px-3 mt-5 rounded-lg bg-gray-50 z-50 w-80 h-fit overflow-y-auto shadow-xl flex flex-col
+        <ScrollContainer component={"div"} className={`absolute mt-5 rounded-lg bg-gray-50 z-50 w-80 h-fit overflow-y-auto shadow-xl flex flex-col
           ${!activated && "hidden"}
           ${datePickerAlign === "left" && "left-0"}
           ${datePickerAlign === "right" && "right-0"}
-          ${(year === undefined || months === undefined) && "max-h-72"}
+          ${(year === undefined || month === undefined) ? "max-h-72 p-3" : "px-5 pb-8"}
         `}
         >
           {content}
@@ -326,7 +326,7 @@ function ShowYears({ year, setYear, yearStart, yearEnd }: ShowYearsProps) {
       <span key={i} className='rounded-md hover:bg-gray-200 text-center cursor-pointer' onClick={() => setYear(i)}>{i}</span>)
   }
   return (
-    <div className='grid grid-cols-3 p-3 gap-3'>
+    <div className='grid grid-cols-3 gap-3'>
       {yearValues}
     </div>
   )
@@ -353,7 +353,7 @@ function ShowMonths({ month, setMonth, year, setYear }: ShowMonthsProps) {
         <span className='col-span-5 flex justify-center items-center text-lg font-semibold cursor-pointer' onClick={() => setYear(undefined)}>{year}</span>
         <span className='col-span-1 flex justify-end items-center text-xl cursor-pointer' onClick={() => setYear(year + 1)} ><BsChevronRight></BsChevronRight></span>
       </div>
-      <div className='grid grid-cols-3 p-3 gap-3'>
+      <div className='grid grid-cols-3 gap-3'>
         {monthValues}
       </div>
     </>

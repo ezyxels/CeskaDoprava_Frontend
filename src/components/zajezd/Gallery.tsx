@@ -30,8 +30,6 @@ export default function Gallery({ images }: Props) {
   handlers = useSwipeable({
     onSwipedLeft: () => { (imageIndex !== undefined && imageIndex < (images.length - 1)) && setImageIndex(imageIndex + 1) },
     onSwipedRight: () => { (imageIndex !== undefined && imageIndex > 0) && setImageIndex(imageIndex - 1) },
-    onSwipedUp: () => setImageIndex(undefined),
-    onSwipedDown: () => setImageIndex(undefined)
   })
 
   return (

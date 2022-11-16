@@ -12,7 +12,9 @@ export default function OtherServices() {
       <Wrapper className="border-t-2 border-grey-500 my-24 xl:my-32">
         <ScrollReveal>
           <Heading level={2} size={"lg"} className="mb-8 mt-20">Další služby</Heading>
-          <p className="max-w-prose">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur unde rem voluptate totam ea aperiam non!</p>
+          <p className="max-w-prose">
+            Využijte bohatých zkušeností naší společnosti v oblasti autobusové a nákladní dopravy. Disponujeme vlastním vozovým parkem.
+          </p>
         </ScrollReveal>
       </Wrapper>
 
