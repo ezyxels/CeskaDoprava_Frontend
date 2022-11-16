@@ -42,6 +42,7 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
   const fieldsQuery = "&fields[0]=nazev";
 
   useEffect(() => {
+    setHasItemsLeft(true);
     getData(0, itemsAtStart, true)
   }, [category, dateFrom, dateTo])
 
