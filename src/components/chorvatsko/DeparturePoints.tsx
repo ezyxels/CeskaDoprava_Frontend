@@ -28,7 +28,9 @@ export default function DeparturePoints({ departurePoints }: Props) {
     <Wrapper as="section" size="base" paddedContent='sm' className='mt-20'>
       <ScrollReveal>
         <Heading level={2} size="xl">Nástupní a výstupní místa</Heading>
-        <p className='mt-10 max-w-prose'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur ullam cupiditate ea eveniet vel voluptatum expedita iusto cum dicta libero velit porro neque recusandae eius cumque, quidem sequi hic corporis alias deleniti?</p>
+        <p className='mt-10 max-w-prose'>
+          Nabízíme největší počet nástupních míst v Plzeňském a Jihočeském kraji. Nabereme vás doslova na každém rohu. V Chorvatsku obsluhujeme všechna letoviska podél celého pobřeží.
+        </p>
       </ScrollReveal>
 
       {/*  On pc */}

@@ -17,18 +17,18 @@ export default function zajezdy({ calendar, catalog, conditions }: Props) {
     <>
       <Seo title="Zájezdy" description="" />
       <BasicHero
-        heading="Lorem Ipsum dolor sit amet"
-        text={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."}
+        heading="Cestovní agentura"
+        text={"Říká se, že zážitky vám nikdo nesebere. Proto pro vás již 4. sezónu připravujeme výlety za poznáním, kulturou, sportem i odpočinkem. Vyberte si cestovatelský zážitek podle svých představ a objevujte s námi krásy světa kolem nás"}
         imageSrc="/images/zajezdy/hero.png"
         imageAlt="Obrázek"
         imagePosition="right"
       >
         <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-5">
           <a href="#filter">
-            <Button className="w-full sm:w-fit md:w-full lg:w-fit !px-3" rightIcon={<HiArrowSmDown />}>Zobrazit zájezdy</Button>
+            <Button className="w-full sm:w-fit md:w-full lg:w-fit" rightIcon={<HiArrowSmDown />}>Zobrazit zájezdy</Button>
           </a>
           <a href="#keStazeni">
-            <Button variant={"outlined"} className="w-full sm:w-fit md:w-full lg:w-fit !px-3">Informace ke stažení</Button>
+            <Button variant={"outlined"} className="w-full sm:w-fit md:w-full lg:w-fit">Informace ke stažení</Button>
           </a>
         </div>
       </BasicHero>

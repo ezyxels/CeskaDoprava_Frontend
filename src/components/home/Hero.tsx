@@ -10,15 +10,14 @@ export default function Hero() {
     >
       {/* Content */}
       <div className="flex flex-col pt-10">
-        <span className="mb-5 block text-xl font-semibold tracking-wider text-muted">
-          Lorem ipsum dolor
-        </span>
+        {/* <span className="mb-5 block text-xl font-semibold tracking-wider text-muted">
+          Slogan:
+        </span> */}
         <Heading level={1} size="xl" className="mb-12 max-w-xl">
-          Lorem ipsum dolor sit amet
+          Doprava nás baví
         </Heading>
         <p className="max-w-prose text-lg font-medium">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea explicabo
-          sint repellat dolorum eos officiis qui beatae totam, ipsum obcaecati!
+          Naše společnost působí v oblasti cestovního ruchu, osobní a autobusové dopravy ale i dopravy nákladní a všem svým klientům poskytuje komplexní služby založené na přátelském a prozákaznickém přístupu. Vyzkoušejte nás i vy!
         </p>
       </div>
     </Wrapper>
