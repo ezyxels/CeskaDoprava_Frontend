@@ -72,7 +72,7 @@ export default function OtherServices() {
             <div className="w-full h-full absolute inset-0 bg-gradient-to-t from-gray-900/90 to-transparent transition-transform duration-300 group-hover:translate-y-20 md:group-hover:translate-y-28 "></div>
             <div className="absolute flex flex-col gap-8 items-start justify-start left-5 bottom-5 sm:bottom-8 sm:left-8 lg:left-12 lg:bottom-12">
               <Heading level={3} size={"lg"} color="white">Zájezdy</Heading>
-              <p className="text-white max-w-xl hidden md:block">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis perspiciatis hic, quaerat officia vero nam. Aliquid perferendis ipsum sit ex asperiores, corporis corrupti inventore tempora.</p>
+              <p className="text-white max-w-prose hidden md:block">Říká se, že zážitky vám nikdo nesebere. Proto pro vás již 4. sezónu připravujeme výlety za poznáním, kulturou, sportem i odpočinkem. Vyberte si cestovatelský zážitek podle svých představ a objevujte s námi krásy světa kolem nás.</p>
               <Button variant={"outlined"} color={"light"}>Zjistit více</Button>
             </div>
           </a>

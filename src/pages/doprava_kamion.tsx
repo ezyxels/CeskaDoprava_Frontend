@@ -16,7 +16,9 @@ export default function doprava_kamion() {
         heading='Kamionová doprava'
         text='Naše společnost zajišťuje vnitrostátní kamionovou dopravu a spedici. K přepravám využíváme vlastní vozidla (plachtové návěsy standard nebo lowdeck s ložnou délkou 13,6 metru), případně vozidla našich smluvních přepravců.'
       >
-        <Button size="sm" className="w-fit" rightIcon={<HiArrowDown></HiArrowDown>}>Zjistit více</Button>
+        <a href="#informace">
+          <Button size="sm" className="w-fit" rightIcon={<HiArrowDown />}>Zjistit více</Button>
+        </a>
       </BasicHero>
       <Information
         heading='Základní informace'

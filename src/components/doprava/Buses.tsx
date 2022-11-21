@@ -10,12 +10,12 @@ export default function VehiclePark() {
       <div className='flex flex-col gap-y-20 lg:gap-y-48 md:mt-32' >
         <TextPointAndImage
           heading='VDL FUTURA 139-440'
-          imageBigSrc='/images/cd-img-8.jpg'
-          imageBigAlt="doplnit alt!!!"
-          imageSmallLeftSrc='/images/cd-img-8.jpg'
-          imageSmallLeftAlt="doplnit alt!!!"
-          imageSmallRightSrc='/images/cd-img-8.jpg'
-          imageSmallRightAlt="doplnit alt!!!"
+          imageBigSrc='/images/autobusova/red1.jpg'
+          imageBigAlt="Autobus VDL FUTURA 139-440"
+          imageSmallLeftSrc='/images/autobusova/red2.jpg'
+          imageSmallLeftAlt="Autobus VDL FUTURA 139-440"
+          imageSmallRightSrc='/images/autobusova/red3.jpg'
+          imageSmallRightAlt="Autobus VDL FUTURA 139-440"
           imagePosition='left'
           points={[{
             heading: "Obsaditelnost",
@@ -36,12 +36,12 @@ export default function VehiclePark() {
 
         <TextPointAndImage
           heading='VDL FUTURA 129-410'
-          imageBigSrc='/images/cd-img-8.jpg'
-          imageBigAlt="doplnit alt!!!"
-          imageSmallLeftSrc='/images/cd-img-8.jpg'
-          imageSmallLeftAlt="doplnit alt!!!"
-          imageSmallRightSrc='/images/cd-img-8.jpg'
-          imageSmallRightAlt="doplnit alt!!!"
+          imageBigSrc='/images/autobusova/white1.jpg'
+          imageBigAlt="Autobus VDL FUTURA 129-410"
+          imageSmallLeftSrc='/images/autobusova/white2.jpg'
+          imageSmallLeftAlt="Autobus VDL FUTURA 129-410"
+          imageSmallRightSrc='/images/autobusova/white3.jpg'
+          imageSmallRightAlt="Autobus VDL FUTURA 129-410"
           imagePosition='right'
           points={[{
             heading: "Obsaditelnost",
@@ -62,12 +62,12 @@ export default function VehiclePark() {
 
         <TextPointAndImage
           heading='BOVA FUTURA FHD 13-380'
-          imageBigSrc='/images/cd-img-8.jpg'
-          imageBigAlt="doplnit alt!!!"
-          imageSmallLeftSrc='/images/cd-img-8.jpg'
-          imageSmallLeftAlt="doplnit alt!!!"
-          imageSmallRightSrc='/images/cd-img-8.jpg'
-          imageSmallRightAlt="doplnit alt!!!"
+          imageBigSrc="/images/autobusova/eyes1.jpg"
+          imageBigAlt="Autobus BOVA FUTURA FHD 13-380"
+          imageSmallLeftSrc="/images/autobusova/eyes2.jpg"
+          imageSmallLeftAlt="Autobus BOVA FUTURA FHD 13-380"
+          imageSmallRightSrc="/images/autobusova/eyes3.jpg"
+          imageSmallRightAlt="Autobus BOVA FUTURA FHD 13-380"
           imagePosition='left'
           points={[{
             heading: "Obsaditelnost",
@@ -87,12 +87,12 @@ export default function VehiclePark() {
         />
         <TextPointAndImage
           heading='VOLKSWAGEN CARAVELLA'
-          imageBigSrc='/images/cd-img-8.jpg'
-          imageBigAlt="doplnit alt!!!"
-          imageSmallLeftSrc='/images/cd-img-8.jpg'
-          imageSmallLeftAlt="doplnit alt!!!"
-          imageSmallRightSrc='/images/cd-img-8.jpg'
-          imageSmallRightAlt="doplnit alt!!!"
+          imageBigSrc='/images/autobusova/volwie1.jpg'
+          imageBigAlt="Přepravní vůz VOLKSWAGEN CARAVELLA"
+          imageSmallLeftSrc='/images/autobusova/volwie2.jpg'
+          imageSmallLeftAlt="Přepravní vůz VOLKSWAGEN CARAVELLA"
+          imageSmallRightSrc='/images/autobusova/volwie3.jpg'
+          imageSmallRightAlt="Přepravní vůz VOLKSWAGEN CARAVELLA"
           imagePosition='right'
           points={[{
             heading: "Obsaditelnost",

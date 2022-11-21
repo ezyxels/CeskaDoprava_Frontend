@@ -18,7 +18,7 @@ export default function zajezdy({ calendar, catalog, conditions }: Props) {
       <Seo title="Zájezdy" description="" />
       <BasicHero
         heading="Cestovní agentura"
-        text={"Říká se, že zážitky vám nikdo nesebere. Proto pro vás již 4. sezónu připravujeme výlety za poznáním, kulturou, sportem i odpočinkem. Vyberte si cestovatelský zážitek podle svých představ a objevujte s námi krásy světa kolem nás"}
+        text={"Říká se, že zážitky vám nikdo nesebere. Proto pro vás již 4. sezónu připravujeme výlety za poznáním, kulturou, sportem i odpočinkem. Vyberte si cestovatelský zážitek podle svých představ a objevujte s námi krásy světa kolem nás."}
         imageSrc="/images/zajezdy/hero.png"
         imageAlt="Obrázek"
         imagePosition="right"
