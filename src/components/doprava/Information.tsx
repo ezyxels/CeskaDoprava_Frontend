@@ -32,7 +32,7 @@ export default function Information({
 }: Props) {
   return (
     <div className='bg-body-100'>
-      <Wrapper as="section" size="base" paddedContent='base' id="information">
+      <Wrapper as="section" size="base" paddedContent='base' id="informace">
         <ScrollReveal>
           <Heading level={2} size="lg">{heading}</Heading>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-5 my-10'>

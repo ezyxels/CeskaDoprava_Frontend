@@ -16,7 +16,9 @@ export default function doprava_autobus() {
         heading='Autobusová doprava'
         text='Naše autobusy vás dopraví kamkoli v rámci České republiky i všech ostatních evropských států. Ať už cestujete za poznáním, odpočinkem, kulturou nebo třeba sportem. Dopravu zajišťujeme pro soukromé osoby, kolektivy, cestovní kanceláře, školy a další instituce. Na svých cestách se setkáte s ochotnými a vstřícnými řidiči, kteří vás do cíle dovezou bezpečně, pohodlně a vždy přidají svůj úsměv a dobrou náladu.'
       >
-        <Button size="sm" className="w-fit" rightIcon={<HiArrowDown></HiArrowDown>}>Zjistit více</Button>
+        <a href="#informace">
+          <Button size="sm" className="w-fit" rightIcon={<HiArrowDown />}>Zjistit více</Button>
+        </a>
       </BasicHero>
       <Information
         heading='Základní informace'

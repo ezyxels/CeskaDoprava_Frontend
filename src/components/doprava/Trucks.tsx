@@ -9,13 +9,13 @@ export default function VehiclePark() {
       <Heading level={2} size={'xl'}>Vozový park</Heading>
       <div className='flex flex-col gap-y-20 lg:gap-y-48 md:mt-32' >
         <TextPointAndImage
-          heading='DAF XF + NÁVĚS SCHMITZ '
-          imageBigSrc='/images/cd-img-8.jpg'
-          imageBigAlt="doplnit alt!!!"
-          imageSmallLeftSrc='/images/cd-img-8.jpg'
-          imageSmallLeftAlt="doplnit alt!!!"
-          imageSmallRightSrc='/images/cd-img-8.jpg'
-          imageSmallRightAlt="doplnit alt!!!"
+          heading='DAF XF + NÁVĚS SCHMITZ'
+          imageBigSrc='/images/nakladni/pruh1.jpg'
+          imageBigAlt="Nákladní vůz DAF XF + návěs SCHMITZ"
+          imageSmallLeftSrc='/images/nakladni/pruh2.jpg'
+          imageSmallLeftAlt="Nákladní vůz DAF XF + návěs SCHMITZ"
+          imageSmallRightSrc='/images/nakladni/pruh3.jpg'
+          imageSmallRightAlt="Nákladní vůz DAF XF + návěs SCHMITZ"
           imagePosition='left'
           points={[
             {
@@ -38,12 +38,12 @@ export default function VehiclePark() {
 
         <TextPointAndImage
           heading='DAF XF + NÁVĚS KRONE'
-          imageBigSrc='/images/cd-img-8.jpg'
-          imageBigAlt="doplnit alt!!!"
-          imageSmallLeftSrc='/images/cd-img-8.jpg'
-          imageSmallLeftAlt="doplnit alt!!!"
-          imageSmallRightSrc='/images/cd-img-8.jpg'
-          imageSmallRightAlt="doplnit alt!!!"
+          imageBigSrc='/images/nakladni/daf1.jpg'
+          imageBigAlt="Nákladní vůz DAF XF + návěs KRONE"
+          imageSmallLeftSrc='/images/nakladni/daf2.jpg'
+          imageSmallLeftAlt="Nákladní vůz DAF XF + návěs KRONE"
+          imageSmallRightSrc='/images/nakladni/daf3.jpg'
+          imageSmallRightAlt="Nákladní vůz DAF XF + návěs KRONE"
           imagePosition='right'
           points={[{
             heading: "Kapacita",
@@ -64,12 +64,12 @@ export default function VehiclePark() {
 
         <TextPointAndImage
           heading='RENAULT PREMIUM + NÁVĚS SCHMITZ'
-          imageBigSrc='/images/cd-img-8.jpg'
-          imageBigAlt="doplnit alt!!!"
-          imageSmallLeftSrc='/images/cd-img-8.jpg'
-          imageSmallLeftAlt="doplnit alt!!!"
-          imageSmallRightSrc='/images/cd-img-8.jpg'
-          imageSmallRightAlt="doplnit alt!!!"
+          imageBigSrc='/images/nakladni/renault1.jpg'
+          imageBigAlt='Nákladní vůz RENAULT PREMIUM + návěs SCHMITZ'
+          imageSmallLeftSrc='/images/nakladni/renault2.jpg'
+          imageSmallLeftAlt='Nákladní vůz RENAULT PREMIUM + návěs SCHMITZ'
+          imageSmallRightSrc='/images/nakladni/renault3.jpg'
+          imageSmallRightAlt='Nákladní vůz RENAULT PREMIUM + návěs SCHMITZ'
           imagePosition='left'
           points={[{
             heading: "Kapacita",

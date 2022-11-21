@@ -20,10 +20,18 @@ export default function Hero() {
           <Heading level={2} size="sm">Cestovní agentura, zájezdy </Heading>
           <p>Rezervace zájezdů, informace, změny cestovních smluv, vstupenky</p>
           <div>
-            <a href={"tel:" + "+420 702 009 956"} className='c-link-3-a flex items-center text-primary font-medium'>
-              <HiPhone className='mr-2' />+420 702 009 956
-            </a>
-            <a href={"mailto:" + "cestovka.ceskadoprava@email.cz"} className='c-link-3-a flex items-center text-primary font-medium'>
+            <div className='flex flex-row items-center'>
+              <HiPhone className='mr-2 text-primary' />
+              <div className='flex flex-row flex-wrap gap-x-1'>
+                <a href={"tel:+420 702 009 956"} className='c-link-3-a flex items-center text-primary font-medium'>
+                  +420 702 009 956
+                </a>,
+                <a href={"tel:+420 606 391 992"} className='c-link-3-a flex items-center text-primary font-medium'>
+                  +420 606 391 992
+                </a>
+              </div>
+            </div>
+            <a href={"mailto:cestovka.ceskadoprava@email.cz"} className='c-link-3-a flex items-center text-primary font-medium'>
               <HiMail className='mr-2' />cestovka.ceskadoprava@email.cz
             </a>
           </div>
@@ -34,10 +42,10 @@ export default function Hero() {
           <Heading level={2} size="sm">Doprava, Jízdenky do Chorvatska</Heading>
           <p>Nonstop dispečink,  autobusová doprava, kamionová doprava, spedice, rezervace a prodej jízdenek, informace, příjem objednávek</p>
           <div>
-            <a href={"tel:" + "+420 721 174 928"} className='c-link-3-a flex items-center text-primary font-medium'>
+            <a href={"tel:+420 721 174 928"} className='c-link-3-a flex items-center text-primary font-medium'>
               <HiPhone className='mr-2' />+420 721 174 928
             </a>
-            <a href={"mailto:" + "ceskadoprava@email.cz"} className='c-link-3-a flex items-center text-primary font-medium'>
+            <a href={"mailto:ceskadoprava@email.cz"} className='c-link-3-a flex items-center text-primary font-medium'>
               <HiMail className='mr-2' />ceskadoprava@email.cz
             </a>
           </div>
@@ -48,10 +56,10 @@ export default function Hero() {
           <Heading level={2} size="sm">Fakturace, administrativní oddělení </Heading>
           <p>Zpracování faktur, objednávky, administrace webu</p>
           <div>
-            <a href={"tel:" + "+420 602 469 374"} className='c-link-3-a flex items-center text-primary font-medium'>
+            <a href={"tel:+420 602 469 374"} className='c-link-3-a flex items-center text-primary font-medium'>
               <HiPhone className='mr-2' />+420 602 469 374
             </a>
-            <a href={"mailto:" + "fakturace.ceskadoprava@email.cz"} className='c-link-3-a flex items-center text-primary font-medium'>
+            <a href={"mailto:fakturace.ceskadoprava@email.cz"} className='c-link-3-a flex items-center text-primary font-medium'>
               <HiMail className='mr-2' />fakturace.ceskadoprava@email.cz
             </a>
           </div>

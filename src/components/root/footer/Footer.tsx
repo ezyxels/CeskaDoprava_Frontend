@@ -18,8 +18,8 @@ export default function Footer() {
           <Heading level={3} size="base">
             {globalConfig.client.fullName}
           </Heading>
-          <div>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, exercitationem.
+          <div className="max-w-prose">
+            Společnost působící v oblasti cestovního ruchu, osobní a autobusové dopravy ale i dopravy nákladní.
           </div>
           <SocialLinks />
         </div>
